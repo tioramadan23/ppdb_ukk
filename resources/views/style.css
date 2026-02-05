@@ -1,0 +1,39 @@
+.bg-coffee-gradient {
+            background-color: #1D355B;
+        }
+        .text-coffee-dark {
+            color: #29396d;
+        }
+        .text-coffee-medium {
+            color: #29396d;
+        }
+        .focus-coffee {
+            box-shadow: 0 0 0 2px #29396d;
+            border-color: #29396d;
+        }
+        
+        /* Glassmorphism Effect untuk Form */
+        .bg-glass {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Input fields dengan transparansi */
+        .input-glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+        
+        .input-glass::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .input-glass:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #29396d;
+            box-shadow: 0 0 0 3px rgba(41, 51, 109, 0.3);
+        }
