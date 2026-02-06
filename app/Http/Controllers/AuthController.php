@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     // Tampilkan form registrasi
-    public function showRegister()
+    public function register()
     {
         return view('auth.register');
     }
 
     // Proses registrasi
-    public function register(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:100',
@@ -37,13 +37,13 @@ class AuthController extends Controller
     }
 
     // Tampilkan form login
-    public function showLogin()
+    public function login()
     {
-        return view('auth.login');
+        return view('login');
     }
 
     // Proses login
-    public function login(Request $request)
+    public function authenticate(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',

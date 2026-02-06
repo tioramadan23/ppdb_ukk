@@ -33,7 +33,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('register') }}" class="space-y-6">
+            <form method="POST" action="{{ route('register.store') }}" class="space-y-6">
                 @csrf
 
                 <!-- Nama Lengkap -->

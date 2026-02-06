@@ -9,20 +9,21 @@
 </head>
 <body class="min-h-screen bg-coffee-gradient flex items-start justify-center px-4 pt-16 pb-16">
     <div class="max-w-md w-full">
-        <!-- Form Transparan dengan Glassmorphism -->
-        <div class="bg-glass rounded-2xl shadow-2xl p-10"> <!-- Padding diperbesar dari p-8 ke p-10 -->
-            <div class="text-center mb-8"> <!-- Margin bottom diperbesar dari mb-6 ke mb-8 -->
+
+        <div class="bg-glass rounded-2xl shadow-2xl p-10"> 
+            <div class="text-center mb-8"> 
                 <h2 class="text-3xl font-bold text-white">
                     Login
                 </h2>
-                <p class="text-white mt-2 opacity-80"> <!-- Margin top diperbesar dari mt-1 ke mt-2 -->
+                <p class="text-white mt-2 opacity-80">
                     Masuk ke akun Anda
                 </p>
             </div>
 
-            <form class="space-y-5"> <!-- Spacing diperbesar dari space-y-6 ke space-y-5 -->
+            <form method="POST" action="{{ route('login.auth') }}" class="space-y-5"> 
+                @csrf
                 <!-- Email Address -->
-                <div class="space-y-2"> <!-- Menambahkan spacing antara label dan input -->
+                <div class="space-y-2"> 
                     <label for="email" class="block text-sm font-medium text-white opacity-90">
                         Email 
                     </label>
@@ -59,7 +60,7 @@
                 <div class="pt-6"> <!-- Padding top sebelum link -->
                     <p class="text-center text-sm text-white opacity-80">
                         Belum Punya Akun?
-                        <a href="Registrasi.blade.php" class="font-medium text-cyan-300 hover:text-cyan-500 transition-colors">
+                        <a href="registrasi.blade.php" class="font-medium text-cyan-300 hover:text-cyan-500 transition-colors">
                             Daftar Sekarang
                         </a>
                     </p>
