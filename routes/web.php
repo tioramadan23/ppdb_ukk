@@ -4,22 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PendaftaranController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-| Routes untuk registrasi, login, logout, dan pendaftaran.
-|--------------------------------------------------------------------------
-*/
-
-// Halaman utama
+// HOME
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-// ----------------------
-// AUTHENTIKASI
-// ----------------------
+// ======================
+// AUTH
+// ======================
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'store'])->name('register.store');
 
@@ -30,18 +22,18 @@ Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout')
     ->middleware('auth');
 
-// ----------------------
-// PENDAFTARAN (WAJIB LOGIN)
-// ----------------------
+// ======================
+// AREA LOGIN
+// ======================
 Route::middleware('auth')->group(function () {
 
-    Route::get('/pendaftaran', [PendaftaranController::class, 'create'])->name('pendaftaran.create');
-
-    Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
-
-    // Dashboard (opsional)
     Route::get('/dashboard', function () {
         return 'Login berhasil';
     })->name('dashboard');
-});
 
+    Route::get('/pendaftaran', [PendaftaranController::class, 'create'])
+        ->name('pendaftaran.create');
+
+    Route::post('/pendaftaran', [PendaftaranController::class, 'store'])
+        ->name('pendaftaran.store');
+});

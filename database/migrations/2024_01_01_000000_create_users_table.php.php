@@ -9,12 +9,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id(); // id BIGINT AUTO_INCREMENT PRIMARY KEY
+            $table->id();
             $table->string('email', 100)->unique();
             $table->string('password');
-            $table->enum('role', ['admin','calon_siswa']);
-            $table->timestamps(); // created_at & updated_at
+            $table->enum('role', ['admin','calon_siswa'])->default('calon_siswa');
+            $table->timestamps();
         });
+
     }
 
     public function down(): void

@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pendaftaran_id')->constrained('pendaftaran')->onDelete('cascade');
+            $table->foreignId('pendaftaran_id')
+                ->constrained('pendaftarans')
+                ->cascadeOnDelete();
+
             $table->string('bukti_pembayaran_path', 255)->nullable();
             $table->enum('status_pembayaran', ['pending','diterima','ditolak'])->default('pending');
             $table->dateTime('tanggal_upload')->nullable();
             $table->timestamps();
         });
+
 
     }
 

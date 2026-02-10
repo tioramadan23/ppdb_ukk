@@ -20,7 +20,7 @@
                 </p>
             </div>
 
-            <form method="POST" action="{{ route('login.auth') }}" class="space-y-5"> 
+                <form method="POST" action="{{ route('login.auth') }}">
                 @csrf
                 <!-- Email Address -->
                 <div class="space-y-2"> 

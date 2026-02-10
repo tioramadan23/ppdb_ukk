@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('wali', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pendaftaran_id')->constrained('pendaftaran')->onDelete('cascade');
+            $table->foreignId('pendaftaran_id')
+                ->constrained('pendaftarans')
+                ->cascadeOnDelete();
+
             $table->string('nama_wali', 100)->nullable();
             $table->string('nik_wali', 20)->nullable();
             $table->text('alamat_wali')->nullable();
@@ -22,6 +25,7 @@ return new class extends Migration
             $table->string('no_hp_wali', 15)->nullable();
             $table->timestamps();
         });
+
 
     }
 

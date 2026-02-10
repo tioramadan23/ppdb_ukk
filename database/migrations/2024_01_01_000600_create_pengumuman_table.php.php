@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('pengumuman', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pendaftaran_id')->constrained('pendaftaran')->onDelete('cascade');
+            $table->foreignId('pendaftaran_id')
+                ->constrained('pendaftarans')
+                ->cascadeOnDelete();
+
             $table->enum('status_hasil', ['diterima','tidak_diterima'])->nullable();
             $table->text('keterangan')->nullable();
             $table->date('tanggal_pengumuman')->nullable();
             $table->timestamps();
         });
+
 
     }
 
