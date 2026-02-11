@@ -17,7 +17,7 @@ class PendaftaranController extends Controller
         $user = auth()->user();
 
         // Simpan pendaftaran
-        $pendaftaran = $user->pendaftarans()->create($request->only([
+        $pendaftaran = $user->pendaftaran()->create($request->only([
             'nama_lengkap', 'nisn', 'nik', 'no_kk', 'tempat_lahir', 'tanggal_lahir',
             'jenis_kelamin', 'agama', 'kewarganegaraan', 'berkebutuhan_khusus',
             'alamat_lengkap', 'asal_sekolah', 'jurusan', 'foto_siswa'

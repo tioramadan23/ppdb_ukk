@@ -14,7 +14,7 @@ class AuthController extends Controller
     // ======================
     public function register()
     {
-        return view('auth.register');
+        return view('registrasi');
     }
 
     // ======================
@@ -46,7 +46,7 @@ class AuthController extends Controller
     // ======================
     public function login()
     {
-        return view('home');
+        return view('login');
     }
 
     // ======================
@@ -66,14 +66,14 @@ class AuthController extends Controller
                 return redirect()->route('admin.dashboard');
             }
 
-            // calon siswa
-            return redirect()->route('pendaftaran.create');
+            return redirect()->route('siswa.dashboard');
         }
 
         return back()->withErrors([
-            'email' => 'Email atau password salah',
+            'email' => 'Kredensial yang Anda masukkan tidak valid.',
         ])->onlyInput('email');
     }
+
 
 
     // ======================

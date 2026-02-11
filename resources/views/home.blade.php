@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+    <title>Dashboard</title>
 </head>
 <body>
     <!-- Navbar start -->
@@ -48,7 +48,7 @@
 
     <input
       type="text"
-      placeholder="Cari peserta / NISN / sekolah…"
+      placeholder="Cari "
       class="w-64 xl:w-72 rounded-full border border-gray-300 bg-white
              py-2.5 pl-11 pr-4 text-sm text-gray-700 shadow-sm
              transition-all duration-200
@@ -97,7 +97,7 @@
                     Pilih kompetensi terbaik: Rekayasa Perangkat Lunak, Teknik Komputer dan Jaringan, Desain Komunikasi Visual, Bisnis Digital dan Akuntansi. Kurikulum industri, fasilitas modern, guru berpengalaman.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#" class="w-full sm:w-auto px-8 py-4 bg-blue-800 text-white font-semibold rounded-xl hover:bg-blue-900 transition-colors shadow-lg">
+                    <a href="{{ route('registrasi') }}" class="w-full sm:w-auto px-8 py-4 bg-blue-800 text-white font-semibold rounded-xl hover:bg-blue-900 transition-colors shadow-lg">
                         Daftar
                     </a>
                     <a href="#" class="w-full sm:w-auto px-8 py-4 bg-gray-100 dark:bg-white/10 backdrop-blur text-gray-900 dark:text-white font-semibold rounded-xl border border-gray-300 dark:border-white/20 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors">

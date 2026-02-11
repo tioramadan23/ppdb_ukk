@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PendaftaranController;
+use Illuminate\Routing\RouteRegistrar;
 
 // HOME
 Route::get('/', function () {
@@ -37,3 +38,30 @@ Route::middleware('auth')->group(function () {
     Route::post('/pendaftaran', [PendaftaranController::class, 'store'])
         ->name('pendaftaran.store');
 });
+
+
+route::get('/utama', function () {
+    return view('utama');
+})->name('utama');
+
+Route::get('/registrasi', function () {
+    return view('registrasi');
+})->name('registrasi');
+
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+
+// DHASHBOARD ADMIN & SISWA
+    Route::middleware(['auth'])->group(function () {
+
+        Route::get('/admin/dashboard', function () {
+            return view('dashboard.admin');
+        })->name('admin.dashboard');
+
+        Route::get('/siswa/dashboard', function () {
+            return view('dashboard.siswa');
+        })->name('siswa.dashboard');
+
+    });
+
