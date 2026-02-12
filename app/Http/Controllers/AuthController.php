@@ -32,13 +32,13 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'calon_siswa',
+            'role' => 'calon_siswa', // default role
         ]);
 
         Auth::login($user);
 
-        return redirect()->route('pendaftaran.create')
-            ->with('success', 'Registrasi berhasil! Silakan lengkapi data pendaftaran.');
+        return redirect()->route('dashboard.siswa')
+            ->with('success', 'Registrasi berhasil! Silakan lengkapi data.');
     }
 
     // ======================
@@ -60,21 +60,23 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+
             $request->session()->regenerate();
 
+            // 🔥 CEK ROLE DI SINI
             if (Auth::user()->role === 'admin') {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('dashboard.admin')
+                    ->with('success', 'Selamat datang Admin!');
             }
 
-            return redirect()->route('siswa.dashboard');
+            return redirect()->route('dashboard.siswa')
+                ->with('success', 'Login berhasil!');
         }
 
         return back()->withErrors([
-            'email' => 'Kredensial yang Anda masukkan tidak valid.',
+            'email' => 'Email atau password salah.',
         ])->onlyInput('email');
     }
-
-
 
     // ======================
     // LOGOUT

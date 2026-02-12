@@ -51,17 +51,62 @@ Route::get('/registrasi', function () {
 Route::get('/home', function () {
     return view('home');
 })->name('home');
+Route::get('/tentang-sekolah', function () {
+    return view('tentang-sekolah');
+})->name('tentang-sekolah');
+
+Route::get('/informasi', function () {
+    return view('informasi');
+})->name('informasi');
+
+Route::get('/pendaftaran', function () {
+    return view('dashboard.pendaftaran');
+})->name('dashboard.pendaftaran');
 
 // DHASHBOARD ADMIN & SISWA
     Route::middleware(['auth'])->group(function () {
 
-        Route::get('/admin/dashboard', function () {
+        Route::get('/dashboard/admin', function () {
             return view('dashboard.admin');
         })->name('admin.dashboard');
 
-        Route::get('/siswa/dashboard', function () {
+        Route::get('/dashboard/siswa', function () {
             return view('dashboard.siswa');
-        })->name('siswa.dashboard');
+        })->name('dashboard.siswa');
 
     });
+
+
+// AKSES KHUSUS ADMIN
+    Route::get('/dashboard/admin', function () {
+        return view('dashboard.admin');
+    })->name('dashboard.admin');
+
+    Route::get('/dashboard/siswa', function () {
+        return view('dashboard.siswa');
+    })->name('dashboard.siswa');
+
+
+// =====================
+// DASHBOARD ADMIN
+// =====================
+    Route::middleware(['auth', 'role:admin'])->group(function () {
+        Route::get('/dashboard/admin', function () {
+            return view('dashboard.admin');
+        })->name('dashboard.admin');
+    });
+
+
+// =====================
+// DASHBOARD SISWA
+// =====================
+    Route::middleware(['auth', 'role:calon_siswa'])->group(function () {
+        Route::get('/dashboard', function () {
+            return view('dashboard.siswa');
+        })->name('dashboard.siswa');
+    });
+
+   
+
+
 

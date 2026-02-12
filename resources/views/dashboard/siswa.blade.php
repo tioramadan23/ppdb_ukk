@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Pendaftaran</h1>
-    <p>Selamat datang, {{ auth()->user()->email }}</p>
+    <p>Selamat datang, {{ auth()->user()->name }}</p>
 </body>
 </html>
 

@@ -4,83 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Dashboard</title>
+    <title>pen</title>
 </head>
 <body>
-    <!-- Navbar start -->
-    <header class="border-b border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-900 shadow-sm">
-        <div class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-            <a href="#" title="" class="flex text-xl">
-                <span class="font-bold text-gray-800 dark:text-gray-200">SMK</span>
-                <span class="text-blue-800 dark:text-blue-400">BPM</span>
-            </a>
-
-            <div class="flex flex-1 items-center justify-end md:justify-between">
-                <nav aria-label="Global" class="hidden md:block">
-                    <ul class="flex items-center gap-6 text-sm">
-                        <li>
-                            <a class="border-b-2 border-blue-700 pb-5 text-sm font-medium text-gray-900 dark:border-blue-500 dark:text-white" href="#"> Home </a>
-                        </li>
-
-                        <li>
-                            <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="#"> Tentang Sekolah </a>
-                        </li>
-
-                        <li>
-                            <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="#"> Informasi </a>
-                        </li>
-
-                        <li>
-                            <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="#"> Pendaftaran </a>
-                        </li>
-                    </ul>
-                </nav>
-<div class="flex items-center gap-3">
-  <!-- Search -->
-  <div class="relative hidden lg:block">
-    <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-gray-400">
-      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"
-           viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round"
-              d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"/>
-      </svg>
-    </span>
-
-    <input
-      type="text"
-      placeholder="Cari "
-      class="w-64 xl:w-72 rounded-full border border-gray-300 bg-white
-             py-2.5 pl-11 pr-4 text-sm text-gray-700 shadow-sm
-             transition-all duration-200
-             focus:border-blue-600 focus:ring-2 focus:ring-blue-600 focus:outline-none
-             hover:border-blue-400
-             dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
-    />
-  </div>
-
-  <!-- Profile -->
-  <a href="#" class="hidden sm:block shrink-0">
-    <span class="sr-only">Profile</span>
-    <img
-      alt="Profile"
-      src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80"
-      class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-blue-500 transition"
-    />
-  </a>
-</div>
-
-
-                    <button class="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-800 md:hidden dark:bg-gray-800 dark:text-gray-300 dark:hover:text-white">
-                        <span class="sr-only">Toggle menu</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      <!-- Navbar start -->
+<header class="sticky top-0 z-50 border-b border-gray-300 bg-white/90 backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/90 shadow-sm">
+    <div class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4 sm:px-6 lg:px-8">
+        <a href="#" title="" class="flex text-xl">
+            <span class="font-bold text-gray-800 dark:text-gray-200">SMK</span>
+            <span class="text-blue-800 dark:text-blue-400">BPM</span>
+        </a>
+ 
+        <div class="flex flex-1 items-center justify-end md:justify-between">
+            <nav aria-label="Global" class="hidden md:block">
+                <ul class="flex items-center gap-6 text-sm">
+                    <li>
+                        <a class="border-b-2 border-blue-700 pb-5 text-sm font-medium text-gray-900 dark:border-blue-500 dark:text-white" href="#">
+                            Home
+                        </a>
+                    </li>
+ 
+                    <li>
+                        <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="#">
+                            Tentang Sekolah
+                        </a>
+                    </li>
+ 
+                    <li>
+                        <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="#">
+                            Informasi
+                        </a>
+                    </li>
+ 
+                    <li>
+<a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('dashboard.pendaftaran') }}">
+Pendaftaran
+</a>
+</li>
+                </ul>
+            </nav>
+ 
+            <div class="flex items-center gap-3">
+                <!-- Search -->
+                <div class="relative hidden lg:block">
+                    <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-gray-400">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
                         </svg>
-                    </button>
+                    </span>
+ 
+                    <input type="text" placeholder="Cari"
+                        class="w-64 xl:w-72 rounded-full border border-gray-300 bg-white
+                        py-2.5 pl-11 pr-4 text-sm text-gray-700 shadow-sm
+                        transition-all duration-200
+                        focus:border-blue-600 focus:ring-2 focus:ring-blue-600 focus:outline-none
+                        hover:border-blue-400
+                        dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400" />
                 </div>
+ 
+                <!-- Profile -->
+                <a href="#" class="hidden sm:block shrink-0">
+                    <span class="sr-only">Profile</span>
+                    <img alt="Profile"
+                        src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80"
+                        class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-blue-500 transition" />
+                </a>
             </div>
+ 
+            <button
+                class="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-800 md:hidden dark:bg-gray-800 dark:text-gray-300 dark:hover:text-white">
+                <span class="sr-only">Toggle menu</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
         </div>
-    </header>
-    <!-- Navbar end -->
+    </div>
+</header>
+<!-- Navbar end -->
+ 
 
     <section class="relative py-24 px-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
         <div class="absolute inset-0">
