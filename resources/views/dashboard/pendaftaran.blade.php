@@ -92,9 +92,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
  
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
- 
+    
     <script>
  // Di bagian tailwind.config
 tailwind.config = {
@@ -112,9 +110,7 @@ tailwind.config = {
       },
       // ... konfigurasi lain tetap
   
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif']
-                    },
+                  
                     animation: {
                         'fade-in': 'fadeIn 0.5s ease-in-out',
                         'slide-in': 'slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -269,15 +265,26 @@ tailwind.config = {
                                    placeholder="Contoh: 1234567890" maxlength="10" required>
                             <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NISN wajib diisi dan harus 10 digit angka</div>
                         </div>
- 
-                        <!-- Tempat Lahir -->
+                         <!-- NIK -->
                         <div class="form-group">
                             <label class="block font-semibold text-gray-800 mb-2 required">
-                                Tempat Lahir <span class="text-red-500">*</span>
+                                NIK (Nomor Identitas Penduduk) <span class="text-red-500">*</span>
+                                <i class="fas fa-info-circle text-gray-400 ml-1 cursor-help text-sm" title="Nomor Induk Siswa Nasional"></i>
                             </label>
-                            <input type="text" name="tempat_lahir" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" 
-                                   placeholder="Contoh: Jakarta" required>
-                            <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Tempat lahir wajib diisi</div>
+                            <input type="text" name="nik" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" 
+                                   placeholder="Contoh: 1234567890" maxlength="16" required>
+                            <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NIK wajib diisi dan harus 16 digit angka</div>
+                        </div>
+                        
+                       <!-- No. KK -->
+                        <div class="form-group">
+                            <label class="block font-semibold text-gray-800 mb-2 required">
+                                No. KK (Nomor Kartu Keluarga) <span class="text-red-500">*</span>
+                                <i class="fas fa-info-circle text-gray-400 ml-1 cursor-help text-sm" title="Nomor Kartu Keluarga"></i>
+                            </label>
+                            <input type="text" name="nik" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" 
+                                   placeholder="Contoh: 1234567890" maxlength="16" required>
+                            <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NIK wajib diisi dan harus 16 digit angka</div>
                         </div>
  
                         <!-- Tanggal Lahir -->
@@ -425,6 +432,16 @@ tailwind.config = {
                                    placeholder="Nama lengkap ayah" required>
                             <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Nama ayah wajib diisi</div>
                         </div>
+                         <!-- NIK -->
+                        <div class="form-group">
+                            <label class="block font-semibold text-gray-800 mb-2 required">
+                                NIK (Nomor Identitas Penduduk) <span class="text-red-500">*</span>
+                                <i class="fas fa-info-circle text-gray-400 ml-1 cursor-help text-sm" title="Nomor Induk Siswa Nasional"></i>
+                            </label>
+                            <input type="text" name="nik" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" 
+                                   placeholder="Contoh: 1234567890" maxlength="16" required>
+                            <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NIK wajib diisi dan harus 16 digit angka</div>
+                        </div>
                         <div class="form-group">
                             <label class="block font-semibold text-gray-800 mb-2 required">
                                 Pekerjaan Ayah <span class="text-red-500">*</span>
@@ -433,6 +450,7 @@ tailwind.config = {
                                    placeholder="Contoh: Pegawai Swasta" required>
                             <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Pekerjaan ayah wajib diisi</div>
                         </div>
+                        
                         <div class="form-group">
                             <label class="block font-semibold text-gray-800 mb-2 required">
                                 Pendidikan Terakhir <span class="text-red-500">*</span>
@@ -449,6 +467,7 @@ tailwind.config = {
                                 <option value="S3">S3</option>
                             </select>
                             <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Pendidikan ayah wajib dipilih</div>
+                            
                         </div>
                         <div class="form-group">
                             <label class="block font-semibold text-gray-800 mb-2 required">
@@ -457,6 +476,15 @@ tailwind.config = {
                             <input type="tel" name="no_hp_ayah" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" 
                                    placeholder="Contoh: 081234567890" maxlength="13" required>
                             <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">No. HP ayah wajib diisi</div>
+                        </div>
+                        <!-- Alamat Ayah -->
+                        <div class="form-group col-span-full">
+                            <label class="block font-semibold text-gray-800 mb-2 required">
+                                Alamat Ayah <span class="text-red-500">*</span>
+                            </label>
+                            <textarea name="alamat_ayah" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" 
+                                      rows="2" placeholder="Alamat lengkap ayah" required></textarea>
+                            <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Alamat ayah wajib diisi</div>
                         </div>
                     </div>
  
@@ -474,6 +502,16 @@ tailwind.config = {
                             <input type="text" name="nama_ibu" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" 
                                    placeholder="Nama lengkap ibu" required>
                             <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Nama ibu wajib diisi</div>
+                        </div>
+                         <!-- NIK -->
+                        <div class="form-group">
+                            <label class="block font-semibold text-gray-800 mb-2 required">
+                                NIK (Nomor Identitas Penduduk) <span class="text-red-500">*</span>
+                                <i class="fas fa-info-circle text-gray-400 ml-1 cursor-help text-sm" title="Nomor Induk Siswa Nasional"></i>
+                            </label>
+                            <input type="text" name="nik" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" 
+                                   placeholder="Contoh: 1234567890" maxlength="16" required>
+                            <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NIK wajib diisi dan harus 16 digit angka</div>
                         </div>
                         <div class="form-group">
                             <label class="block font-semibold text-gray-800 mb-2 required">
@@ -507,6 +545,15 @@ tailwind.config = {
                             <input type="tel" name="no_hp_ibu" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" 
                                    placeholder="Contoh: 081234567890" maxlength="13" required>
                             <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">No. HP ibu wajib diisi</div>
+                        </div>
+                        <!-- Alamat Ibu -->
+                        <div class="form-group col-span-full">
+                            <label class="block font-semibold text-gray-800 mb-2 required">
+                                Alamat Ibu <span class="text-red-500">*</span>
+                            </label>
+                            <textarea name="alamat_ibu" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" 
+                                      rows="2" placeholder="Alamat lengkap ibu" required></textarea>
+                            <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Alamat ibu wajib diisi</div>
                         </div>
                     </div>
  
@@ -571,250 +618,272 @@ tailwind.config = {
                 </div>
  
                 <!-- Section 3: Berkas-Berkas -->
-                <div class="form-section hidden" id="section-3">
-                    <h3 class="text-2xl font-bold text-primary-dark mb-6 flex items-center">
-                        <div class="bg-blue-50 dark:bg-blue-900/30 w-12 h-12 rounded-full flex items-center justify-center mr-3">
-                            <i class="fas fa-folder-open text-blue-600 dark:text-blue-400 text-xl"></i>
-                        </div>
-                        Berkas Persyaratan
-                    </h3>
-                    <p class="text-gray-600 mb-8">Unggah dokumen yang diperlukan untuk pendaftaran</p>
- 
-                    <!-- Info Box Berkas -->
-                    <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8 rounded-r-lg">
-                        <h5 class="font-bold text-blue-800 flex items-center mb-3">
-                            <i class="fas fa-file-alt mr-2"></i>Persyaratan Berkas
-                        </h5>
-                        <ul class="text-blue-700 space-y-2 text-sm">
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Pas Foto berwarna ukuran 3x4 dengan background merah</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Ijazah SMP/MTs/Sederajat yang sudah dilegalisir</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>SKHUN SMP/MTs/Sederajat yang sudah dilegalisir</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Akta Kelahiran</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Kartu Keluarga (KK)</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>KTP Orang Tua (Ayah & Ibu)</li>
-                        </ul>
-                        <p class="mt-3 mb-0 text-xs font-semibold">
-                            <span class="block"><i class="fas fa-info-circle mr-1"></i>Format file: JPG, PNG, atau PDF | Ukuran maksimal: 2MB per file</span>
-                        </p>
-                    </div>
- 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Pas Foto -->
-                        <div class="form-group">
-                            <label class="block font-semibold text-gray-800 mb-2 required">
-                                Pas Foto (3x4) <span class="text-red-500">*</span>
-                            </label>
-                            <div class="file-upload-container border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all" 
-                                 ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'pas_foto')">
-                                <div class="text-5xl text-primary mb-3">
-                                    <i class="fas fa-image"></i>
-                                </div>
-                                <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
-                                <p class="text-gray-600 text-sm mb-2">Pas foto terbaru dengan background merah</p>
-                                <small class="text-gray-500 text-xs italic">Format: JPG/PNG | Max: 2MB</small>
-                                <input type="file" id="pas_foto" name="pas_foto" class="file-upload-input hidden" 
-                                       accept="image/jpeg,image/png" required onchange="handleFileSelect(this, 'pas_foto')">
-                            </div>
-                            <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center flex-1">
-                                        <div class="w-10 h-10 bg-secondary-light rounded-lg flex items-center justify-center mr-3 text-primary">
-                                            <i class="fas fa-image"></i>
-                                        </div>
-                                        <div>
-                                            <h6 class="font-semibold text-gray-800 text-sm" id="pas_foto_name">-</h6>
-                                            <p class="text-xs text-gray-600" id="pas_foto_size">-</p>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors" onclick="removeFile('pas_foto')">
-                                        <i class="fas fa-times text-sm"></i>
-                                    </button>
-                                </div>
-                                <img src="" alt="Preview" class="image-preview hidden mt-3 max-w-full h-auto rounded-lg shadow-md">
-                            </div>
-                        </div>
- 
-                        <!-- Ijazah -->
-                        <div class="form-group">
-                            <label class="block font-semibold text-gray-800 mb-2 required">
-                                Scan Ijazah SMP/MTs <span class="text-red-500">*</span>
-                            </label>
-                            <div class="file-upload-container border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all" 
-                                 ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'ijazah')">
-                                <div class="text-5xl text-primary mb-3">
-                                    <i class="fas fa-file-certificate"></i>
-                                </div>
-                                <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
-                                <p class="text-gray-600 text-sm mb-2">Ijazah yang sudah dilegalisir</p>
-                                <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
-                                <input type="file" id="ijazah" name="ijazah" class="file-upload-input hidden" 
-                                       accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'ijazah')">
-                            </div>
-                            <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center flex-1">
-                                        <div class="w-10 h-10 bg-secondary-light rounded-lg flex items-center justify-center mr-3 text-primary">
-                                            <i class="fas fa-file-alt"></i>
-                                        </div>
-                                        <div>
-                                            <h6 class="font-semibold text-gray-800 text-sm" id="ijazah_name">-</h6>
-                                            <p class="text-xs text-gray-600" id="ijazah_size">-</p>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors" onclick="removeFile('ijazah')">
-                                        <i class="fas fa-times text-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
- 
-                        <!-- SKHUN -->
-                        <div class="form-group">
-                            <label class="block font-semibold text-gray-800 mb-2 required">
-                                Scan SKHUN SMP/MTs <span class="text-red-500">*</span>
-                            </label>
-                            <div class="file-upload-container border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all" 
-                                 ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'skhun')">
-                                <div class="text-5xl text-primary mb-3">
-                                    <i class="fas fa-file-contract"></i>
-                                </div>
-                                <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
-                                <p class="text-gray-600 text-sm mb-2">Surat Keterangan Hasil Ujian Nasional</p>
-                                <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
-                                <input type="file" id="skhun" name="skhun" class="file-upload-input hidden" 
-                                       accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'skhun')">
-                            </div>
-                            <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center flex-1">
-                                        <div class="w-10 h-10 bg-secondary-light rounded-lg flex items-center justify-center mr-3 text-primary">
-                                            <i class="fas fa-file-alt"></i>
-                                        </div>
-                                        <div>
-                                            <h6 class="font-semibold text-gray-800 text-sm" id="skhun_name">-</h6>
-                                            <p class="text-xs text-gray-600" id="skhun_size">-</p>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors" onclick="removeFile('skhun')">
-                                        <i class="fas fa-times text-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
- 
-                        <!-- Akta Kelahiran -->
-                        <div class="form-group">
-                            <label class="block font-semibold text-gray-800 mb-2 required">
-                                Scan Akta Kelahiran <span class="text-red-500">*</span>
-                            </label>
-                            <div class="file-upload-container border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all" 
-                                 ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'akta')">
-                                <div class="text-5xl text-primary mb-3">
-                                    <i class="fas fa-file-signature"></i>
-                                </div>
-                                <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
-                                <p class="text-gray-600 text-sm mb-2">Akta kelahiran siswa</p>
-                                <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
-                                <input type="file" id="akta" name="akta_kelahiran" class="file-upload-input hidden" 
-                                       accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'akta')">
-                            </div>
-                            <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center flex-1">
-                                        <div class="w-10 h-10 bg-secondary-light rounded-lg flex items-center justify-center mr-3 text-primary">
-                                            <i class="fas fa-file-alt"></i>
-                                        </div>
-                                        <div>
-                                            <h6 class="font-semibold text-gray-800 text-sm" id="akta_name">-</h6>
-                                            <p class="text-xs text-gray-600" id="akta_size">-</p>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors" onclick="removeFile('akta')">
-                                        <i class="fas fa-times text-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
- 
-                        <!-- Kartu Keluarga -->
-                        <div class="form-group">
-                            <label class="block font-semibold text-gray-800 mb-2 required">
-                                Scan Kartu Keluarga (KK) <span class="text-red-500">*</span>
-                            </label>
-                            <div class="file-upload-container border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all" 
-                                 ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'kk')">
-                                <div class="text-5xl text-primary mb-3">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
-                                <p class="text-gray-600 text-sm mb-2">Kartu Keluarga</p>
-                                <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
-                                <input type="file" id="kk" name="kartu_keluarga" class="file-upload-input hidden" 
-                                       accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'kk')">
-                            </div>
-                            <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center flex-1">
-                                        <div class="w-10 h-10 bg-secondary-light rounded-lg flex items-center justify-center mr-3 text-primary">
-                                            <i class="fas fa-file-alt"></i>
-                                        </div>
-                                        <div>
-                                            <h6 class="font-semibold text-gray-800 text-sm" id="kk_name">-</h6>
-                                            <p class="text-xs text-gray-600" id="kk_size">-</p>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors" onclick="removeFile('kk')">
-                                        <i class="fas fa-times text-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
- 
-                        <!-- KTP Orang Tua -->
-                        <div class="form-group">
-                            <label class="block font-semibold text-gray-800 mb-2">
-                                Scan KTP Orang Tua (Optional)
-                            </label>
-                            <div class="file-upload-container border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all" 
-                                 ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'ktp')">
-                                <div class="text-5xl text-primary mb-3">
-                                    <i class="fas fa-id-card"></i>
-                                </div>
-                                <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
-                                <p class="text-gray-600 text-sm mb-2">KTP Ayah dan Ibu (bisa digabung)</p>
-                                <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
-                                <input type="file" id="ktp" name="ktp_orang_tua" class="file-upload-input hidden" 
-                                       accept=".pdf,.jpg,.jpeg,.png" onchange="handleFileSelect(this, 'ktp')">
-                            </div>
-                            <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center flex-1">
-                                        <div class="w-10 h-10 bg-secondary-light rounded-lg flex items-center justify-center mr-3 text-primary">
-                                            <i class="fas fa-file-alt"></i>
-                                        </div>
-                                        <div>
-                                            <h6 class="font-semibold text-gray-800 text-sm" id="ktp_name">-</h6>
-                                            <p class="text-xs text-gray-600" id="ktp_size">-</p>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors" onclick="removeFile('ktp')">
-                                        <i class="fas fa-times text-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
- 
-                    <div class="flex justify-between mt-8">
-                        <button type="button" class="btn-prev bg-gradient-to-r from-secondary to-secondary-light text-primary-dark px-8 py-3 rounded-lg font-semibold hover:from-secondary-light hover:to-secondary transition-all flex items-center shadow-md hover:shadow-lg">
-                            <i class="fas fa-arrow-left mr-2"></i>Kembali
-                        </button>
-                        <button type="button" class="btn-next bg-gradient-to-r from-primary to-primary-dark text-white px-8 py-3 rounded-lg font-semibold hover:from-primary-dark hover:to-primary-dark transition-all flex items-center shadow-lg hover:shadow-xl">
-                            Lanjutkan <i class="fas fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
+<div class="form-section hidden" id="section-3">
+    <h3 class="text-2xl font-bold text-primary-dark mb-6 flex items-center">
+        <div class="bg-blue-50 dark:bg-blue-900/30 w-12 h-12 rounded-full flex items-center justify-center mr-3">
+            <i class="fas fa-folder-open text-blue-600 dark:text-blue-400 text-xl"></i>
+        </div>
+        Berkas Persyaratan
+    </h3>
+    <p class="text-gray-600 mb-8">Unggah dokumen yang diperlukan untuk pendaftaran</p>
+
+    <!-- Info Box Berkas -->
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8 rounded-r-lg">
+        <h5 class="font-bold text-blue-800 flex items-center mb-3">
+            <i class="fas fa-file-alt mr-2"></i>Persyaratan Berkas
+        </h5>
+        <ul class="text-blue-700 space-y-2 text-sm">
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Pas Foto berwarna ukuran 3x4 dengan background merah</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Ijazah SMP/MTs/Sederajat yang sudah dilegalisir</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>SKHUN SMP/MTs/Sederajat yang sudah dilegalisir</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Akta Kelahiran</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Kartu Keluarga (KK)</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>KTP Orang Tua (Ayah & Ibu)</li>
+        </ul>
+        <p class="mt-3 mb-0 text-xs font-semibold">
+            <span class="block"><i class="fas fa-info-circle mr-1"></i>Format file: JPG, PNG, atau PDF | Ukuran maksimal: 2MB per file</span>
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Pas Foto -->
+        <div class="form-group">
+            <label class="block font-semibold text-gray-800 mb-2 required">
+                Pas Foto (3x4) <span class="text-red-500">*</span>
+            </label>
+            <div class="file-upload-container border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all" 
+                 ondragover="handleDragOver(event)" 
+                 ondragleave="handleDragLeave(event)" 
+                 ondrop="handleDrop(event, 'pas_foto')"
+                 onclick="triggerFileInput('pas_foto')">
+                <div class="text-5xl text-primary mb-3">
+                    <i class="fas fa-image"></i>
                 </div>
- 
+                <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
+                <p class="text-gray-600 text-sm mb-2">Pas foto terbaru dengan background merah</p>
+                <small class="text-gray-500 text-xs italic">Format: JPG/PNG | Max: 2MB</small>
+                <input type="file" id="pas_foto" name="pas_foto" class="file-upload-input hidden" 
+                       accept="image/jpeg,image/png" required onchange="handleFileSelect(this, 'pas_foto')">
+            </div>
+            <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center flex-1">
+                        <div class="w-10 h-10 bg-secondary-light rounded-lg flex items-center justify-center mr-3 text-primary">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div>
+                            <h6 class="font-semibold text-gray-800 text-sm" id="pas_foto_name">-</h6>
+                            <p class="text-xs text-gray-600" id="pas_foto_size">-</p>
+                        </div>
+                    </div>
+                    <button type="button" class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors" onclick="removeFile('pas_foto')">
+                        <i class="fas fa-times text-sm"></i>
+                    </button>
+                </div>
+                <img src="" alt="Preview Pas Foto" class="image-preview hidden mt-3 max-w-full h-auto rounded-lg shadow-md">
+            </div>
+        </div>
+
+        <!-- Ijazah -->
+        <div class="form-group">
+            <label class="block font-semibold text-gray-800 mb-2 required">
+                Scan Ijazah SMP/MTs <span class="text-red-500">*</span>
+            </label>
+            <div class="file-upload-container border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all" 
+                 ondragover="handleDragOver(event)" 
+                 ondragleave="handleDragLeave(event)" 
+                 ondrop="handleDrop(event, 'ijazah')"
+                 onclick="triggerFileInput('ijazah')">
+                <div class="text-5xl text-primary mb-3">
+                    <i class="fas fa-file-certificate"></i>
+                </div>
+                <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
+                <p class="text-gray-600 text-sm mb-2">Ijazah yang sudah dilegalisir</p>
+                <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
+                <input type="file" id="ijazah" name="ijazah" class="file-upload-input hidden" 
+                       accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'ijazah')">
+            </div>
+            <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center flex-1">
+                        <div class="w-10 h-10 bg-secondary-light rounded-lg flex items-center justify-center mr-3 text-primary">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div>
+                            <h6 class="font-semibold text-gray-800 text-sm" id="ijazah_name">-</h6>
+                            <p class="text-xs text-gray-600" id="ijazah_size">-</p>
+                        </div>
+                    </div>
+                    <button type="button" class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors" onclick="removeFile('ijazah')">
+                        <i class="fas fa-times text-sm"></i>
+                    </button>
+                </div>
+                <iframe src="" class="pdf-preview hidden mt-3 w-full h-48 border rounded-lg" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- SKHUN -->
+        <div class="form-group">
+            <label class="block font-semibold text-gray-800 mb-2 required">
+                Scan SKHUN SMP/MTs <span class="text-red-500">*</span>
+            </label>
+            <div class="file-upload-container border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all" 
+                 ondragover="handleDragOver(event)" 
+                 ondragleave="handleDragLeave(event)" 
+                 ondrop="handleDrop(event, 'skhun')"
+                 onclick="triggerFileInput('skhun')">
+                <div class="text-5xl text-primary mb-3">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
+                <p class="text-gray-600 text-sm mb-2">Surat Keterangan Hasil Ujian Nasional</p>
+                <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
+                <input type="file" id="skhun" name="skhun" class="file-upload-input hidden" 
+                       accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'skhun')">
+            </div>
+            <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center flex-1">
+                        <div class="w-10 h-10 bg-secondary-light rounded-lg flex items-center justify-center mr-3 text-primary">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div>
+                            <h6 class="font-semibold text-gray-800 text-sm" id="skhun_name">-</h6>
+                            <p class="text-xs text-gray-600" id="skhun_size">-</p>
+                        </div>
+                    </div>
+                    <button type="button" class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors" onclick="removeFile('skhun')">
+                        <i class="fas fa-times text-sm"></i>
+                    </button>
+                </div>
+                <iframe src="" class="pdf-preview hidden mt-3 w-full h-48 border rounded-lg" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- Akta Kelahiran -->
+        <div class="form-group">
+            <label class="block font-semibold text-gray-800 mb-2 required">
+                Scan Akta Kelahiran <span class="text-red-500">*</span>
+            </label>
+            <div class="file-upload-container border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all" 
+                 ondragover="handleDragOver(event)" 
+                 ondragleave="handleDragLeave(event)" 
+                 ondrop="handleDrop(event, 'akta')"
+                 onclick="triggerFileInput('akta')">
+                <div class="text-5xl text-primary mb-3">
+                    <i class="fas fa-file-signature"></i>
+                </div>
+                <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
+                <p class="text-gray-600 text-sm mb-2">Akta kelahiran siswa</p>
+                <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
+                <input type="file" id="akta" name="akta_kelahiran" class="file-upload-input hidden" 
+                       accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'akta')">
+            </div>
+            <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center flex-1">
+                        <div class="w-10 h-10 bg-secondary-light rounded-lg flex items-center justify-center mr-3 text-primary">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div>
+                            <h6 class="font-semibold text-gray-800 text-sm" id="akta_name">-</h6>
+                            <p class="text-xs text-gray-600" id="akta_size">-</p>
+                        </div>
+                    </div>
+                    <button type="button" class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors" onclick="removeFile('akta')">
+                        <i class="fas fa-times text-sm"></i>
+                    </button>
+                </div>
+                <iframe src="" class="pdf-preview hidden mt-3 w-full h-48 border rounded-lg" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- Kartu Keluarga -->
+        <div class="form-group">
+            <label class="block font-semibold text-gray-800 mb-2 required">
+                Scan Kartu Keluarga (KK) <span class="text-red-500">*</span>
+            </label>
+            <div class="file-upload-container border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all" 
+                 ondragover="handleDragOver(event)" 
+                 ondragleave="handleDragLeave(event)" 
+                 ondrop="handleDrop(event, 'kk')"
+                 onclick="triggerFileInput('kk')">
+                <div class="text-5xl text-primary mb-3">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
+                <p class="text-gray-600 text-sm mb-2">Kartu Keluarga</p>
+                <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
+                <input type="file" id="kk" name="kartu_keluarga" class="file-upload-input hidden" 
+                       accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'kk')">
+            </div>
+            <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center flex-1">
+                        <div class="w-10 h-10 bg-secondary-light rounded-lg flex items-center justify-center mr-3 text-primary">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div>
+                            <h6 class="font-semibold text-gray-800 text-sm" id="kk_name">-</h6>
+                            <p class="text-xs text-gray-600" id="kk_size">-</p>
+                        </div>
+                    </div>
+                    <button type="button" class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors" onclick="removeFile('kk')">
+                        <i class="fas fa-times text-sm"></i>
+                    </button>
+                </div>
+                <iframe src="" class="pdf-preview hidden mt-3 w-full h-48 border rounded-lg" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- KTP Orang Tua -->
+        <div class="form-group">
+            <label class="block font-semibold text-gray-800 mb-2">
+                Scan KTP Orang Tua (Optional)
+            </label>
+            <div class="file-upload-container border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all" 
+                 ondragover="handleDragOver(event)" 
+                 ondragleave="handleDragLeave(event)" 
+                 ondrop="handleDrop(event, 'ktp')"
+                 onclick="triggerFileInput('ktp')">
+                <div class="text-5xl text-primary mb-3">
+                    <i class="fas fa-id-card"></i>
+                </div>
+                <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
+                <p class="text-gray-600 text-sm mb-2">KTP Ayah dan Ibu (bisa digabung)</p>
+                <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
+                <input type="file" id="ktp" name="ktp_orang_tua" class="file-upload-input hidden" 
+                       accept=".pdf,.jpg,.jpeg,.png" onchange="handleFileSelect(this, 'ktp')">
+            </div>
+            <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center flex-1">
+                        <div class="w-10 h-10 bg-secondary-light rounded-lg flex items-center justify-center mr-3 text-primary">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div>
+                            <h6 class="font-semibold text-gray-800 text-sm" id="ktp_name">-</h6>
+                            <p class="text-xs text-gray-600" id="ktp_size">-</p>
+                        </div>
+                    </div>
+                    <button type="button" class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors" onclick="removeFile('ktp')">
+                        <i class="fas fa-times text-sm"></i>
+                    </button>
+                </div>
+                <iframe src="" class="pdf-preview hidden mt-3 w-full h-48 border rounded-lg" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex justify-between mt-8">
+        <button type="button" class="btn-prev bg-gradient-to-r from-secondary to-secondary-light text-primary-dark px-8 py-3 rounded-lg font-semibold hover:from-secondary-light hover:to-secondary transition-all flex items-center shadow-md hover:shadow-lg">
+            <i class="fas fa-arrow-left mr-2"></i>Kembali
+        </button>
+        <button type="button" class="btn-next bg-gradient-to-r from-primary to-primary-dark text-white px-8 py-3 rounded-lg font-semibold hover:from-primary-dark hover:to-primary-dark transition-all flex items-center shadow-lg hover:shadow-xl">
+            Lanjutkan <i class="fas fa-arrow-right ml-2"></i>
+        </button>
+    </div>
+
                 <!-- Section 4: Bukti Pembayaran -->
                 <div class="form-section hidden" id="section-4">
                    <h3 class="text-2xl font-bold text-primary-dark mb-6 flex items-center">
@@ -1189,7 +1258,14 @@ tailwind.config = {
                 input.closest('.file-upload-container').classList.remove('border-red-500');
             }
         }
- 
+        removeFile():
+        // Trigger file input saat container diklik
+        function triggerFileInput(fileId) {
+            const input = document.getElementById(fileId);
+            if (input) {
+                input.click();
+            }
+        }
         function removeFile(fileId) {
             const input = document.getElementById(fileId);
             const previewContainer = document.querySelector(`#${fileId}_preview_container`);
