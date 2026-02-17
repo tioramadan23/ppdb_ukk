@@ -459,13 +459,43 @@ Pendaftaran
           yang adaptif, inovatif, dan siap bersaing di era digital.
         </p>
 
-        <!-- Social Media -->
-        <div class="flex gap-3 pt-2">
-          <a href="#" class="social-icon">Facebook</a>
-          <a href="#" class="social-icon">Instagram</a>
-          <a href="#" class="social-icon">Youtube</a>
-          <a href="#" class="social-icon">X</a>
-        </div>
+       <!-- Social Media -->
+<div class="flex items-center gap-3 pt-2">
+
+  <!-- Facebook -->
+  <a href="#" 
+     class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-blue-600 transition duration-300 backdrop-blur-sm">
+    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6V12H17l-.4 3h-2.2v7A10 10 0 0022 12z"/>
+    </svg>
+  </a>
+
+  <!-- Instagram -->
+  <a href="#" 
+     class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-pink-500 transition duration-300 backdrop-blur-sm">
+    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 110 10 5 5 0 010-10zm6.5-.8a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"/>
+    </svg>
+  </a>
+
+  <!-- YouTube -->
+  <a href="#" 
+     class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-red-600 transition duration-300 backdrop-blur-sm">
+    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16 5 12 5 12 5h0s-4 0-7 .1c-.4 0-1.2 0-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.6C2 14.4 2.2 16 2.2 16s.2 1.4.8 2c.8.8 1.8.8 2.2.9 1.6.1 6.8.1 6.8.1s4 0 7-.1c.4 0 1.2 0 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.6C22 9.6 21.8 8 21.8 8zM10 15V9l5 3-5 3z"/>
+    </svg>
+  </a>
+
+  <!-- X (Twitter) -->
+  <a href="#" 
+     class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-gray-900 transition duration-300 backdrop-blur-sm">
+    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M18.9 2H22l-7.5 8.6L23 22h-6.8l-5.3-6.9L4.5 22H1.4l8-9.2L1 2h6.9l4.8 6.3L18.9 2z"/>
+    </svg>
+  </a>
+
+</div>
+
       </div>
 
       <!-- Program -->
@@ -502,15 +532,86 @@ Pendaftaran
           <li>✉️ info@smkbpm.sch.id</li>
         </ul>
 
-        <a href="https://wa.me/6281234567890"
-           class="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 px-5 py-3 rounded-xl font-semibold text-sm transition shadow-lg hover:shadow-green-500/30">
-          💬 Chat WhatsApp
-        </a>
+       <a href="https://wa.me/6281234567890"
+   class="inline-flex items-center gap-3 
+          bg-green-500 hover:bg-green-600 
+          px-6 py-3 rounded-xl 
+          font-semibold text-sm text-white
+          transition-all duration-300 
+          shadow-md hover:shadow-lg">
+
+  <!-- Icon -->
+  <svg xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 32 32"
+       class="w-5 h-5"
+       fill="currentColor">
+    <path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.4 2.1 7.8L.4 31.6l8-2.1c2.3 1.2 4.8 1.8 7.6 1.8 8.6 0 15.6-7 15.6-15.6S24.6.4 16 .4zm0 28.3c-2.4 0-4.7-.6-6.7-1.7l-.5-.3-4.7 1.2 1.3-4.6-.3-.5C3.9 20.8 3.3 18.5 3.3 16 3.3 8.9 8.9 3.3 16 3.3S28.7 8.9 28.7 16 23.1 28.7 16 28.7z"/>
+  </svg>
+
+  <span>Chat WhatsApp</span>
+
+</a>
+
+
       </div>
     </div>
 
     <!-- Divider -->
     <div class="mt-16 border-t border-blue-700/40"></div>
+    <!-- Instagram Tim Developer -->
+<div class="mt-10 text-center">
+
+  <h4 class="text-sm font-semibold text-blue-200 mb-4 tracking-wide">
+    Tim Developer Website
+  </h4>
+
+  <div class="flex flex-wrap justify-center gap-4">
+
+    <!-- Person 1 -->
+    <a href="https://www.instagram.com/rindria08/" target="_blank"
+       class="flex items-center gap-2 px-4 py-2 
+              bg-white/10 hover:bg-pink-500 
+              rounded-full text-sm font-medium
+              transition duration-300 backdrop-blur-sm">
+
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 110 10 5 5 0 010-10zm6.5-.8a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"/>
+      </svg>
+
+      <span>@rindria08</span>
+    </a>
+
+    <!-- Person 2 -->
+    <a href="https://www.instagram.com/tioramdan23/" target="_blank"
+       class="flex items-center gap-2 px-4 py-2 
+              bg-white/10 hover:bg-pink-500 
+              rounded-full text-sm font-medium
+              transition duration-300 backdrop-blur-sm">
+
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 110 10 5 5 0 010-10zm6.5-.8a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"/>
+      </svg>
+
+      <span>@tioramdan23</span>
+    </a>
+
+    <!-- Person 3 -->
+    <a href="https://www.instagram.com/syafira_td/" target="_blank"
+       class="flex items-center gap-2 px-4 py-2 
+              bg-white/10 hover:bg-pink-500 
+              rounded-full text-sm font-medium
+              transition duration-300 backdrop-blur-sm">
+
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 110 10 5 5 0 010-10zm6.5-.8a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"/>
+      </svg>
+
+      <span>@syafira_td</span>
+    </a>
+
+  </div>
+
+</div>
 
     <!-- Bottom Footer -->
     <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-blue-200">
