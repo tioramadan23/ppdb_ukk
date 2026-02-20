@@ -100,53 +100,92 @@
     </div>
 </div>
 
-<!-- Navbar -->
+<!-- Navbar start -->
 <header class="sticky top-0 z-50 border-b border-gray-300 bg-white/90 backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/90 shadow-sm">
-    <div class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-        <a href="{{ route('home') }}" title="" class="flex text-xl">
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <a href="/" title="Kembali ke Home" class="flex-shrink-0 text-xl font-bold">
             <span class="font-bold text-gray-800 dark:text-gray-200">SMK</span>
             <span class="text-blue-800 dark:text-blue-400">BPM</span>
         </a>
-        <div class="flex flex-1 items-center justify-end md:justify-between">
-            <nav aria-label="Global" class="hidden md:block">
-                <ul class="flex items-center gap-6 text-sm">
-                    <li>
-                        <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('home') }}">Home</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('tentang-sekolah') }}">Tentang Sekolah</a>
-                    </li>
-                    <li>
-                        <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('informasi') }}">Informasi</a>
-                    </li>
-                    <li>
-                        <a class="border-b-2 border-blue-700 pb-5 text-sm font-medium text-gray-900 dark:border-blue-500 dark:text-white" href="{{ route('dashboard.pendaftaran') }}">Pendaftaran</a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="flex items-center gap-3">
-                <div class="relative hidden lg:block">
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:block">
+            <ul class="flex items-center gap-6 text-sm font-medium">
+                <li>
+                    <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('home') }}">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="/tentang">
+                        Tentang Sekolah
+                    </a>
+                </li>
+                <li>
+                    <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="/informasi">
+                        Informasi
+                    </a>
+                </li>
+                <li>
+                    <a class="border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white" href="{{ route('dashboard.pendaftaran') }}">
+                        Pendaftaran
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Desktop Actions (Search + Profile) -->
+        <div class="hidden md:flex items-center gap-3">
+            <div class="relative hidden lg:block">
+                <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-gray-400">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
+                    </svg>
+                </span>
+                <input type="text" placeholder="Cari"
+                    class="w-64 xl:w-72 rounded-full border border-gray-300 bg-white py-2.5 pl-11 pr-4 text-sm text-gray-700 shadow-sm transition-all duration-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-600 focus:outline-none hover:border-blue-400 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400" />
+            </div>
+            <a href="/profile" class="hidden sm:block shrink-0">
+                <span class="sr-only">Profile</span>
+                <img alt="Profile"
+                    src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80"
+                    class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-blue-500 transition" />
+            </a>
+        </div>
+
+        <!-- Mobile menu button (visible only on mobile) -->
+        <button id="mobile-menu-button" class="md:hidden p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <span class="sr-only">Toggle menu</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Menu (hidden by default) -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+        <div class="px-4 pt-4 pb-6 space-y-1">
+            <a href="/" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Home</a>
+            <a href="/tentang" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Tentang Sekolah</a>
+            <a href="/informasi" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Informasi</a>
+            <a href="{{ route('dashboard.pendaftaran') }}" class="block py-3 px-4 text-base font-medium text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg">Pendaftaran</a>
+            
+            <!-- Mobile Search -->
+            <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="relative">
                     <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-gray-400">
                         <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
                         </svg>
                     </span>
-                    <input type="text" placeholder="Cari" class="w-64 xl:w-72 rounded-full border border-gray-300 bg-white py-2.5 pl-11 pr-4 text-sm text-gray-700 shadow-sm transition-all duration-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-600 focus:outline-none hover:border-blue-400 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400" />
+                    <input type="text" placeholder="Cari di SMK BPM..."
+                        class="w-full rounded-full border border-gray-300 bg-gray-50 py-3 pl-11 pr-4 text-sm text-gray-700 focus:border-blue-600 focus:ring-2 focus:ring-blue-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white" />
                 </div>
-                <a href="#" class="hidden sm:block shrink-0">
-                    <span class="sr-only">Profile</span>
-                    <img alt="Profile" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80" class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-blue-500 transition" />
-                </a>
             </div>
-            <button class="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-800 md:hidden dark:bg-gray-800 dark:text-gray-300 dark:hover:text-white">
-                <span class="sr-only">Toggle menu</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
         </div>
     </div>
 </header>
+<!-- Navbar end -->
 
 <!-- Main Container -->
 <div class="max-w-6xl mx-auto px-4 py-8">
@@ -1250,6 +1289,42 @@
         }
     });
 </script>
-
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (!mobileMenuButton || !mobileMenu) return;
+    
+    // Toggle mobile menu
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        const icon = mobileMenuButton.querySelector('svg');
+        if (mobileMenu.classList.contains('hidden')) {
+            icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />`;
+        } else {
+            icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />`;
+        }
+    });
+    
+    // Close menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.querySelector('svg').innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />`;
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!mobileMenuButton.contains(e.target) && 
+            !mobileMenu.contains(e.target) && 
+            !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.querySelector('svg').innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />`;
+        }
+    });
+});
+</script>
 </body>
 </html>
