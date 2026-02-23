@@ -35,29 +35,19 @@
                     </a>
                 </li>
                 <li>
-                    <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="#">
+                    <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('informasi') }}">
                         Informasi
                     </a>
                 </li>
                 <li>
-                    <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('dashboard.pendaftaran') }}">
+                    <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('dashboard.siswa') }}">
                         Pendaftaran
                     </a>
                 </li>
             </ul>
         </nav>
 
-        <!-- Desktop Actions (Search + Profile) -->
-        <div class="hidden md:flex items-center gap-3">
-            <div class="relative hidden lg:block">
-                <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-gray-400">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
-                    </svg>
-                </span>
-                <input type="text" placeholder="Cari"
-                    class="w-64 xl:w-72 rounded-full border border-gray-300 bg-white py-2.5 pl-11 pr-4 text-sm text-gray-700 shadow-sm transition-all duration-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-600 focus:outline-none hover:border-blue-400 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400" />
-            </div>
+       tema warna
             <a href="#" class="hidden sm:block shrink-0">
                 <span class="sr-only">Profile</span>
                 <img alt="Profile"
@@ -80,21 +70,10 @@
         <div class="px-4 pt-4 pb-6 space-y-1">
             <a href="{{ route('home') }}" class="block py-3 px-4 text-base font-medium text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg">Home</a>
             <a href="{{ route('tentang-sekolah') }}" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Tentang Sekolah</a>
-            <a href="#" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Informasi</a>
-            <a href="{{ route('dashboard.pendaftaran') }}" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Pendaftaran</a>
+            <a href="{{ route('informasi') }}" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Informasi</a>
+            <a href="{{ route('dashboard.siswa') }}" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Pendaftaran</a>
             
-            <!-- Mobile Search -->
-            <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-                <div class="relative">
-                    <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-gray-400">
-                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
-                        </svg>
-                    </span>
-                    <input type="text" placeholder="Cari di SMK BPM..."
-                        class="w-full rounded-full border border-gray-300 bg-gray-50 py-3 pl-11 pr-4 text-sm text-gray-700 focus:border-blue-600 focus:ring-2 focus:ring-blue-600 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white" />
-                </div>
-            </div>
+            
         </div>
     </div>
 </header>
@@ -131,7 +110,7 @@
         <div class="container mx-auto px-4 text-center max-w-4xl">
             <h2 class="text-2xl md:text-3xl font-bold mb-4">Kenapa Memilih SMK Bina Putra Mandiri?</h2>
             <p class="text-lg opacity-90 mb-8">Kurikulum industri, fasilitas praktik terkini, guru profesional, serta dukungan karir menjadikan lulusan siap kerja di berbagai bidang digital & teknik.</p>
-            <a href="#pendaftaran" class="inline-block bg-white text-blue-800 font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
+            <a href="{{ route('dashboard.siswa') }}" class="inline-block bg-white text-blue-800 font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
                 Daftar Sekarang - Gelombang I Ditutup 31 desember 2025
             </a>
             <p class="mt-4 text-sm opacity-85">*Biaya pendaftaran terjangkau hanya Rp100.000 per pendaftaran</p>
@@ -181,12 +160,7 @@
                             Materi pembelajaran dirancang bersama praktisi industri terkini. Siswa belajar kompetensi yang benar-benar dibutuhkan di dunia kerja modern.
                         </p>
                         <div class="mt-6">
-                            <a href="#" class="inline-flex items-center text-blue-700 dark:text-blue-300 font-medium hover:text-blue-900 dark:hover:text-blue-200 transition-colors group">
-                                <span>Selengkapnya</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                </svg>
-                            </a>
+                           
                         </div>
                     </div>
                 </div>
@@ -205,12 +179,7 @@
                             Laboratorium komputer berteknologi tinggi, studio desain profesional, ruang jaringan enterprise, dan perpustakaan digital yang mendukung pembelajaran optimal.
                         </p>
                         <div class="mt-6">
-                            <a href="#" class="inline-flex items-center text-blue-700 dark:text-blue-300 font-medium hover:text-blue-900 dark:hover:text-blue-200 transition-colors group">
-                                <span>Selengkapnya</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                </svg>
-                            </a>
+                            
                         </div>
                     </div>
                 </div>
@@ -229,12 +198,7 @@
                             Guru dan mentor berpengalaman industri dengan sertifikasi kompetensi nasional dan internasional, siap membimbing siswa mencapai potensi terbaik.
                         </p>
                         <div class="mt-6">
-                            <a href="#" class="inline-flex items-center text-blue-700 dark:text-blue-300 font-medium hover:text-blue-900 dark:hover:text-blue-200 transition-colors group">
-                                <span>Selengkapnya</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                </svg>
-                            </a>
+                            
                         </div>
                     </div>
                 </div>
@@ -253,12 +217,7 @@
                             Program sertifikasi internasional (Cisco, Microsoft, Adobe) dan nasional untuk memperkuat kompetensi dan daya saing lulusan di pasar kerja.
                         </p>
                         <div class="mt-6">
-                            <a href="#" class="inline-flex items-center text-blue-700 dark:text-blue-300 font-medium hover:text-blue-900 dark:hover:text-blue-200 transition-colors group">
-                                <span>Selengkapnya</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                </svg>
-                            </a>
+                            
                         </div>
                     </div>
                 </div>
@@ -277,12 +236,7 @@
                             Kesempatan magang di perusahaan ternama dengan bimbingan langsung dari praktisi industri untuk pengalaman kerja nyata sebelum lulus.
                         </p>
                         <div class="mt-6">
-                            <a href="#" class="inline-flex items-center text-blue-700 dark:text-blue-300 font-medium hover:text-blue-900 dark:hover:text-blue-200 transition-colors group">
-                                <span>Selengkapnya</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                </svg>
-                            </a>
+                          
                         </div>
                     </div>
                 </div>
@@ -301,12 +255,7 @@
                             Komunitas alumni yang solid dan tersebar di berbagai perusahaan ternama, siap membantu membuka peluang karir bagi lulusan baru.
                         </p>
                         <div class="mt-6">
-                            <a href="#" class="inline-flex items-center text-blue-700 dark:text-blue-300 font-medium hover:text-blue-900 dark:hover:text-blue-200 transition-colors group">
-                                <span>Selengkapnya</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                </svg>
-                            </a>
+                            
                         </div>
                     </div>
                 </div>

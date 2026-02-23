@@ -59,9 +59,9 @@ Route::get('/informasi', function () {
     return view('informasi');
 })->name('informasi');
 
-Route::get('/pendaftaran', function () {
+Route::get('/siswa', function () {
     return view('dashboard.pendaftaran');
-})->name('dashboard.pendaftaran');
+})->name('dashboard.siswa');
 
 // DHASHBOARD ADMIN & SISWA
     Route::middleware(['auth'])->group(function () {
