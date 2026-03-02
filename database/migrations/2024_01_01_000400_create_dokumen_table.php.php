@@ -13,17 +13,19 @@ return new class extends Migration
     {
         Schema::create('dokumen', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('pendaftaran_id')
                 ->constrained('pendaftarans')
                 ->cascadeOnDelete();
 
             $table->string('jenis_dokumen', 50)->nullable();
             $table->string('file_path', 255)->nullable();
-            $table->enum('status_dokumen', ['pending','valid','tidak_valid'])->default('pending');
+
+            $table->enum('status_dokumen', ['pending','valid','tidak_valid'])
+                ->default('pending');
+
             $table->timestamps();
         });
-
-
     }
 
     /**

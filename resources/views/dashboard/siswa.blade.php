@@ -76,6 +76,7 @@
         }
     </style>
 </head>
+
 <body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen font-sans">
 
 <!-- Toast Notification -->
@@ -233,7 +234,7 @@
         </div>
 
         <!-- Form -->
-        <form id="registrationForm" action="/registrasi" method="POST" enctype="multipart/form-data" class="px-8 py-6">
+        <form id="registrationForm" action="{{ route('pendaftaran.store') }}" method="POST" enctype="multipart/form-data" class="px-8 py-6">
             @csrf
 
             <!-- Section 1: Data Diri Siswa -->
@@ -623,9 +624,9 @@
                         </div>
                     </div>
 
-                    <!-- SKHUN -->
+                    <!-- Surrat Keterangan Lulus -->
                     <div class="form-group">
-                        <label class="block font-semibold text-gray-800 mb-2">Scan SKHUN SMP/MTs <span class="text-red-500">*</span></label>
+                        <label class="block font-semibold text-gray-800 mb-2">Scan Surat keterangan Lulus SMP/MTs <span class="text-red-500">*</span></label>
                         <div class="file-upload-container border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'skhun')" onclick="triggerFileInput('skhun')">
                             <div class="text-5xl text-primary mb-3"><i class="fas fa-file-contract"></i></div>
                             <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>

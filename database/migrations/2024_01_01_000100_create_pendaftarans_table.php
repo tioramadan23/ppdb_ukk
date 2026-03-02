@@ -26,12 +26,9 @@ return new class extends Migration
             $table->date('tanggal_lahir')->nullable();
             $table->enum('jenis_kelamin', ['L','P'])->nullable();
             $table->string('agama', 20)->nullable();
-            $table->string('kewarganegaraan', 30)->nullable();
-            $table->string('berkebutuhan_khusus', 50)->nullable();
             $table->text('alamat_lengkap')->nullable();
             $table->string('asal_sekolah', 100)->nullable();
             $table->string('jurusan', 50)->nullable();
-            $table->string('foto_siswa', 255)->nullable();
             $table->enum('status_pendaftaran', ['draft','submit','diverifikasi'])->default('draft');
             $table->timestamps();
         });
