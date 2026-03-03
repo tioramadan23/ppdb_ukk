@@ -32,10 +32,15 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900">
+<body class="bg-gray-50 text-gray-800 
+dark:bg-gray-950 dark:text-gray-200 transition-colors duration-300">
     
-    <!-- Navbar -->
-    <header class="sticky top-0 z-50 border-b border-gray-300 bg-white/90 backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/90 shadow-sm">
+   <!-- Navbar -->
+    <header class="sticky top-0 z-50 border-b 
+border-gray-200 dark:border-gray-800 
+bg-white/90 dark:bg-gray-900/90 
+backdrop-blur-md shadow-sm">
+
         <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
             <a href="index.html" class="flex-shrink-0 text-xl font-bold">
                 <span class="font-bold text-gray-800 dark:text-gray-200">SMK</span>
@@ -69,10 +74,11 @@
             </nav>
             
             <!-- Desktop Actions -->
-           tema warna
+             
+            
                 <a href="#" class="hidden sm:block shrink-0">
                     <img alt="Profile"
-                        src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80"
+                        src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80  "
                         class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-blue-500 transition" />
                 </a>
             </div>
@@ -107,7 +113,6 @@
             </div>
         </div>
     </header>
-
    <!-- Kepala Sekolah Section -->
     <section id="kepala-sekolah" class="py-20 px-6 bg-blue-50 dark:bg-gray-900">
         <div class="max-w-7xl mx-auto">
@@ -123,7 +128,7 @@
                                 <i class="fas fa-user-tie text-2xl"></i>
                             </div>
                             <div>
-                                <h4 class="text-xl font-bold">Drs. Ahmad Fauzi, M.Pd.</h4>
+                                <h4 class="text-xl font-bold">Heni Hermawati M.Ak</h4>
                                 <p class="text-blue-200 text-sm">Kepala Sekolah SMK BPM</p>
                             </div>
                         </div>
@@ -160,164 +165,177 @@
         </div>
     </section>
 
-   <!-- Profil Sekolah Section -->
-<section id="profil" class="py-24 px-6 bg-gradient-to-b from-white to-blue-50 dark:from-gray-800 dark:to-gray-900">
+  
+        <!-- Profil Sekolah Section -->
+<section id="profil" class="py-16 md:py-24 px-4 md:px-6 bg-gradient-to-b from-white to-blue-50 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
     <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <div class="inline-flex items-center px-5 py-2.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 mb-6">
+        <!-- Header Section -->
+        <div class="text-center mb-12 md:mb-16">
+            <div class="inline-flex items-center px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 mb-4 md:mb-6">
                 <i class="fas fa-school mr-2"></i>
-                <span class="font-medium text-sm">Profil Sekolah</span>
+                <span class="font-medium text-sm md:text-base">Profil Sekolah</span>
             </div>
-            <h2 class="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-blue-700 dark:from-white dark:to-blue-400 mb-5">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-blue-700 dark:from-white dark:to-blue-400 mb-4 md:mb-5">
                 Tentang Kami
             </h2>
-            <div class="w-20 h-1.5 bg-gradient-to-r from-blue-500 to-blue-700 mx-auto rounded-full"></div>
-            <p class="text-gray-600 dark:text-gray-300 mt-6 max-w-3xl mx-auto text-lg">
+            <div class="w-16 md:w-20 h-1.5 bg-gradient-to-r from-blue-500 to-blue-700 mx-auto rounded-full"></div>
+            <p class="text-gray-600 dark:text-gray-300 mt-4 md:mt-6 max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
                 Menjadi mitra terpercaya dalam mencetak generasi unggul yang siap menghadapi tantangan era digital
             </p>
         </div>
 
-        <!-- Foto Gedung sebagai Background -->
-        <div class="relative h-[450px] rounded-3xl overflow-hidden shadow-2xl mb-16 group">
-            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=400&fit=crop" alt="Gedung SMK BPM" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        <!-- Hero Image with Overlay -->
+        <div class="relative h-64 sm:h-80 md:h-96 lg:h-[450px] rounded-2xl md:rounded-3xl overflow-hidden shadow-xl md:shadow-2xl mb-12 md:mb-16 group">
+            <img 
+                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=400&fit=crop" 
+                alt="Gedung SMK Bina Putra Mandiri - Fasilitas Modern" 
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+            >
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-            <div class="absolute bottom-10 left-10 md:left-16">
-                <div class="flex items-center mb-3">
-                    <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center mr-4">
-                        <i class="fas fa-crown text-white text-xl"></i>
-                    </div>
-                    <span class="text-blue-300 font-medium text-lg">Didirikan sejak 2010</span>
-                </div>
-                <h3 class="text-3xl md:text-4xl font-bold text-white mb-2">SMK Bina Putra Mandiri</h3>
-                <p class="text-xl text-blue-200 max-w-xl">Mencetak Generasi Digital yang Kompeten dan Berkarakter</p>
-            </div>
-            <div class="absolute top-6 right-6 bg-blue-600 text-white px-4 py-2 rounded-full font-semibold shadow-lg">
-                <i class="fas fa-award mr-2"></i> Terakreditasi A
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div class="space-y-8">
-                <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="flex items-start mb-5">
-                        <div class="w-14 h-14 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-graduation-cap text-2xl text-blue-700 dark:text-blue-400"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white ml-4 pt-1">Profil Sekolah</h3>
-                    </div>
-                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-                        SMK Bina Putra Mandiri (SMK BPM) adalah lembaga pendidikan vokasi yang berkomitmen penuh untuk mencetak tenaga kerja profesional di bidang teknologi informasi, desain digital, dan bisnis modern. Didirikan pada tahun 2010, kami telah menjadi pilihan utama bagi generasi muda yang ingin meraih kesuksesan di era digital.
-                    </p>
-                </div>
-                
-                <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="flex items-start mb-5">
-                        <div class="w-14 h-14 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-bullseye text-2xl text-blue-700 dark:text-blue-400"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white ml-4 pt-1">Komitmen Kami</h3>
-                    </div>
-                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-                        Dengan mengedepankan kurikulum berbasis industri, fasilitas modern, dan tenaga pengajar berpengalaman, kami memastikan setiap lulusan memiliki kompetensi yang dibutuhkan untuk bersaing di dunia kerja maupun melanjutkan pendidikan ke jenjang yang lebih tinggi.
-                    </p>
-                </div>
+            
+            <!-- Badge Akreditasi -->
+            <div class="absolute top-4 md:top-6 right-4 md:right-6 bg-blue-600 text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold shadow-lg flex items-center">
+                <i class="fas fa-award mr-1.5 md:mr-2"></i> 
+                <span class="hidden sm:inline">Terakreditasi </span>A
             </div>
             
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    <!-- Program Keahlian Card -->
-    <div class="stats-card rounded-2xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-blue-100/30 dark:border-blue-900/30">
-        <div class="relative mb-4">
-            <div class="w-16 h-16 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-3">
-                <i class="fas fa-laptop-code text-2xl text-blue-600 dark:text-blue-400"></i>
-            </div>
-            <div class="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-200">
-                6
-            </div>
-        </div>
-        <div class="text-lg font-bold text-gray-800 dark:text-white mb-1">
-            Program Keahlian
-        </div>
-        <div class="text-blue-600 dark:text-blue-400 font-medium">
-            Teknologi & Bisnis
-        </div>
-        <div class="mt-4 h-1 w-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mx-auto"></div>
-    </div>
-    
-    <!-- Siswa Aktif Card -->
-    <div class="stats-card rounded-2xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-blue-100/30 dark:border-blue-900/30">
-        <div class="relative mb-4">
-            <div class="w-16 h-16 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-3">
-                <i class="fas fa-users text-2xl text-blue-600 dark:text-blue-400"></i>
-            </div>
-            <div class="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-200">
-                500+
+            <!-- Content Overlay -->
+            <div class="absolute bottom-6 md:bottom-10 left-6 md:left-10 lg:left-16 right-6 md:right-10">
+                <div class="flex items-center mb-2 md:mb-3">
+                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-blue-600 flex items-center justify-center mr-3 md:mr-4 flex-shrink-0">
+                        <i class="fas fa-crown text-white text-base md:text-xl"></i>
+                    </div>
+                    <span class="text-blue-200 md:text-blue-300 font-medium text-sm md:text-lg">Didirikan sejak 2010</span>
+                </div>
+                <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1 md:mb-2 leading-tight">
+                    SMK Bina Putra Mandiri
+                </h3>
+                <p class="text-base md:text-xl text-blue-100 md:text-blue-200 max-w-xl leading-relaxed">
+                    Mencetak Generasi Digital yang Kompeten dan Berkarakter
+                </p>
             </div>
         </div>
-        <div class="text-lg font-bold text-gray-800 dark:text-white mb-1">
-            Siswa Aktif
-        </div>
-        <div class="text-blue-600 dark:text-blue-400 font-medium">
-            Generasi Digital
-        </div>
-        <div class="mt-4 h-1 w-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mx-auto"></div>
-    </div>
-    
-    <!-- Guru Profesional Card -->
-    <div class="stats-card rounded-2xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-blue-100/30 dark:border-blue-900/30">
-        <div class="relative mb-4">
-            <div class="w-16 h-16 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-3">
-                <i class="fas fa-chalkboard-teacher text-2xl text-blue-600 dark:text-blue-400"></i>
+
+        <!-- Content Grid: Info Cards + Stats -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start max-w-6xl mx-auto">
+            
+            <!-- Left Column: Info Cards -->
+            <div class="space-y-6 md:space-y-8">
+                <!-- Profil Card -->
+                <article class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-start mb-4 md:mb-5">
+                        <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-graduation-cap text-xl md:text-2xl text-blue-700 dark:text-blue-400"></i>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white ml-3 md:ml-4 pt-1">
+                            Profil Sekolah
+                        </h3>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg">
+                        SMK Bina Putra Mandiri (SMK BPM) adalah lembaga pendidikan vokasi yang berkomitmen penuh untuk mencetak tenaga kerja profesional di bidang teknologi informasi, desain digital, dan bisnis modern. Didirikan pada tahun 2010, kami telah menjadi pilihan utama bagi generasi muda yang ingin meraih kesuksesan di era digital.
+                    </p>
+                </article>
+                
+                <!-- Komitmen Card -->
+                <article class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-start mb-4 md:mb-5">
+                        <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-bullseye text-xl md:text-2xl text-blue-700 dark:text-blue-400"></i>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white ml-3 md:ml-4 pt-1">
+                            Komitmen Kami
+                        </h3>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg">
+                        Dengan mengedepankan kurikulum berbasis industri, fasilitas modern, dan tenaga pengajar berpengalaman, kami memastikan setiap lulusan memiliki kompetensi yang dibutuhkan untuk bersaing di dunia kerja maupun melanjutkan pendidikan ke jenjang yang lebih tinggi.
+                    </p>
+                </article>
             </div>
-            <div class="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-200">
-                30+
+            
+            <!-- Right Column: Stats Cards -->
+            <div class="grid grid-cols-2 gap-4 md:gap-6">
+                <!-- Program Keahlian -->
+                <div class="stats-card rounded-2xl p-4 md:p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-blue-100/30 dark:border-blue-900/30">
+                    <div class="mb-3 md:mb-4">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-2 md:mb-3">
+                            <i class="fas fa-laptop-code text-xl md:text-2xl text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <div class="text-3xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-200">
+                            6
+                        </div>
+                    </div>
+                    <div class="text-base md:text-lg font-bold text-gray-800 dark:text-white mb-0.5 md:mb-1">
+                        Program Keahlian
+                    </div>
+                    <div class="text-blue-600 dark:text-blue-400 font-medium text-xs md:text-sm">
+                        Teknologi & Bisnis
+                    </div>
+                    <div class="mt-3 md:mt-4 h-1 w-12 md:w-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mx-auto"></div>
+                </div>
+                
+                <!-- Siswa Aktif -->
+                <div class="stats-card rounded-2xl p-4 md:p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-blue-100/30 dark:border-blue-900/30">
+                    <div class="mb-3 md:mb-4">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-2 md:mb-3">
+                            <i class="fas fa-users text-xl md:text-2xl text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <div class="text-3xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-200">
+                            600+
+                        </div>
+                    </div>
+                    <div class="text-base md:text-lg font-bold text-gray-800 dark:text-white mb-0.5 md:mb-1">
+                        Siswa Aktif
+                    </div>
+                    <div class="text-blue-600 dark:text-blue-400 font-medium text-xs md:text-sm">
+                        Generasi Digital
+                    </div>
+                    <div class="mt-3 md:mt-4 h-1 w-12 md:w-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mx-auto"></div>
+                </div>
+                
+                <!-- Guru Profesional -->
+                <div class="stats-card rounded-2xl p-4 md:p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-blue-100/30 dark:border-blue-900/30">
+                    <div class="mb-3 md:mb-4">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-2 md:mb-3">
+                            <i class="fas fa-chalkboard-teacher text-xl md:text-2xl text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <div class="text-3xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-200">
+                            30+
+                        </div>
+                    </div>
+                    <div class="text-base md:text-lg font-bold text-gray-800 dark:text-white mb-0.5 md:mb-1">
+                        Guru Profesional
+                    </div>
+                    <div class="text-blue-600 dark:text-blue-400 font-medium text-xs md:text-sm">
+                        Berpengalaman
+                    </div>
+                    <div class="mt-3 md:mt-4 h-1 w-12 md:w-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mx-auto"></div>
+                </div>
+                
+                <!-- Penyerapan Kerja -->
+                <div class="stats-card rounded-2xl p-4 md:p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-blue-100/30 dark:border-blue-900/30">
+                    <div class="mb-3 md:mb-4">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-2 md:mb-3">
+                            <i class="fas fa-briefcase text-xl md:text-2xl text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <div class="text-3xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-200">
+                            98%
+                        </div>
+                    </div>
+                    <div class="text-base md:text-lg font-bold text-gray-800 dark:text-white mb-0.5 md:mb-1">
+                        Penyerapan Kerja
+                    </div>
+                    <div class="text-blue-600 dark:text-blue-400 font-medium text-xs md:text-sm">
+                        Lulusan Terserap
+                    </div>
+                    <div class="mt-3 md:mt-4 h-1 w-12 md:w-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mx-auto"></div>
+                </div>
             </div>
         </div>
-        <div class="text-lg font-bold text-gray-800 dark:text-white mb-1">
-            Guru Profesional
-        </div>
-        <div class="text-blue-600 dark:text-blue-400 font-medium">
-            Berpengalaman
-        </div>
-        <div class="mt-4 h-1 w-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mx-auto"></div>
-    </div>
-    
-    <!-- Penyerapan Kerja Card -->
-    <div class="stats-card rounded-2xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-blue-100/30 dark:border-blue-900/30">
-        <div class="relative mb-4">
-            <div class="w-16 h-16 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-3">
-                <i class="fas fa-briefcase text-2xl text-blue-600 dark:text-blue-400"></i>
-            </div>
-            <div class="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-200">
-                98%
-            </div>
-        </div>
-        <div class="text-lg font-bold text-gray-800 dark:text-white mb-1">
-            Penyerapan Kerja
-        </div>
-        <div class="text-blue-600 dark:text-blue-400 font-medium">
-            Lulusan Terserap
-        </div>
-        <div class="mt-4 h-1 w-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mx-auto"></div>
-    </div>
-</div>
         
-        <!-- Achievement Badges -->
-        <div class="mt-20 max-w-4xl mx-auto text-center">
-            <div class="inline-flex flex-wrap justify-center gap-4">
-                <div class="px-6 py-3 bg-blue-600 rounded-xl text-white font-medium flex items-center">
-                    <i class="fas fa-trophy mr-2"></i> Sekolah Berprestasi Nasional 2025
-                </div>
-                <div class="px-6 py-3 bg-emerald-600 rounded-xl text-white font-medium flex items-center">
-                    <i class="fas fa-medal mr-2"></i> Juara 1 Kompetisi IT Tingkat Provinsi
-                </div>
-                <div class="px-6 py-3 bg-amber-500 rounded-xl text-white font-medium flex items-center">
-                    <i class="fas fa-certificate mr-2"></i> Sertifikasi ISO 9001:2015
-                </div>
-            </div>
-        </div>
+       
     </div>
 </section>
-
     <!-- Visi & Misi Section -->
     <section id="visi-misi" class="py-20 px-6 bg-blue-50 dark:bg-gray-900">
         <div class="max-w-7xl mx-auto">
@@ -342,7 +360,9 @@
                         <h3 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-6">Visi Sekolah</h3>
                         <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-600 p-6 rounded-r-lg">
                             <p class="text-gray-800 dark:text-gray-200 text-lg font-semibold leading-relaxed text-center">
-                                "Menjadi lembaga pendidikan vokasi unggulan yang menghasilkan lulusan kompeten, berkarakter, dan siap bersaing di era digital"
+                                "Dengan bekal keimanan & ketaqwaan mempercepat kemampuan wilayah dengan mempersiapkan
+                                sumber daya manusia yang berkualitas, memiliki daya nalar tinggi,kreatif,produktif & inovatif.
+                                mempersiapkan sumber daya manusia yang mampu beradaptasi dengan segala perkembangan keilmuan di era revolusi teknologi informasi & komunikasi"
                             </p>
                         </div>
                     </div>
@@ -359,23 +379,23 @@
                         <div class="space-y-4">
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm mr-3 mt-1">1</div>
-                                <p class="text-gray-700 dark:text-gray-300">Menyelenggarakan pendidikan vokasi berkualitas dengan kurikulum berbasis industri dan teknologi terkini.</p>
+                                <p class="text-gray-700 dark:text-gray-300">memiliki aktivitas yang kreatif, aktif, produktif dan inovatif</p>
                             </div>
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm mr-3 mt-1">2</div>
-                                <p class="text-gray-700 dark:text-gray-300">Mengembangkan kompetensi siswa sesuai standar nasional dan internasional melalui pembelajaran praktik yang intensif.</p>
+                                <p class="text-gray-700 dark:text-gray-300">melaksanakan pembelajaran,pelatihan dan bimbingan secara efektif.</p>
                             </div>
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm mr-3 mt-1">3</div>
-                                <p class="text-gray-700 dark:text-gray-300">Menanamkan nilai-nilai karakter, etika profesional, dan jiwa kewirausahaan dalam setiap proses pembelajaran.</p>
+                                <p class="text-gray-700 dark:text-gray-300">menghasilkan tenaga kerja profesional teknologi untuk memenuhi tuntutan dunia usaha dan bidang industri (DUDI)</p>
                             </div>
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm mr-3 mt-1">4</div>
-                                <p class="text-gray-700 dark:text-gray-300">Membangun kemitraan strategis dengan dunia usaha dan dunia industri untuk memperluas kesempatan magang dan penyerapan kerja.</p>
+                                <p class="text-gray-700 dark:text-gray-300">membekali peserta didik dengan kemampuan untuk dapat mengembangkan diri</p>
                             </div>
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm mr-3 mt-1">5</div>
-                                <p class="text-gray-700 dark:text-gray-300">Menciptakan lingkungan belajar yang kondusif, inovatif, dan adaptif terhadap perkembangan teknologi dan kebutuhan pasar.</p>
+                                <p class="text-gray-700 dark:text-gray-300">mengembangkan pendidikan berbasis kompetensi yang berorientasi pada dunia kerja dan industri</p>
                             </div>
                         </div>
                     </div>
@@ -686,5 +706,6 @@
             });
         });
     </script>
+    
 </body>
 </html>

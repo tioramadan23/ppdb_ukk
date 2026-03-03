@@ -109,7 +109,7 @@
     <section class="py-14 bg-gradient-to-r from-blue-800 to-blue-900 text-white">
         <div class="container mx-auto px-4 text-center max-w-4xl">
             <h2 class="text-2xl md:text-3xl font-bold mb-4">Kenapa Memilih SMK Bina Putra Mandiri?</h2>
-            <p class="text-lg opacity-90 mb-8">Kurikulum industri, fasilitas praktik terkini, guru profesional, serta dukungan karir menjadikan lulusan siap kerja di berbagai bidang digital & teknik.</p>
+            <p class="text-lg opacity-90 mb-8">SMK Bina Putra Mandiri menghadirkan pendidikan berkualitas dengan kurikulum berbasis industri, fasilitas praktik modern, dan tenaga pengajar profesional. Siswa dibekali keterampilan, karakter, serta kesiapan kerja agar mampu bersaing dan meraih masa depan yang lebih baik.</p>
             <a href="{{ route('dashboard.siswa') }}" class="inline-block bg-white text-blue-800 font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
                 Daftar Sekarang - Gelombang I Ditutup 31 desember 2025
             </a>
@@ -137,7 +137,7 @@
                 </h2>
 
                 <p data-aos="fade-up" data-aos-delay="100" class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
-                    Kami berkomitmen memberikan pendidikan vokasi berkualitas tinggi dengan standar industri, fasilitas modern, dan tenaga pengajar profesional untuk membentuk generasi muda yang kompeten dan siap bersaing di dunia kerja.
+                    SMK Bina Putra Mandiri berfokus pada pengembangan keterampilan, pengetahuan, dan karakter siswa melalui sistem pembelajaran vokasi yang berkualitas. Dengan dukungan fasilitas modern dan pembelajaran berbasis praktik, siswa dipersiapkan untuk menghadapi dunia kerja dan perkembangan teknologi.
                 </p>
 
                 <div data-aos="fade-up" data-aos-delay="200" class="mt-10">
@@ -150,14 +150,14 @@
                 <div data-aos="fade-up" data-aos-delay="100" class="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col">
                     <div class="h-1 bg-gradient-to-r from-blue-700 to-blue-900"></div>
                     <div class="h-36 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1551650975-87de45972773?w=400&h=144&fit=crop&crop=center" alt="Kurikulum Berbasis Industri" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <img src="https://media.istockphoto.com/id/2201622849/id/video/lokasi-target-animasi-dengan-pin-dan-tanda-gps-cocok-untuk-keuangan-pemasaran-strategi-situs.avif?s=640x640&k=20&c=hc5AZRpGCStu6eoVOA4SQKMp7M4SUMoDFrk1SDzzPGU=" alt="Kurikulum Berbasis Industri" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <div class="p-7 flex flex-col flex-grow">
                         <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                            Kurikulum Berbasis Industri
+                            Lokasi Strategis 
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 leading-relaxed flex-grow">
-                            Materi pembelajaran dirancang bersama praktisi industri terkini. Siswa belajar kompetensi yang benar-benar dibutuhkan di dunia kerja modern.
+                            Terletak di lokasi yang mudah dijangkau sehingga memudahkan akses transportasi bagi siswa.
                         </p>
                         <div class="mt-6">
                            
@@ -169,14 +169,14 @@
                 <div data-aos="fade-up" data-aos-delay="200" class="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col">
                     <div class="h-1 bg-gradient-to-r from-blue-700 to-blue-900"></div>
                     <div class="h-36 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=400&h=144&fit=crop&crop=center" alt="Fasilitas Praktik Modern" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <img src="https://media.istockphoto.com/id/2200381347/id/video/kemajuan-karir-yang-dianimasikan-dengan-tanda-pekerja-dan-arah-cocok-untuk-keuangan-karyawan.avif?s=640x640&k=20&c=BkiFeozFMqb2nq6g6xL1ZrUdxiJ40naJtLsD59v_RSg=" alt="Fasilitas Praktik Modern" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <div class="p-7 flex flex-col flex-grow">
                         <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                            Fasilitas Praktik Modern
+                           Siap Terjun ke Dunia Usaha 
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 leading-relaxed flex-grow">
-                            Laboratorium komputer berteknologi tinggi, studio desain profesional, ruang jaringan enterprise, dan perpustakaan digital yang mendukung pembelajaran optimal.
+                           Membekali siswa dengan keterampilan kewirausahaan agar mampu membuka usaha sendiri.
                         </p>
                         <div class="mt-6">
                             
@@ -188,14 +188,14 @@
                 <div data-aos="fade-up" data-aos-delay="300" class="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col">
                     <div class="h-1 bg-gradient-to-r from-blue-700 to-blue-900"></div>
                     <div class="h-36 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=144&fit=crop&crop=center" alt="Tenaga Pengajar Profesional" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <img src="https://media.istockphoto.com/id/2155936157/id/video/koin-sekantong-uang.avif?s=640x640&k=20&c=sZmGES2CfP9QGO6RppkGw7fbwxhHLEkL10xrzLb83Mk=" alt="Tenaga Pengajar Profesional" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <div class="p-7 flex flex-col flex-grow">
                         <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                            Tenaga Pengajar Profesional
+                         Program Beasiswa Berprestasi 
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 leading-relaxed flex-grow">
-                            Guru dan mentor berpengalaman industri dengan sertifikasi kompetensi nasional dan internasional, siap membimbing siswa mencapai potensi terbaik.
+                            Tersedia beasiswa bagi siswa berprestasi sebagai bentuk dukungan terhadap pengembangan potensi siswa.
                         </p>
                         <div class="mt-6">
                             
@@ -207,14 +207,14 @@
                 <div data-aos="fade-up" data-aos-delay="400" class="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col">
                     <div class="h-1 bg-gradient-to-r from-blue-700 to-blue-900"></div>
                     <div class="h-36 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=144&fit=crop&crop=center" alt="Sertifikasi Kompetensi" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <img src="data:image/png;base64,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" alt="Sertifikasi Kompetensi" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <div class="p-7 flex flex-col flex-grow">
                         <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                            Sertifikasi Kompetensi
+                        Bursa Kerja Khusus (BKK) 
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 leading-relaxed flex-grow">
-                            Program sertifikasi internasional (Cisco, Microsoft, Adobe) dan nasional untuk memperkuat kompetensi dan daya saing lulusan di pasar kerja.
+                            Membantu menyalurkan lulusan ke dunia kerja melalui kerja sama dengan berbagai perusahaan.
                         </p>
                         <div class="mt-6">
                             
@@ -226,14 +226,14 @@
                 <div data-aos="fade-up" data-aos-delay="500" class="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col">
                     <div class="h-1 bg-gradient-to-r from-blue-700 to-blue-900"></div>
                     <div class="h-36 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=400&h=144&fit=crop&crop=center" alt="Program Magang Industri" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <img src="https://media.istockphoto.com/id/2241310846/id/video/memberdayakan-pemimpin-masa-depan-dengan-animasi-pendidikan-dan-kecerdasan-buatan-video.avif?s=640x640&k=20&c=t3Nj35rq-pmmm-HO_O9Lb1U1F6CBJeuMP7McbY2pqf0=" alt="Program Magang Industri" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <div class="p-7 flex flex-col flex-grow">
                         <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                            Program Magang Industri
+                        Kesempatan Melanjutkan Pendidikan 
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 leading-relaxed flex-grow">
-                            Kesempatan magang di perusahaan ternama dengan bimbingan langsung dari praktisi industri untuk pengalaman kerja nyata sebelum lulus.
+                           Lulusan memiliki peluang melanjutkan pendidikan ke perguruan tinggi sesuai bidang keahlian.
                         </p>
                         <div class="mt-6">
                           
@@ -245,14 +245,14 @@
                 <div data-aos="fade-up" data-aos-delay="600" class="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col">
                     <div class="h-1 bg-gradient-to-r from-blue-700 to-blue-900"></div>
                     <div class="h-36 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=144&fit=crop&crop=center" alt="Jaringan Alumni Kuat" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <img src="https://media.istockphoto.com/id/2214087909/id/video/ikon-kolaborasi-animasi-sempurna-untuk-karyawan-bisnis-tim-perusahaan-pekerjaan-kerja-tim.avif?s=640x640&k=20&c=y6LdkoIq9Evp2MeAuWFtlldGw7cBFPwmeiTz4UYQAeY=" alt="Jaringan Alumni Kuat" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <div class="p-7 flex flex-col flex-grow">
                         <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                            Jaringan Alumni Kuat
+                        Kerja Sama Industri 
                         </h3>
                         <p class="text-gray-700 dark:text-gray-300 leading-relaxed flex-grow">
-                            Komunitas alumni yang solid dan tersebar di berbagai perusahaan ternama, siap membantu membuka peluang karir bagi lulusan baru.
+                           Siswa mendapatkan kesempatan praktik kerja lapangan (PKL) di perusahaan mitra sehingga memperoleh pengalaman kerja nyata sesuai bidang keahlian.
                         </p>
                         <div class="mt-6">
                             
@@ -272,7 +272,7 @@
                 </h2>
                 <div class="w-24 h-1 bg-blue-700 mx-auto rounded-full mb-4"></div>
                 <p class="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-                    Pilih jurusan yang sesuai dengan minat dan bakat Anda. Setiap program keahlian dirancang untuk memberikan kompetensi terbaik di bidangnya masing-masing.
+                    SMK Bina Putra Mandiri menyediakan berbagai program keahlian yang dirancang sesuai kebutuhan dunia industri dan perkembangan teknologi. Setiap jurusan dibekali pembelajaran teori dan praktik untuk membentuk siswa yang kompeten, profesional, dan siap kerja.
                 </p>
             </div>
 
@@ -285,7 +285,7 @@
     <div class="p-6 flex flex-col flex-grow">
         <div class="flex-grow">
             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Rekayasa Perangkat Lunak</h3>
-            <p class="text-gray-700 dark:text-gray-300 mb-6">Mempelajari pengembangan aplikasi, website, dan sistem perangkat lunak menggunakan teknologi terkini.</p>
+            <p class="text-gray-700 dark:text-gray-300 mb-6">SMK Bina Putra Mandiri menyediakan berbagai program keahlian yang dirancang sesuai kebutuhan dunia industri dan perkembangan teknologi. Setiap jurusan dibekali pembelajaran teori dan praktik untuk membentuk siswa yang kompeten, profesional, dan siap kerja.</p>
         </div>
         <a href="multimedia.html" class="w-full flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-4 rounded-xl transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2 dark:focus:ring-offset-gray-800 mt-auto">
             <span>Selengkapnya</span>
