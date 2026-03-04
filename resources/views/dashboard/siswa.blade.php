@@ -376,15 +376,7 @@
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Asal sekolah wajib diisi</div>
                     </div>
 
-                    <!-- Alamat Sekolah -->
-                    <div class="form-group col-span-full">
-                        <label class="block font-semibold text-gray-800 mb-2">
-                            Alamat Sekolah <span class="text-red-500">*</span>
-                        </label>
-                        <textarea name="alamat_sekolah" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" rows="2" placeholder="Alamat lengkap sekolah" required></textarea>
-                        <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Alamat sekolah wajib diisi</div>
-                    </div>
-                </div>
+                   
 
                 <div class="flex justify-end mt-8">
                     <button type="button" class="btn-next bg-gradient-to-r from-primary to-primary-dark text-white px-8 py-3 rounded-lg font-semibold hover:from-primary-dark hover:to-primary-dark transition-all flex items-center shadow-lg hover:shadow-xl">
