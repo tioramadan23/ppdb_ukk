@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PendaftaranController;
-use Illuminate\Routing\RouteRegistrar;
+
 
 // HOME
 Route::get('/', function () {
@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     Route::get('/pendaftaran', [PendaftaranController::class, 'create'])
-        ->name('pendaftaran.create');
+        ->name('pendaftaran');
 
     Route::post('/pendaftaran', [PendaftaranController::class, 'store'])
         ->name('pendaftaran.store');

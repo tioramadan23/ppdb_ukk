@@ -3,32 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pendaftaran;     
 
 class PendaftaranController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        return view('pendaftaran');
+        // ambil data dari session
+        $data = session('pendaftaran');
+
+        return view('pendaftaran', compact('data'));
     }
 
     public function store(Request $request)
     {
-        $user = auth()->user();
+        // validasi sederhana
+        $request->validate([
+            'nama_lengkap' => 'required',
+            'nisn' => 'required',
+            'nik' => 'required',
+        ]);
 
-        // Simpan pendaftaran
-        $pendaftaran = $user->pendaftaran()->create($request->only([
-            'nama_lengkap', 'nisn', 'nik', 'no_kk', 'tempat_lahir', 'tanggal_lahir',
-            'jenis_kelamin', 'agama', 'kewarganegaraan', 'berkebutuhan_khusus',
-            'alamat_lengkap', 'asal_sekolah', 'jurusan', 'foto_siswa'
-        ]));
+        // simpan ke session
+        session([
+            'pendaftaran' => $request->all()
+        ]);
 
-        // Simpan data orang tua
-        $pendaftaran->orangTua()->create($request->only([
-            'nama_ayah', 'nik_ayah', 'pendidikan_ayah', 'pekerjaan_ayah', 'no_hp_ayah',
-            'nama_ibu', 'nik_ibu', 'pendidikan_ibu', 'pekerjaan_ibu', 'no_hp_ibu'
-        ]));
-
-        return redirect()->back()->with('success', 'Data pendaftaran berhasil disimpan!');
+        return redirect()->back()->with('success','Data berhasil disimpan sementara!');
     }
 }

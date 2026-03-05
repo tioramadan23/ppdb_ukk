@@ -234,6 +234,12 @@
         </div>
 
         <!-- Form -->
+        @if(session('success'))
+        <div style="color:green">
+            {{ session('success') }}
+        </div>
+        @endif
+        
         <form id="registrationForm" action="{{ route('pendaftaran.store') }}" method="POST" enctype="multipart/form-data" class="px-8 py-6">
             @csrf
 
@@ -253,7 +259,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             Nama Lengkap Siswa <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" name="nama_siswa" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Masukkan nama lengkap sesuai ijazah" required>
+                        <input type="text" name="nama_lengkap" value="{{ $data['nama_lengkap'] ?? '' }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Masukkan nama lengkap sesuai ijazah" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Nama lengkap wajib diisi</div>
                     </div>
 
@@ -263,7 +269,7 @@
                             NISN <span class="text-red-500">*</span>
                             <i class="fas fa-info-circle text-gray-400 ml-1 cursor-help text-sm" title="Nomor Induk Siswa Nasional"></i>
                         </label>
-                        <input type="text" name="nisn" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 1234567890" maxlength="10" required>
+                        <input type="text" name="nisn" value="{{ $data['nisn'] ?? '' }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 1234567890" maxlength="10" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NISN wajib diisi dan harus 10 digit angka</div>
                     </div>
 
@@ -272,7 +278,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             NIK Siswa <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" name="nik_siswa" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 1234567890123456" maxlength="16" required>
+                        <input type="text" name="nik" value="{{ $data['nik'] ?? '' }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 1234567890123456" maxlength="16" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NIK wajib diisi dan harus 16 digit angka</div>
                     </div>
 
@@ -281,8 +287,17 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             No. KK <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" name="no_kk" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 1234567890123456" maxlength="16" required>
+                        <input type="text" name="no_kk" value="{{ $data['no_kk'] ?? '' }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 1234567890123456" maxlength="16" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">No. KK wajib diisi dan harus 16 digit angka</div>
+                    </div>
+
+                    <!-- Tempat Lahir -->
+                    <div class="form-group">
+                        <label class="block font-semibold text-gray-800 mb-2">
+                            Tempat Lahir <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" name="tempat_lahir" value="{{ $data['tempat_lahir'] ?? '' }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Masukkan tempat lahir" required>
+                        <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Tempat lahir wajib diisi</div>
                     </div>
 
                     <!-- Tanggal Lahir -->
@@ -329,7 +344,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             No. HP Siswa <span class="text-red-500">*</span>
                         </label>
-                        <input type="tel" name="no_hp_siswa" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 081234567890" maxlength="13" required>
+                        <input type="tel" name="no_hp_siswa" value="{{ $data['no_hp_siswa'] ?? '' }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 081234567890" maxlength="13" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">No. HP wajib diisi</div>
                     </div>
 
@@ -338,7 +353,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             Email Siswa <span class="text-red-500">*</span>
                         </label>
-                        <input type="email" name="email_siswa" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="contoh@email.com" required>
+                        <input type="email" name="email" value="{{ auth()->user()->email }}" readonly class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="contoh@email.com" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Email wajib diisi dan harus valid</div>
                     </div>
 
@@ -347,7 +362,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             Alamat Lengkap <span class="text-red-500">*</span>
                         </label>
-                        <textarea name="alamat_siswa" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" rows="3" placeholder="Alamat lengkap sesuai KTP/KK" required></textarea>
+                        <textarea name="alamat_siswa" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" rows="3" placeholder="Alamat lengkap sesuai KTP/KK" required>{{ $data['alamat_siswa'] ?? '' }}</textarea>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Alamat lengkap wajib diisi</div>
                     </div>
 
@@ -356,7 +371,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             Program Keahlian Pilihan <span class="text-red-500">*</span>
                         </label>
-                        <select name="program_keahlian" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all bg-white" required>
+                        <select name="jurusan" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all bg-white" required>
                             <option value="">-- Pilih Program Keahlian --</option>
                             <option value="RPL">Rekayasa Perangkat Lunak (RPL)</option>
                             <option value="TKJ">Teknik Komputer dan Jaringan (TKJ)</option>
@@ -372,11 +387,11 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             Asal Sekolah <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" name="asal_sekolah" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Nama SMP/MTs/Sederajat" required>
+                        <input type="text" name="asal_sekolah" value="{{ $data['asal_sekolah'] ?? '' }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Nama SMP/MTs/Sederajat" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Asal sekolah wajib diisi</div>
                     </div>
-
-                   
+                </div>
+                {{-- Section 1 End --}}
 
                 <div class="flex justify-end mt-8">
                     <button type="button" class="btn-next bg-gradient-to-r from-primary to-primary-dark text-white px-8 py-3 rounded-lg font-semibold hover:from-primary-dark hover:to-primary-dark transition-all flex items-center shadow-lg hover:shadow-xl">
@@ -385,6 +400,7 @@
                 </div>
             </div>
 
+            
             <!-- Section 2: Data Orang Tua/Wali -->
             <div class="form-section hidden" id="section-2">
                 <h3 class="text-2xl font-bold text-primary-dark mb-6 flex items-center">

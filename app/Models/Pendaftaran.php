@@ -19,12 +19,9 @@ class Pendaftaran extends Model
         'tanggal_lahir',
         'jenis_kelamin',
         'agama',
-        'kewarganegaraan',
-        'berkebutuhan_khusus',
         'alamat_lengkap',
         'asal_sekolah',
         'jurusan',
-        'foto_siswa',
         'status_pendaftaran',
     ];
 

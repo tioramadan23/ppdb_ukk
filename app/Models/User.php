@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Pendaftaran;
 
 class User extends Authenticatable
 {
@@ -21,4 +22,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    // Relasi user ke pendaftaran
+    public function pendaftarans()
+    {
+        return $this->hasMany(Pendaftaran::class);
+    }
 }
