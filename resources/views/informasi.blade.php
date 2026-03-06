@@ -10,13 +10,50 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <title>Informasi Pendaftaran - SMK Bina Putra Mandiri</title>
+    <title>Informasi - SMK Bina Putra Mandiri</title>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+        
+    </script>
+    
     <style>
         body { font-family: 'Poppins', sans-serif; }
         .gradient-text {
             background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+           .footer-title {
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            padding-left: 0.75rem;
+            border-left: 4px solid #60a5fa;
+        }
+        .footer-list li {
+            @apply text-blue-100 text-sm py-2 transition-colors hover:text-white cursor-pointer;
+        }
+        .footer-link {
+            @apply text-blue-200 hover:text-white transition-colors;
         }
         .info-card {
             transition: all 0.4s ease;
@@ -95,53 +132,73 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
-<!-- Navbar (Sama seperti home page) -->
+<!-- Navbar -->
 <header class="sticky top-0 z-50 border-b border-gray-300 bg-white/90 backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/90 shadow-sm">
     <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <a href="#" class="flex-shrink-0 text-xl font-bold">
+        <!-- Logo -->
+        <a href="{{ route('home') }}" class="flex-shrink-0 text-xl font-bold flex items-center gap-2">
             <span class="font-bold text-gray-800 dark:text-gray-200">SMK</span>
             <span class="text-blue-800 dark:text-blue-400">BPM</span>
         </a>
         
+        <!-- Desktop Navigation -->
         <nav class="hidden md:block">
             <ul class="flex items-center gap-6 text-sm font-medium">
                 <li>
-                    <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('home') }}">Home</a>
+                    <a class="{{ request()->routeIs('home') ? 'border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white' : 'text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white' }}" href="{{ route('home') }}">
+                        Home
+                    </a>
                 </li>
                 <li>
-                    <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('tentang-sekolah') }}">Tentang Sekolah</a>
+                    <a class="{{ request()->routeIs('tentang-sekolah') ? 'border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white' : 'text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white' }}" href="{{ route('tentang-sekolah') }}">
+                        Tentang Sekolah
+                    </a>
                 </li>
                 <li>
-                    <a class="border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white" href="{{ route('informasi') }}">Informasi</a>
+                    <a class="{{ request()->routeIs('informasi') ? 'border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white' : 'text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white' }}" href="{{ route('informasi') }}">
+                        Informasi
+                    </a>
                 </li>
                 <li>
-                    <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('dashboard.siswa') }}">Pendaftaran</a>
+                    <a class="{{ request()->routeIs('dashboard.siswa') ? 'border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white' : 'text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white' }}" href="{{ route('dashboard.siswa') }}">
+                        Pendaftaran
+                    </a>
                 </li>
             </ul>
         </nav>
 
-        <a href="#" class="hidden sm:block shrink-0">
-            <img alt="Profile" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80" class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-blue-500 transition" />
-        </a>
+        <!-- Profile & Dark Mode Toggle -->
+        <div class="hidden sm:flex items-center gap-3">
+            <button id="dark-mode-toggle" class="p-2 rounded-lg text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition" aria-label="Toggle dark mode">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:inline"></i>
+            </button>
+            <a href="#" class="shrink-0">
+                <img alt="Profile" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80" class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-blue-500 transition" />
+            </a>
+        </div>
 
-        <button id="mobile-menu-button" class="md:hidden p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-button" class="md:hidden p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Toggle menu">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
     </div>
 
+    <!-- Mobile Menu -->
     <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
         <div class="px-4 pt-4 pb-6 space-y-1">
-            <a href="{{ route('home') }}" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Home</a>
-            <a href="{{ route('tentang-sekolah') }}" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Tentang Sekolah</a>
-            <a href="{{ route('informasi') }}" class="block py-3 px-4 text-base font-medium text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg">Informasi</a>
-            <a href="{{ route('dashboard.siswa') }}" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Pendaftaran</a>
+            <a href="{{ route('home') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('home') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Home</a>
+            <a href="{{ route('tentang-sekolah') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('tentang-sekolah') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Tentang Sekolah</a>
+            <a href="{{ route('informasi') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('informasi') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Informasi</a>
+            <a href="{{ route('dashboard.siswa') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('dashboard.siswa') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Pendaftaran</a>
         </div>
     </div>
 </header>
+
 
 <!-- Hero Section dengan Animasi -->
 <section class="relative py-24 px-6 bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 overflow-hidden">
@@ -869,68 +926,106 @@
 </section>
 
 <!-- Footer (Sama seperti home page) -->
-<footer class="relative bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 pt-20 pb-10">
-    <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.15),transparent_55%)]"></div>
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14">
-            <div class="space-y-6">
-                <div class="flex items-center gap-1 text-2xl font-extrabold tracking-wide">
-                    <span>SMK</span>
-                    <span class="text-blue-300">BPM</span>
+    <!-- Footer -->
+    <footer class="relative bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 pt-20 pb-10">
+        <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.15),transparent_55%)]"></div>
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-1 text-2xl font-extrabold tracking-wide">
+                        <span>SMK</span>
+                        <span class="text-blue-300">BPM</span>
+                    </div>
+                    <p class="text-blue-100/90 text-sm leading-relaxed max-w-sm">
+                        Membangun generasi unggul melalui pendidikan vokasi berkualitas
+                        yang adaptif, inovatif, dan siap bersaing di era digital.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-blue-600 transition duration-300 backdrop-blur-sm">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-pink-500 transition duration-300 backdrop-blur-sm">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-red-600 transition duration-300 backdrop-blur-sm">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-gray-900 transition duration-300 backdrop-blur-sm">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
                 </div>
-                <p class="text-blue-100/90 text-sm leading-relaxed max-w-sm">
-                    Membangun generasi unggul melalui pendidikan vokasi berkualitas yang adaptif, inovatif, dan siap bersaing di era digital.
-                </p>
+                <div>
+                    <h3 class="footer-title">Program Keahlian</h3>
+                    <ul class="footer-list">
+                        <li>Rekayasa Perangkat Lunak</li>
+                        <li>Teknik Komputer & Jaringan</li>
+                        <li>Desain Komunikasi Visual</li>
+                        <li>Bisnis Digital</li>
+                        <li>Akuntansi</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-title">Informasi</h3>
+                    <ul class="footer-list">
+                        <li>Tentang Sekolah</li>
+                        <li>Fasilitas Sekolah</li>
+                        <li>Galeri Kegiatan</li>
+                        <li>Informasi Pendaftaran</li>
+                        <li>Hubungi Kami</li>
+                    </ul>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="footer-title">Kontak Kami</h3>
+                    <ul class="space-y-4 text-blue-100 text-sm">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Jl. Bina No. 23, Bandung</li>
+                        <li><i class="fas fa-phone mr-2"></i> (022) 123 4567</li>
+                        <li><i class="fas fa-envelope mr-2"></i> info@smkbpm.sch.id</li>
+                    </ul>
+                    <a href="https://wa.me/6281234567890"
+                       class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 px-6 py-3 rounded-xl font-semibold text-sm text-white transition-all duration-300 shadow-md hover:shadow-lg">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Chat WhatsApp</span>
+                    </a>
+                </div>
             </div>
-            <div>
-                <h3 class="footer-title">Program Keahlian</h3>
-                <ul class="footer-list">
-                    <li>Rekayasa Perangkat Lunak</li>
-                    <li>Teknik Komputer & Jaringan</li>
-                    <li>Desain Komunikasi Visual</li>
-                    <li>Bisnis Digital</li>
-                    <li>Akuntansi</li>
-                </ul>
+            <div class="mt-16 border-t border-blue-700/40"></div>
+            <div class="mt-10 text-center">
+                <h4 class="text-sm font-semibold text-blue-200 mb-4 tracking-wide">
+                    Tim Developer Website
+                </h4>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://www.instagram.com/rindria08/" target="_blank"
+                       class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-pink-500 rounded-full text-sm font-medium transition duration-300 backdrop-blur-sm">
+                        <i class="fab fa-instagram"></i>
+                        <span>@rindria08</span>
+                    </a>
+                    <a href="https://www.instagram.com/tioramdan23/" target="_blank"
+                       class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-pink-500 rounded-full text-sm font-medium transition duration-300 backdrop-blur-sm">
+                        <i class="fab fa-instagram"></i>
+                        <span>@tioramdan23</span>
+                    </a>
+                    <a href="https://www.instagram.com/syafira_td/" target="_blank"
+                       class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-pink-500 rounded-full text-sm font-medium transition duration-300 backdrop-blur-sm">
+                        <i class="fab fa-instagram"></i>
+                        <span>@syafira_td</span>
+                    </a>
+                </div>
             </div>
-            <div>
-                <h3 class="footer-title">Informasi</h3>
-                <ul class="footer-list">
-                    <li>Tentang Sekolah</li>
-                    <li>Fasilitas Sekolah</li>
-                    <li>Galeri Kegiatan</li>
-                    <li>Informasi Pendaftaran</li>
-                    <li>Hubungi Kami</li>
-                </ul>
+            <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-blue-200">
+                <p>© 2026 SMK Bina Putra Mandiri. All Rights Reserved.</p>
+                <div class="flex flex-wrap items-center gap-6">
+                    <a href="#" class="footer-link">Privasi</a>
+                    <a href="#" class="footer-link">Syarat</a>
+                    <a href="#" class="footer-link">Sitemap</a>
+                    <span class="flex items-center gap-1"><i class="far fa-clock mr-1"></i> 08.00 – 16.00 WIB</span>
+                </div>
             </div>
-            <div class="space-y-6">
-                <h3 class="footer-title">Kontak Kami</h3>
-                <ul class="space-y-4 text-blue-100 text-sm">
-                    <li>📍 Jl. Bina No. 23, Bandung</li>
-                    <li>📞 (022) 123 4567</li>
-                    <li>✉️ info@smkbpm.sch.id</li>
-                </ul>
-            </div>
+            <p class="mt-6 text-center text-xs text-blue-300/70">
+                Dikembangkan oleh Tim IT SMK BPM • v2.1.0
+            </p>
         </div>
-        <div class="mt-16 border-t border-blue-700/40"></div>
-        <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-blue-200">
-            <p>© 2026 SMK Bina Putra Mandiri. All Rights Reserved.</p>
-        </div>
-    </div>
-    <style>
-        .footer-title {
-            font-size: 1.125rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            padding-left: 0.75rem;
-            border-left: 4px solid #60a5fa;
-        }
-        .footer-list li {
-            padding: 0.5rem 0;
-            color: #93c5fd;
-            font-size: 0.875rem;
-        }
-    </style>
-</footer>
+    </footer>
 
 <!-- AOS Animation Script -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -1003,6 +1098,68 @@ window.addEventListener('scroll', function() {
     } else {
         header.classList.remove('shadow-md');
     }
+});
+</script>
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+// Initialize AOS
+document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+        duration: 600,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 50
+    });
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuButton.querySelector('svg');
+            const isHidden = mobileMenu.classList.contains('hidden');
+            icon.innerHTML = isHidden 
+                ? '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />'
+                : '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />';
+        });
+
+        // Close menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.querySelector('svg').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />';
+            });
+        });
+    }
+
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    if (darkModeToggle) {
+        // Check for saved preference or system preference
+        if (localStorage.getItem('darkMode') === 'true' || 
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+        });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (mobileMenuButton && mobileMenu && 
+            !mobileMenuButton.contains(e.target) && 
+            !mobileMenu.contains(e.target) && 
+            !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.querySelector('svg').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />';
+        }
+    });
 });
 </script>
 

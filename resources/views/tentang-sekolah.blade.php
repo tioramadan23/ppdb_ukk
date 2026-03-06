@@ -4,10 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+   <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <title>Tentang Sekolah - SMK Bina Putra Mandiri</title>
+    <script>
+        tailwind.config = {
+        darkMode: 'class',
+        theme: {
+        extend: {
+        fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        },
+        colors: {
+        primary: {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                500: '#3b82f6',
+                700: '#1d4ed8',
+                800: '#1e40af',
+                900: '#1e3a8a',
+            }
+            }
+            }
+            }
+            }
+    </script>
     <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .gradient-text {
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        }
         .footer-title {
             font-size: 1.125rem;
             font-weight: bold;
@@ -73,15 +106,20 @@ backdrop-blur-md shadow-sm">
                 </ul>
             </nav>
             
-            <!-- Desktop Actions -->
-             
-            
-                <a href="#" class="hidden sm:block shrink-0">
+            <!-- Profile & Dark Mode Toggle -->
+    <div class="hidden sm:flex items-center gap-3">
+        <button id="dark-mode-toggle" class="p-2 rounded-lg text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition" aria-label="Toggle dark mode">
+            <i class="fas fa-moon dark:hidden"></i>
+            <i class="fas fa-sun hidden dark:inline"></i>
+        </button>
+        <a href="#" class="hidden sm:block shrink-0">
                     <img alt="Profile"
                         src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80  "
                         class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-blue-500 transition" />
                 </a>
-            </div>
+    </div>
+    
+           
             
             <!-- Mobile menu button -->
             <button id="mobile-menu-button" class="md:hidden p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -422,78 +460,7 @@ backdrop-blur-md shadow-sm">
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Program 1: Ekstrakurikuler -->
-                <div class="program-card">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1543269664-76bc3997d9ea?w=400&h=192&fit=crop" alt="Ekstrakurikuler" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-3">
-                                <i class="fas fa-futbol text-2xl text-blue-700"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Ekstrakurikuler</h3>
-                        </div>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">
-                            Berbagai kegiatan ekstrakurikuler untuk mengembangkan bakat dan minat siswa di bidang olahraga, seni, dan organisasi.
-                        </p>
-                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Futsal & Basket</li>
-                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Pramuka</li>
-                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Seni Tari & Musik</li>
-                            <li><i class="fas fa-check text-blue-600 mr-2"></i>English Club</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Program 2: Sertifikasi -->
-                <div class="program-card">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=192&fit=crop" alt="Sertifikasi" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-3">
-                                <i class="fas fa-certificate text-2xl text-blue-700"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Sertifikasi Kompetensi</h3>
-                        </div>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">
-                            Program sertifikasi nasional dan internasional untuk memperkuat kompetensi dan daya saing lulusan di pasar kerja.
-                        </p>
-                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Cisco CCNA</li>
-                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Microsoft Office Specialist</li>
-                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Adobe Certified Associate</li>
-                            <li><i class="fas fa-check text-blue-600 mr-2"></i>TOEIC/TOEFL</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Program 3: Magang -->
-                <div class="program-card">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=400&h=192&fit=crop" alt="Magang" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-3">
-                                <i class="fas fa-briefcase text-2xl text-blue-700"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Program Magang</h3>
-                        </div>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">
-                            Kesempatan magang di perusahaan ternama dengan bimbingan langsung dari praktisi industri untuk pengalaman kerja nyata.
-                        </p>
-                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Durasi 3-6 Bulan</li>
-                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Perusahaan Mitra</li>
-                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Bimbingan Mentor</li>
-                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Sertifikat Magang</li>
-                        </ul>
-                    </div>
-                </div>
-
+               
                 <!-- Program 4: Kewirausahaan -->
                 <div class="program-card">
                     <div class="h-48 overflow-hidden">
@@ -706,6 +673,61 @@ backdrop-blur-md shadow-sm">
             });
         });
     </script>
-    
+    <!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Initialize AOS
+    document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+        duration: 600,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 50
+    });
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        const icon = mobileMenuButton.querySelector('svg');
+        const isHidden = mobileMenu.classList.contains('hidden');
+        icon.innerHTML = isHidden
+    ? '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />'
+    : '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />';
+    });
+    // Close menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    mobileMenuButton.querySelector('svg').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />';
+    });
+    });
+    }
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    if (darkModeToggle) {
+    // Check for saved preference or system preference
+    if (localStorage.getItem('darkMode') === 'true' ||
+    (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+    }
+    darkModeToggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+    });
+    }
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+    if (mobileMenuButton && mobileMenu &&
+    !mobileMenuButton.contains(e.target) &&
+    !mobileMenu.contains(e.target) &&
+    !mobileMenu.classList.contains('hidden')) {
+    mobileMenu.classList.add('hidden');
+    mobileMenuButton.querySelector('svg').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />';
+    }
+    });
+    });
+</script>
 </body>
 </html>
