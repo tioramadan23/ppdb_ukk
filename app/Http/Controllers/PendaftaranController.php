@@ -1,33 +1,29 @@
-<?php
+use App\Models\Pendaftaran;
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
-class PendaftaranController extends Controller
+public function store(Request $request)
 {
-    public function create(Request $request)
-    {
-        // ambil data dari session
-        $data = session('pendaftaran');
+    // VALIDASI LENGKAP
+    $validated = $request->validate([
+        'nama_lengkap' => 'required',
+        'nisn' => 'required|digits:10',
+        'nik' => 'required|digits:16',
+        'no_kk' => 'required|digits:16',
+        'tempat_lahir' => 'required',
+        'tanggal_lahir' => 'required|date',
+        'jenis_kelamin' => 'required',
+        'agama' => 'required',
+        'no_hp_siswa' => 'required',
+        'email' => 'required|email',
+        'alamat_siswa' => 'required',
+        'jurusan' => 'required',
+        'asal_sekolah' => 'required',
+    ]);
 
-        return view('pendaftaran', compact('data'));
-    }
+    // SIMPAN KE DATABASE
+    Pendaftaran::create($validated);
 
-    public function store(Request $request)
-    {
-        // validasi sederhana
-        $request->validate([
-            'nama_lengkap' => 'required',
-            'nisn' => 'required',
-            'nik' => 'required',
-        ]);
+    // OPTIONAL: hapus session lama
+    session()->forget('pendaftaran');
 
-        // simpan ke session
-        session([
-            'pendaftaran' => $request->all()
-        ]);
-
-        return redirect()->back()->with('success','Data berhasil disimpan sementara!');
-    }
+    return redirect()->back()->with('success', 'Data berhasil disimpan ke database!');
 }

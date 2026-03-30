@@ -259,7 +259,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             Nama Lengkap Siswa <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" name="nama_lengkap" value="{{ $data['nama_lengkap'] ?? '' }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Masukkan nama lengkap sesuai ijazah" required>
+                        <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap', $data['nama_lengkap'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Masukkan nama lengkap sesuai ijazah" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Nama lengkap wajib diisi</div>
                     </div>
 
@@ -269,7 +269,7 @@
                             NISN <span class="text-red-500">*</span>
                             <i class="fas fa-info-circle text-gray-400 ml-1 cursor-help text-sm" title="Nomor Induk Siswa Nasional"></i>
                         </label>
-                        <input type="text" name="nisn" value="{{ $data['nisn'] ?? '' }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 1234567890" maxlength="10" required>
+                        <input type="text" name="nisn" value="{{ old('nisn', $data['nisn'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 1234567890" maxlength="10" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NISN wajib diisi dan harus 10 digit angka</div>
                     </div>
 
@@ -278,7 +278,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             NIK Siswa <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" name="nik" value="{{ $data['nik'] ?? '' }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 1234567890123456" maxlength="16" required>
+                        <input type="text" name="nik" value="{{ old('nik', $data['nik'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 1234567890123456" maxlength="16" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NIK wajib diisi dan harus 16 digit angka</div>
                     </div>
 
@@ -287,7 +287,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             No. KK <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" name="no_kk" value="{{ $data['no_kk'] ?? '' }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 1234567890123456" maxlength="16" required>
+                        <input type="text" name="no_kk" value="{{ old('no_kk', $data['no_kk'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 1234567890123456" maxlength="16" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">No. KK wajib diisi dan harus 16 digit angka</div>
                     </div>
 
@@ -296,7 +296,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             Tempat Lahir <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" name="tempat_lahir" value="{{ $data['tempat_lahir'] ?? '' }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Masukkan tempat lahir" required>
+                        <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir', $data['tempat_lahir'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Masukkan tempat lahir" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Tempat lahir wajib diisi</div>
                     </div>
 
@@ -305,7 +305,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             Tanggal Lahir <span class="text-red-500">*</span>
                         </label>
-                        <input type="date" name="tanggal_lahir" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" required>
+                        <input type="date" name="tanggal_lahir" value="{{ old('tanggal_lahir', $data['tanggal_lahir'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Tanggal lahir wajib diisi</div>
                     </div>
 
@@ -316,8 +316,8 @@
                         </label>
                         <select name="jenis_kelamin" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all bg-white" required>
                             <option value="">-- Pilih Jenis Kelamin --</option>
-                            <option value="L">Laki-laki</option>
-                            <option value="P">Perempuan</option>
+                            <option value="L" {{ old('jenis_kelamin', $data['jenis_kelamin'] ?? '') == 'L' ? 'selected' : '' }}>Laki-laki</option>
+                            <option value="P" {{ old('jenis_kelamin', $data['jenis_kelamin'] ?? '') == 'P' ? 'selected' : '' }}>Perempuan</option>
                         </select>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Jenis kelamin wajib dipilih</div>
                     </div>
@@ -329,12 +329,12 @@
                         </label>
                         <select name="agama" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all bg-white" required>
                             <option value="">-- Pilih Agama --</option>
-                            <option value="Islam">Islam</option>
-                            <option value="Kristen">Kristen</option>
-                            <option value="Katolik">Katolik</option>
-                            <option value="Hindu">Hindu</option>
-                            <option value="Buddha">Buddha</option>
-                            <option value="Konghucu">Konghucu</option>
+                            <option value="Islam" {{ old('agama', $data['agama'] ?? '') == 'Islam' ? 'selected' : '' }}>Islam</option>
+                            <option value="Kristen" {{ old('agama', $data['agama'] ?? '') == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+                            <option value="Katolik" {{ old('agama', $data['agama'] ?? '') == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+                            <option value="Hindu" {{ old('agama', $data['agama'] ?? '') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                            <option value="Buddha" {{ old('agama', $data['agama'] ?? '') == 'Buddha' ? 'selected' : '' }}>Buddha</option>
+                            <option value="Konghucu" {{ old('agama', $data['agama'] ?? '') == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
                         </select>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Agama wajib dipilih</div>
                     </div>
@@ -344,7 +344,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             No. HP Siswa <span class="text-red-500">*</span>
                         </label>
-                        <input type="tel" name="no_hp_siswa" value="{{ $data['no_hp_siswa'] ?? '' }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 081234567890" maxlength="13" required>
+                        <input type="tel" name="no_hp_siswa" value="{{ old('no_hp_siswa', $data['no_hp_siswa'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: 081234567890" maxlength="13" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">No. HP wajib diisi</div>
                     </div>
 
@@ -362,7 +362,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             Alamat Lengkap <span class="text-red-500">*</span>
                         </label>
-                        <textarea name="alamat_siswa" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" rows="3" placeholder="Alamat lengkap sesuai KTP/KK" required>{{ $data['alamat_siswa'] ?? '' }}</textarea>
+                        <textarea name="alamat_siswa" {{ old('alamat_siswa', $data['alamat_siswa'] ?? '') }} class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" rows="3" placeholder="Alamat lengkap sesuai KTP/KK" required>{{ $data['alamat_siswa'] ?? '' }}</textarea>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Alamat lengkap wajib diisi</div>
                     </div>
 
@@ -373,11 +373,11 @@
                         </label>
                         <select name="jurusan" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all bg-white" required>
                             <option value="">-- Pilih Program Keahlian --</option>
-                            <option value="RPL">Rekayasa Perangkat Lunak (RPL)</option>
-                            <option value="TKJ">Teknik Komputer dan Jaringan (TKJ)</option>
-                            <option value="DKV">Desain Komunikasi Visual (DKV)</option>
-                            <option value="BD">Bisnis Digital (BD)</option>
-                            <option value="AK">Akuntansi (AK)</option>
+                            <option value="RPL" {{ old('jurusan', $data['jurusan'] ?? '') == 'RPL' ? 'selected' : '' }}>Rekayasa Perangkat Lunak (RPL)</option>
+                            <option value="TKJ" {{ old('jurusan', $data['jurusan'] ?? '') == 'TKJ' ? 'selected' : '' }}>Teknik Komputer dan Jaringan (TKJ)</option>
+                            <option value="DKV" {{ old('jurusan', $data['jurusan'] ?? '') == 'DKV' ? 'selected' : '' }}>Desain Komunikasi Visual (DKV)</option>
+                            <option value="BD" {{ old('jurusan', $data['jurusan'] ?? '') == 'BD' ? 'selected' : '' }}>Bisnis Digital (BD)</option>
+                            <option value="AK" {{ old('jurusan', $data['jurusan'] ?? '') == 'AK' ? 'selected' : '' }}>Akuntansi (AK)</option>
                         </select>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Program keahlian wajib dipilih</div>
                     </div>
@@ -387,7 +387,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             Asal Sekolah <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" name="asal_sekolah" value="{{ $data['asal_sekolah'] ?? '' }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Nama SMP/MTs/Sederajat" required>
+                        <input type="text" name="asal_sekolah" value="{{ old('asal_sekolah', $data['asal_sekolah'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Nama SMP/MTs/Sederajat" required>
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Asal sekolah wajib diisi</div>
                     </div>
                 </div>
@@ -1277,6 +1277,8 @@
         }
     });
 </script>
+
+{{-- AUTO SAVE TANPA SUBMIT --}}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -1314,5 +1316,197 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+
+    // Ambil data dari localStorage
+    const savedData = JSON.parse(localStorage.getItem("form_ppdb")) || {};
+
+    // Isi kembali ke form
+    Object.keys(savedData).forEach(name => {
+        const field = form.querySelector(`[name="${name}"]`);
+        if (!field) return;
+
+        if (field.type === "radio" || field.type === "checkbox") {
+            field.checked = savedData[name] === field.value;
+        } else {
+            field.value = savedData[name];
+        }
+    });
+
+    // Simpan otomatis saat user input
+    form.addEventListener("input", function (e) {
+        const name = e.target.name;
+        if (!name) return;
+
+        savedData[name] = e.target.value;
+        localStorage.setItem("form_ppdb", JSON.stringify(savedData));
+    });
+});
+</script>
+
+{{-- PINDAH SECTION --}}
+<script>
+let currentStep = 1;
+const totalSteps = 3;
+
+function showStep(step) {
+    document.querySelectorAll(".form-section").forEach((section, index) => {
+        section.classList.add("hidden");
+        if (index + 1 === step) {
+            section.classList.remove("hidden");
+        }
+    });
+
+    // Simpan step ke localStorage
+    localStorage.setItem("currentStep", step);
+}
+
+function nextStep() {
+    if (currentStep < totalSteps) {
+        currentStep++;
+        showStep(currentStep);
+    }
+}
+
+function prevStep() {
+    if (currentStep > 1) {
+        currentStep--;
+        showStep(currentStep);
+    }
+}
+
+// Load step terakhir
+document.addEventListener("DOMContentLoaded", function () {
+    const savedStep = localStorage.getItem("currentStep");
+    if (savedStep) {
+        currentStep = parseInt(savedStep);
+    }
+    showStep(currentStep);
+});
+</script>
+
+{{-- SAMBUNG BOOTEN --}}
+<script>
+let currentStep = 1;
+const totalSteps = document.querySelectorAll(".form-section").length;
+
+function showStep(step) {
+    document.querySelectorAll(".form-section").forEach((section, index) => {
+        section.classList.add("hidden");
+        if (index + 1 === step) {
+            section.classList.remove("hidden");
+        }
+    });
+
+    localStorage.setItem("currentStep", step);
+}
+
+// Next button
+document.querySelectorAll(".btn-next").forEach(btn => {
+    btn.addEventListener("click", function () {
+        if (currentStep < totalSteps) {
+            currentStep++;
+            showStep(currentStep);
+        }
+    });
+});
+
+// Prev button
+document.querySelectorAll(".btn-prev").forEach(btn => {
+    btn.addEventListener("click", function () {
+        if (currentStep > 1) {
+            currentStep--;
+            showStep(currentStep);
+        }
+    });
+});
+
+// Load step terakhir
+document.addEventListener("DOMContentLoaded", function () {
+    const savedStep = localStorage.getItem("currentStep");
+    if (savedStep) {
+        currentStep = parseInt(savedStep);
+    }
+    showStep(currentStep);
+});
+</script>
+
+{{-- DISABLE BUTTON --}}
+function showStep(step) {
+    document.querySelectorAll(".form-section").forEach((section, index) => {
+        section.classList.add("hidden");
+        if (index + 1 === step) {
+            section.classList.remove("hidden");
+        }
+    });
+
+    // Handle tombol
+    document.querySelectorAll(".btn-prev").forEach(btn => {
+        btn.style.display = step === 1 ? "none" : "inline-flex";
+    });
+
+    document.querySelectorAll(".btn-next").forEach(btn => {
+        if (step === totalSteps) {
+            btn.textContent = "Submit";
+            btn.type = "submit";
+        } else {
+            btn.textContent = "Lanjutkan";
+            btn.type = "button";
+        }
+    });
+
+    localStorage.setItem("currentStep", step);
+}
+
+{{-- AUTO SAVE --}}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    const savedData = JSON.parse(localStorage.getItem("form_ppdb")) || {};
+
+    Object.keys(savedData).forEach(name => {
+        const field = form.querySelector(`[name="${name}"]`);
+        if (field) field.value = savedData[name];
+    });
+
+    form.addEventListener("input", function (e) {
+        if (!e.target.name) return;
+        savedData[e.target.name] = e.target.value;
+        localStorage.setItem("form_ppdb", JSON.stringify(savedData));
+    });
+});
+</script>
+
+{{-- error --}}
+<script>
+function showStep(step) {
+    document.querySelectorAll(".form-section").forEach((section, index) => {
+        section.classList.add("hidden");
+        if (index + 1 === step) {
+            section.classList.remove("hidden");
+        }
+    });
+
+    // Handle tombol
+    document.querySelectorAll(".btn-prev").forEach(btn => {
+        btn.style.display = step === 1 ? "none" : "inline-flex";
+    });
+
+    document.querySelectorAll(".btn-next").forEach(btn => {
+        if (step === totalSteps) {
+            btn.textContent = "Submit";
+            btn.type = "submit";
+        } else {
+            btn.textContent = "Lanjutkan";
+            btn.type = "button";
+        }
+    });
+
+    localStorage.setItem("currentStep", step);
+}
+</script>
+
 </body>
 </html>
