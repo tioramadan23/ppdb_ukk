@@ -4,28 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Pendaftaran SMK BPM</title>
-    
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Tailwind Config -->
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
                     colors: {
                         primary: {
-                            dark: '#1e40af',
-                            DEFAULT: '#2563eb',
-                        },
-                        secondary: {
-                            DEFAULT: '#1e293b',
-                            light: '#334155',
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
                         }
-                    },
+                    }
+                }
+            }
+        }
                     animation: {
                         'fade-in': 'fadeIn 0.5s ease-in-out',
                         'slide-in': 'slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -58,6 +66,12 @@
     </script>
     
     <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .gradient-text {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
         .file-upload-container.drag-over {
             border-color: #1e40af !important;
             background-color: rgba(37, 99, 235, 0.05) !important;
@@ -74,10 +88,10 @@
         #toastNotification.translate-x-full {
             transform: translateX(100%);
         }
+        html { scroll-behavior: smooth; }
     </style>
 </head>
-
-<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen font-sans">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
 <!-- Toast Notification -->
 <div id="toastNotification" class="fixed top-20 right-4 z-50 bg-white border-l-4 border-green-500 rounded-lg shadow-lg p-4 pr-12 translate-x-full">
@@ -101,10 +115,11 @@
     </div>
 </div>
 
-<!-- Navbar start -->
+<!-- Navbar -->
 <header class="sticky top-0 z-50 border-b border-gray-300 bg-white/90 backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/90 shadow-sm">
     <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <a href="/" title="Kembali ke Home" class="flex-shrink-0 text-xl font-bold">
+        <!-- Logo -->
+        <a href="{{ route('home') }}" class="flex-shrink-0 text-xl font-bold flex items-center gap-2">
             <span class="font-bold text-gray-800 dark:text-gray-200">SMK</span>
             <span class="text-blue-800 dark:text-blue-400">BPM</span>
         </a>
@@ -113,29 +128,35 @@
         <nav class="hidden md:block">
             <ul class="flex items-center gap-6 text-sm font-medium">
                 <li>
-                    <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('home') }}">
+                    <a class="{{ request()->routeIs('home') ? 'border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white' : 'text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white' }}" href="{{ route('home') }}">
                         Home
                     </a>
                 </li>
                 <li>
-                    <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('tentang-sekolah') }}">
+                    <a class="{{ request()->routeIs('tentang-sekolah') ? 'border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white' : 'text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white' }}" href="{{ route('tentang-sekolah') }}">
                         Tentang Sekolah
                     </a>
                 </li>
                 <li>
-                    <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('informasi') }}">
+                    <a class="{{ request()->routeIs('informasi') ? 'border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white' : 'text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white' }}" href="{{ route('informasi') }}">
                         Informasi
                     </a>
                 </li>
                 <li>
-                    <a class="border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white" href="{{ route('dashboard.siswa') }}">
+                    <a class="{{ request()->routeIs('dashboard.siswa') ? 'border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white' : 'text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white' }}" href="{{ route('dashboard.siswa') }}">
                         Pendaftaran
                     </a>
                 </li>
             </ul>
         </nav>
 
-       tema warna
+
+      <!-- Profile & Dark Mode Toggle -->
+        <div class="hidden sm:flex items-center gap-3">
+            <button id="dark-mode-toggle" class="p-2 rounded-lg text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition" aria-label="Toggle dark mode">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:inline"></i>
+            </button>
             <a href="/profile" class="hidden sm:block shrink-0">
                 <span class="sr-only">Profile</span>
                 <img alt="Profile"
@@ -1507,6 +1528,67 @@ function showStep(step) {
     localStorage.setItem("currentStep", step);
 }
 </script>
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+// Initialize AOS
+document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+        duration: 600,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 50
+    });
 
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuButton.querySelector('svg');
+            const isHidden = mobileMenu.classList.contains('hidden');
+            icon.innerHTML = isHidden 
+                ? '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />'
+                : '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />';
+        });
+
+        // Close menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.querySelector('svg').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />';
+            });
+        });
+    }
+
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    if (darkModeToggle) {
+        // Check for saved preference or system preference
+        if (localStorage.getItem('darkMode') === 'true' || 
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+        });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (mobileMenuButton && mobileMenu && 
+            !mobileMenuButton.contains(e.target) && 
+            !mobileMenu.contains(e.target) && 
+            !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.querySelector('svg').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />';
+        }
+    });
+});
+</script>
 </body>
 </html>
