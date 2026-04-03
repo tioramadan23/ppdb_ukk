@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use App\Models\Pendaftaran;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
         'name',
@@ -23,9 +22,14 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    // Relasi user ke pendaftaran
-    public function pendaftarans()
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    // Relasi: User -> Pendaftaran (1 to 1)
+    public function pendaftaran()
     {
-        return $this->hasMany(Pendaftaran::class);
+        return $this->hasOne(Pendaftaran::class);
     }
 }

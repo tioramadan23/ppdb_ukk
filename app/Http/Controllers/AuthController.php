@@ -63,7 +63,7 @@ class AuthController extends Controller
 
             $request->session()->regenerate();
 
-            // 🔥 CEK ROLE DI SINI
+            // CEK ROLE
             if (Auth::user()->role === 'admin') {
                 return redirect()->route('dashboard.admin')
                     ->with('success', 'Selamat datang Admin!');

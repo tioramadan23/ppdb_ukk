@@ -23,7 +23,7 @@
                         </li>
 
                         <li>
-                            <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('tentang-sekolah') }}"> Tentang Sekolah </a>
+                            <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('tentang_sekolah') }}"> Tentang Sekolah </a>
                         </li>
 
                         <li>
@@ -38,7 +38,7 @@
 
                 <div class="flex items-center gap-4">
                     <div class="hidden lg:flex lg:items-center lg:space-x-4">
-                        <a href="{{ route('registrasi') }}" title="" class="rounded-full border border-transparent bg-blue-800 px-4 py-2 text-base font-semibold text-white transition-all duration-200 hover:bg-blue-900 focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-600" role="button"> Registrasi </a>
+                        <a href="{{ route('register') }}" title="" class="rounded-full border border-transparent bg-blue-800 px-4 py-2 text-base font-semibold text-white transition-all duration-200 hover:bg-blue-900 focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-600" role="button"> Registrasi </a>
                         <a href="{{ route('login') }}" title="" class="rounded-full border border-blue-800 bg-transparent px-4 py-2 text-base font-semibold text-blue-800 transition-all duration-200 hover:bg-blue-50 hover:text-blue-900 focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 focus:outline-none dark:border-blue-500 dark:text-blue-400 dark:hover:bg-blue-900/20 dark:hover:text-white dark:focus:ring-blue-500" role="button"> Login </a>
                     </div>
                     
@@ -69,7 +69,7 @@
                     Pilih kompetensi terbaik: Rekayasa Perangkat Lunak, Teknik Komputer dan Jaringan, Desain Komunikasi Visual, Bisnis Digital dan Akuntansi. Kurikulum industri, fasilitas modern, guru berpengalaman.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="{{ route('registrasi') }}" class="w-full sm:w-auto px-8 py-4 bg-blue-800 text-white font-semibold rounded-xl hover:bg-blue-900 transition-colors shadow-lg">
+                    <a href="{{ route('register') }}" class="w-full sm:w-auto px-8 py-4 bg-blue-800 text-white font-semibold rounded-xl hover:bg-blue-900 transition-colors shadow-lg">
                         Daftar
                     </a>
                     <a href="#" class="w-full sm:w-auto px-8 py-4 bg-gray-100 dark:bg-white/10 backdrop-blur text-gray-900 dark:text-white font-semibold rounded-xl border border-gray-300 dark:border-white/20 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors">

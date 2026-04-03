@@ -89,7 +89,7 @@ backdrop-blur-md shadow-sm">
                         </a>
                     </li>
                     <li>
-                        <a class="border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white" href="{{ route('tentang-sekolah') }}">
+                        <a class="border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white" href="{{ route('tentang_sekolah') }}">
                             Tentang Sekolah
                         </a>
                     </li>
@@ -134,7 +134,7 @@ backdrop-blur-md shadow-sm">
         <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
             <div class="px-4 pt-4 pb-6 space-y-1">
                 <a href="{{ route('home') }}" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Home</a>
-                <a href="{{ route('tentang-sekolah') }}" class="block py-3 px-4 text-base font-medium text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg">Tentang Sekolah</a>
+                <a href="{{ route('tentang_sekolah') }}" class="block py-3 px-4 text-base font-medium text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg">Tentang Sekolah</a>
                 <a href="{{ route('informasi') }}" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Informasi</a>
                 <a href="{{ route('dashboard.siswa') }}" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Pendaftaran</a>
                 <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">

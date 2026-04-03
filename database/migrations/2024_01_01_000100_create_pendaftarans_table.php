@@ -12,27 +12,41 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pendaftarans', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')
-                ->constrained('users')
-                ->cascadeOnDelete()
-                ->unique();
+        $table->id();
 
-            $table->string('nama_lengkap', 100);
-            $table->string('nisn', 20)->unique();
-            $table->string('nik', 20)->nullable();
-            $table->string('no_kk', 20)->nullable();
-            $table->string('tempat_lahir', 50)->nullable();
-            $table->date('tanggal_lahir')->nullable();
-            $table->enum('jenis_kelamin', ['L','P'])->nullable();
-            $table->string('agama', 20)->nullable();
-            $table->string('no_hp', 50)->nullable();
-            $table->text('alamat_lengkap')->nullable();
-            $table->string('jurusan', 50)->nullable();
-            $table->string('asal_sekolah', 100)->nullable();
-            $table->enum('status_pendaftaran', ['draft','submit','diverifikasi'])->default('draft');
-            $table->timestamps();
-        });
+        $table->foreignId('user_id')
+            ->constrained('users')
+            ->cascadeOnDelete()
+            ->unique();
+
+        $table->string('nama_lengkap', 100);
+        $table->string('nisn', 20)->unique();
+        $table->string('nik', 20)->nullable();
+        $table->string('no_kk', 20)->nullable();
+        $table->string('tempat_lahir', 50)->nullable();
+        $table->date('tanggal_lahir')->nullable();
+        $table->enum('jenis_kelamin', ['L','P'])->nullable();
+        $table->string('agama', 20)->nullable();
+        $table->string('no_hp', 15)->nullable();
+        $table->text('alamat_lengkap')->nullable();
+        $table->string('jurusan', 50)->nullable();
+        $table->string('asal_sekolah', 100)->nullable();
+
+        // Status proses
+        $table->enum('status_pendaftaran', ['draft','submit','diverifikasi'])
+            ->default('draft');
+
+        // PENGUMUMAN 
+        $table->enum('status_hasil', ['diterima','tidak_diterima'])->nullable();
+        $table->text('keterangan_hasil')->nullable();
+        $table->date('tanggal_pengumuman')->nullable();
+
+        $table->timestamps();
+
+        // Index dashboard admin
+        $table->index('status_pendaftaran');
+        $table->index('status_hasil');
+    });
 
 
     }

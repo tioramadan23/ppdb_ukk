@@ -12,7 +12,7 @@
         <div class="bg-glass rounded-2xl shadow-2xl p-8">
             <div class="text-center mb-6">
                 <h2 class="text-3xl font-bold -mt-2 text-white">Registrasi</h2>
-                <p class="text-white mt-1 opacity-80">Membuat Akun Anda</p>
+                <p class="text-white mt-1 opacity-80">Buat Akun Anda</p>
             </div>
 
             {{-- ALERT SUCCESS --}}

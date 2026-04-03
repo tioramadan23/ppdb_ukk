@@ -52,7 +52,7 @@
 
                <!-- Button -->
                 <div class="pt-2">
-                <button type="submit" class="block mx-auto w-[200px] bg-sky-950 bg-opacity-90 text-white py-3 rounded-lg font-medium hover:bg-sky-900 hover:bg-opacity-100 transition-all">
+                <button href="{{ route('dashboard.siswa') }}" type="submit" class="block mx-auto w-[200px] bg-sky-950 bg-opacity-90 text-white py-3 rounded-lg font-medium hover:bg-sky-900 hover:bg-opacity-100 transition-all">
                     Masuk
                 </button>
                 </div>
@@ -61,7 +61,7 @@
                 <div class="pt-6"> <!-- Padding top sebelum link -->
                     <p class="text-center text-sm text-white opacity-80">
                         Belum Punya Akun?
-                        <a href="{{ route('registrasi') }}" class="font-medium text-cyan-300 hover:text-cyan-500 transition-colors">
+                        <a href="{{ route('register') }}" class="font-medium text-cyan-300 hover:text-cyan-500 transition-colors">
                             Daftar Sekarang
                         </a>
                     </p>

@@ -75,7 +75,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="{{ request()->routeIs('tentang-sekolah') ? 'border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white' : 'text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white' }}" href="{{ route('tentang-sekolah') }}">
+                    <a class="{{ request()->routeIs('tentang_sekolah') ? 'border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white' : 'text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white' }}" href="{{ route('tentang_sekolah') }}">
                         Tentang Sekolah
                     </a>
                 </li>
@@ -115,7 +115,7 @@
     <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
         <div class="px-4 pt-4 pb-6 space-y-1">
             <a href="{{ route('home') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('home') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Home</a>
-            <a href="{{ route('tentang-sekolah') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('tentang-sekolah') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Tentang Sekolah</a>
+            <a href="{{ route('tentang_sekolah') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('tentang_sekolah') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Tentang Sekolah</a>
             <a href="{{ route('informasi') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('informasi') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Informasi</a>
             <a href="{{ route('dashboard.siswa') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('dashboard.siswa') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Pendaftaran</a>
         </div>
@@ -140,7 +140,7 @@
                 Pilih kompetensi terbaik: Rekayasa Perangkat Lunak, Teknik Komputer dan Jaringan, Desain Komunikasi Visual, Bisnis Digital, dan Akuntansi. Kurikulum industri, fasilitas modern, guru berpengalaman.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ route('registrasi') }}" class="w-full sm:w-auto px-8 py-4 bg-blue-800 text-white font-semibold rounded-xl hover:bg-blue-900 transition-colors shadow-lg hover:shadow-xl">
+                <a href="{{ route('register') }}" class="w-full sm:w-auto px-8 py-4 bg-blue-800 text-white font-semibold rounded-xl hover:bg-blue-900 transition-colors shadow-lg hover:shadow-xl">
                     Daftar Sekarang
                 </a>
                 <a href="{{ route('informasi') }}" class="w-full sm:w-auto px-8 py-4 bg-gray-100 dark:bg-white/10 backdrop-blur text-gray-900 dark:text-white font-semibold rounded-xl border border-gray-300 dark:border-white/20 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors">
@@ -440,7 +440,7 @@
             <div>
                 <h3 class="text-lg font-bold mb-4 pb-1 border-l-4 border-blue-400 pl-3">Informasi</h3>
                 <ul class="space-y-2 text-sm text-blue-100">
-                    <li><a href="{{ route('tentang-sekolah') }}" class="hover:text-white transition">Tentang Sekolah</a></li>
+                    <li><a href="{{ route('tentang_sekolah') }}" class="hover:text-white transition">Tentang Sekolah</a></li>
                     <li><a href="#" class="hover:text-white transition">Fasilitas Sekolah</a></li>
                     <li><a href="#" class="hover:text-white transition">Galeri Kegiatan</a></li>
                     <li><a href="{{ route('informasi') }}" class="hover:text-white transition">Informasi Pendaftaran</a></li>

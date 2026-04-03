@@ -4,15 +4,22 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PendaftaranController;
 
+/*
+|--------------------------------------------------------------------------
+| HOME
+|--------------------------------------------------------------------------
+*/
 
-// HOME
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-// ======================
-// AUTH
-// ======================
+/*
+|--------------------------------------------------------------------------
+| AUTH
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'store'])->name('register.store');
 
@@ -23,9 +30,12 @@ Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout')
     ->middleware('auth');
 
-// ======================
-// AREA LOGIN
-// ======================
+/*
+|--------------------------------------------------------------------------
+| AREA LOGIN
+|--------------------------------------------------------------------------
+*/
+
 Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', function () {
@@ -39,9 +49,14 @@ Route::middleware('auth')->group(function () {
         ->name('pendaftaran.store');
 });
 
+/*
+|--------------------------------------------------------------------------
+| PUBLIC PAGES
+|--------------------------------------------------------------------------
+*/
 
-route::get('/utama', function () {
-    return view('utama');
+Route::get('/utama', function () {
+    return view('halaman_utama');
 })->name('utama');
 
 Route::get('/registrasi', function () {
@@ -51,62 +66,96 @@ Route::get('/registrasi', function () {
 Route::get('/home', function () {
     return view('home');
 })->name('home');
-Route::get('/tentang-sekolah', function () {
-    return view('tentang-sekolah');
-})->name('tentang-sekolah');
+
+Route::get('/tentang_sekolah', function () {
+    return view('tentang_sekolah');
+})->name('tentang_sekolah');
 
 Route::get('/informasi', function () {
     return view('informasi');
 })->name('informasi');
 
-Route::get('/siswa', function () {
-    return view('dashboard.pendaftaran');
+Route::get('/dashboard/siswa', function () {
+    return view('dashboard.siswa');
 })->name('dashboard.siswa');
 
-// DHASHBOARD ADMIN & SISWA
-    Route::middleware(['auth'])->group(function () {
+/*
+|--------------------------------------------------------------------------
+| DASHBOARD ADMIN & SISWA
+|--------------------------------------------------------------------------
+*/
 
-        Route::get('/dashboard/admin', function () {
-            return view('dashboard.admin');
-        })->name('admin.dashboard');
+Route::middleware(['auth'])->group(function () {
 
-        Route::get('/dashboard/siswa', function () {
-            return view('dashboard.siswa');
-        })->name('dashboard.siswa');
-
-    });
-
-
-// AKSES KHUSUS ADMIN
     Route::get('/dashboard/admin', function () {
         return view('dashboard.admin');
-    })->name('dashboard.admin');
+    })->name('admin.dashboard');
 
     Route::get('/dashboard/siswa', function () {
         return view('dashboard.siswa');
     })->name('dashboard.siswa');
+});
 
+/*
+|--------------------------------------------------------------------------
+| AKSES KHUSUS ADMIN
+|--------------------------------------------------------------------------
+*/
 
-// =====================
-// DASHBOARD ADMIN
-// =====================
-    Route::middleware(['auth', 'role:admin'])->group(function () {
-        Route::get('/dashboard/admin', function () {
-            return view('dashboard.admin');
-        })->name('dashboard.admin');
-    });
+Route::get('/dashboard/admin', function () {
+    return view('dashboard.admin');
+})->name('dashboard.admin');
 
+Route::get('/dashboard/siswa', function () {
+    return view('dashboard.siswa');
+})->name('dashboard.siswa');
 
-// =====================
-// DASHBOARD SISWA
-// =====================
-    Route::middleware(['auth', 'role:calon_siswa'])->group(function () {
-        Route::get('/dashboard', function () {
-            return view('dashboard.siswa');
-        })->name('dashboard.siswa');
-    });
+/*
+|--------------------------------------------------------------------------
+| DASHBOARD ADMIN (ROLE)
+|--------------------------------------------------------------------------
+*/
 
-   
+Route::middleware(['auth', 'role:admin'])->group(function () {
 
+    Route::get('/dashboard/admin', function () {
+        return view('dashboard.admin');
+    })->name('dashboard.admin');
+});
 
+/*
+|--------------------------------------------------------------------------
+| DASHBOARD SISWA (ROLE)
+|--------------------------------------------------------------------------
+*/
 
+Route::middleware(['auth', 'role:calon_siswa'])->group(function () {
+
+    Route::get('/dashboard/siswa', function () {
+        return view('dashboard.siswa');
+    })->name('dashboard.siswa');
+});
+
+/*
+|--------------------------------------------------------------------------
+| STATUS PENDAFTARAN
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->group(function () {
+
+// Route untuk form pendaftaran (CREATE)
+Route::get('/pendaftaran', [PendaftaranController::class, 'create'])
+    ->name('pendaftaran.create')
+    ->middleware('auth');
+
+// Route untuk submit form (STORE)
+Route::post('/pendaftaran', [PendaftaranController::class, 'store'])
+    ->name('pendaftaran.store')
+    ->middleware('auth');
+
+// Route untuk lihat status (STATUS)
+Route::get('/status', [PendaftaranController::class, 'status'])
+    ->name('pendaftaran.status')
+    ->middleware('auth');
+});
