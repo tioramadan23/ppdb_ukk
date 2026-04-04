@@ -64,6 +64,7 @@
     }
     </script>
     
+
     <script>
     document.addEventListener("DOMContentLoaded", function () {
         const data = JSON.parse(localStorage.getItem("form_ppdb")) || {};
@@ -103,7 +104,7 @@
         }
         html { scroll-behavior: smooth; }
         
-        /* ✅ FIX: Warna teks input form */
+        /* FIX: Warna teks input form */
         .form-control {
             color: #1f2937 !important; /* gray-900 */
         }
@@ -121,7 +122,7 @@
             color: #6b7280 !important; /* gray-500 */
         }
         
-        /* ✅ FIX: Animasi progress bar lebih smooth */
+        /* FIX: Animasi progress bar lebih smooth */
         #progressBar {
             transition: width 0.4s ease-in-out;
         }
@@ -135,6 +136,15 @@
 
         .shake {
             animation: shake 0.5s;
+        }
+
+        /* Error Message Animation */
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fade-in 0.3s ease-out;
         }
 
     </style>
@@ -368,12 +378,12 @@
             </div>
         </div>
 
-        <!-- Form -->
+        {{-- <!-- Form -->
         @if(session('success'))
         <div style="color:green">
             {{ session('success') }}
         </div>
-        @endif
+        @endif --}}
         
         <form id="registrationForm" action="{{ route('pendaftaran.store') }}" method="POST" enctype="multipart/form-data" class="px-8 py-6">
             @csrf
@@ -395,6 +405,9 @@
                             Nama Lengkap Siswa <span class="text-red-500">*</span>
                         </label>
                         <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap', $data['nama_lengkap'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Masukkan nama lengkap sesuai ijazah" required>
+                        @error('nama_lengkap')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Nama lengkap wajib diisi</div>
                     </div>
 
@@ -405,6 +418,9 @@
                             <i class="fas fa-info-circle text-gray-400 ml-1 cursor-help text-sm" title="Nomor Induk Siswa Nasional"></i>
                         </label>
                         <input type="text" name="nisn" value="{{ old('nisn', $data['nisn'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Contoh: 1234567890" maxlength="10" required>
+                        @error('nisn')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NISN wajib diisi dan harus 10 digit angka</div>
                     </div>
 
@@ -414,6 +430,9 @@
                             NIK Siswa <span class="text-red-500">*</span>
                         </label>
                         <input type="text" name="nik" value="{{ old('nik', $data['nik'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Contoh: 1234567890123456" maxlength="16" required>
+                        @error('nik')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NIK wajib diisi dan harus 16 digit angka</div>
                     </div>
 
@@ -423,6 +442,9 @@
                             No. KK <span class="text-red-500">*</span>
                         </label>
                         <input type="text" name="no_kk" value="{{ old('no_kk', $data['no_kk'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Contoh: 1234567890123456" maxlength="16" required>
+                        @error('no_kk')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">No. KK wajib diisi dan harus 16 digit angka</div>
                     </div>
 
@@ -432,6 +454,9 @@
                             Tempat Lahir <span class="text-red-500">*</span>
                         </label>
                         <input type="text" name="tempat_lahir" value="{{ old('tempat_lahir', $data['tempat_lahir'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Masukkan tempat lahir" required>
+                        @error('tempat_lahir')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Tempat lahir wajib diisi</div>
                     </div>
 
@@ -441,6 +466,9 @@
                             Tanggal Lahir <span class="text-red-500">*</span>
                         </label>
                         <input type="date" name="tanggal_lahir" value="{{ old('tanggal_lahir', $data['tanggal_lahir'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100" required>
+                        @error('tanggal_lahir')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Tanggal lahir wajib diisi</div>
                     </div>
 
@@ -454,6 +482,11 @@
                             <option value="L" {{ old('jenis_kelamin', $data['jenis_kelamin'] ?? '') == 'L' ? 'selected' : '' }}>Laki-laki</option>
                             <option value="P" {{ old('jenis_kelamin', $data['jenis_kelamin'] ?? '') == 'P' ? 'selected' : '' }}>Perempuan</option>
                         </select>
+                        @error('jenis_kelamin')
+                            <p class="text-red-500 text-xs mt-1 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-1"></i> {{ $message }}
+                            </p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Jenis kelamin wajib dipilih</div>
                     </div>
 
@@ -471,6 +504,11 @@
                             <option value="Buddha" {{ old('agama', $data['agama'] ?? '') == 'Buddha' ? 'selected' : '' }}>Buddha</option>
                             <option value="Konghucu" {{ old('agama', $data['agama'] ?? '') == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
                         </select>
+                        @error('agama')
+                            <p class="text-red-500 text-xs mt-1 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-1"></i> {{ $message }}
+                            </p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Agama wajib dipilih</div>
                     </div>
 
@@ -480,6 +518,9 @@
                             No. HP Siswa <span class="text-red-500">*</span>
                         </label>
                         <input type="tel" name="no_hp_siswa" value="{{ old('no_hp_siswa', $data['no_hp_siswa'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Contoh: 081234567890" maxlength="13" required>
+                        @error('no_hp_siswa')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">No. HP wajib diisi</div>
                     </div>
 
@@ -489,6 +530,9 @@
                             Email Siswa <span class="text-red-500">*</span>
                         </label>
                         <input type="email" name="email" value="{{ auth()->user()->email }}" readonly class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 bg-gray-100 dark:bg-gray-700 cursor-not-allowed" placeholder="contoh@email.com" required>
+                        @error('email')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Email wajib diisi dan harus valid</div>
                     </div>
 
@@ -498,6 +542,9 @@
                             Alamat Lengkap <span class="text-red-500">*</span>
                         </label>
                         <textarea name="alamat_siswa" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" rows="3" placeholder="Alamat lengkap sesuai KTP/KK" required>{{ old('alamat_siswa', $data['alamat_siswa'] ?? '') }}</textarea>
+                        @error('alamat_siswa')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Alamat lengkap wajib diisi</div>
                     </div>
 
@@ -514,6 +561,9 @@
                             <option value="BD" {{ old('jurusan', $data['jurusan'] ?? '') == 'BD' ? 'selected' : '' }}>Bisnis Digital (BD)</option>
                             <option value="AK" {{ old('jurusan', $data['jurusan'] ?? '') == 'AK' ? 'selected' : '' }}>Akuntansi (AK)</option>
                         </select>
+                        @error('jurusan')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Program keahlian wajib dipilih</div>
                     </div>
 
@@ -523,6 +573,9 @@
                             Asal Sekolah <span class="text-red-500">*</span>
                         </label>
                         <input type="text" name="asal_sekolah" value="{{ old('asal_sekolah', $data['asal_sekolah'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Nama SMP/MTs/Sederajat" required>
+                        @error('asal_sekolah')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Asal sekolah wajib diisi</div>
                     </div>
                 </div>
@@ -554,16 +607,25 @@
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">Nama Ayah <span class="text-red-500">*</span></label>
                         <input type="text" name="nama_ayah" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Nama lengkap ayah" required>
+                        @error('nama_ayah')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Nama ayah wajib diisi</div>
                     </div>
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">NIK Ayah <span class="text-red-500">*</span></label>
                         <input type="text" name="nik_ayah" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Contoh: 1234567890123456" maxlength="16" required>
+                        @error('nik_ayah')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NIK wajib diisi dan harus 16 digit angka</div>
                     </div>
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">Pekerjaan Ayah <span class="text-red-500">*</span></label>
                         <input type="text" name="pekerjaan_ayah" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Contoh: Pegawai Swasta" required>
+                        @error('pekerjaan_ayah')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Pekerjaan ayah wajib diisi</div>
                     </div>
                     <div class="form-group">
@@ -579,16 +641,27 @@
                             <option value="S2">S2</option>
                             <option value="S3">S3</option>
                         </select>
+                        @error('pendidikan_ayah')
+                            <p class="text-red-500 text-xs mt-1 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-1"></i> {{ $message }}
+                            </p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Pendidikan ayah wajib dipilih</div>
                     </div>
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">No. HP Ayah <span class="text-red-500">*</span></label>
                         <input type="tel" name="no_hp_ayah" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Contoh: 081234567890" maxlength="13" required>
+                        @error('no_hp_ayah')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">No. HP ayah wajib diisi</div>
                     </div>
                     <div class="form-group col-span-full">
                         <label class="block font-semibold text-gray-800 mb-2">Alamat Ayah <span class="text-red-500">*</span></label>
                         <textarea name="alamat_ayah" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" rows="2" placeholder="Alamat lengkap ayah" required></textarea>
+                        @error('alamat_ayah')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Alamat ayah wajib diisi</div>
                     </div>
                 </div>
@@ -603,16 +676,27 @@
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">Nama Ibu <span class="text-red-500">*</span></label>
                         <input type="text" name="nama_ibu" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Nama lengkap ibu" required>
+                        
+                        @error('nama_ibu')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Nama ibu wajib diisi</div>
                     </div>
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">NIK Ibu <span class="text-red-500">*</span></label>
                         <input type="text" name="nik_ibu" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Contoh: 1234567890123456" maxlength="16" required>
+                        @error('nik_ibu')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NIK wajib diisi dan harus 16 digit angka</div>
                     </div>
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">Pekerjaan Ibu <span class="text-red-500">*</span></label>
                         <input type="text" name="pekerjaan_ibu" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Contoh: Ibu Rumah Tangga" required>
+                        @error('pekerjaan_ibu')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Pekerjaan ibu wajib diisi</div>
                     </div>
                     <div class="form-group">
@@ -628,16 +712,27 @@
                             <option value="S2">S2</option>
                             <option value="S3">S3</option>
                         </select>
+                        @error('pendidikan_ibu')
+                            <p class="text-red-500 text-xs mt-1 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-1"></i> {{ $message }}
+                            </p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Pendidikan ibu wajib dipilih</div>
                     </div>
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">No. HP Ibu <span class="text-red-500">*</span></label>
                         <input type="tel" name="no_hp_ibu" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Contoh: 081234567890" maxlength="13" required>
+                        @error('no_hp_ibu')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">No. HP ibu wajib diisi</div>
                     </div>
                     <div class="form-group col-span-full">
                         <label class="block font-semibold text-gray-800 mb-2">Alamat Ibu <span class="text-red-500">*</span></label>
                         <textarea name="alamat_ibu" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" rows="2" placeholder="Alamat lengkap ibu" required></textarea>
+                        @error('alamat_ibu')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Alamat ibu wajib diisi</div>
                     </div>
                 </div>
@@ -727,6 +822,9 @@
                             <p class="text-gray-600 text-sm mb-2">Pas foto terbaru dengan background merah</p>
                             <small class="text-gray-500 text-xs italic">Format: JPG/PNG | Max: 2MB</small>
                             <input type="file" id="pas_foto" name="pas_foto" class="file-upload-input hidden" accept="image/jpeg,image/png" required onchange="handleFileSelect(this, 'pas_foto')">
+                           
+                            @error('pas_foto') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                        
                         </div>
                         <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg" id="pas_foto_preview_container">
                             <div class="flex items-center justify-between">
@@ -743,9 +841,6 @@
                         </div>
                     </div>
 
-                    <!-- Ijazah, SKHUN, Akta, KK, KTP - pattern sama, input sudah ditambahkan class text -->
-                    <!-- (kode disingkat untuk efisiensi, terapkan pola yang sama untuk semua input file) -->
-                    
                     <!-- Ijazah -->
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">Scan Ijazah SMP/MTs <span class="text-red-500">*</span></label>
@@ -755,6 +850,9 @@
                             <p class="text-gray-600 text-sm mb-2">Ijazah yang sudah dilegalisir</p>
                             <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
                             <input type="file" id="ijazah" name="ijazah" class="file-upload-input hidden" accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'ijazah')">
+                            
+                            @error('ijazah') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                        
                         </div>
                         <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg" id="ijazah_preview_container">
                             <div class="flex items-center justify-between">
@@ -781,6 +879,9 @@
                             <p class="text-gray-600 text-sm mb-2">Surat Keterangan Hasil Ujian Nasional</p>
                             <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
                             <input type="file" id="skhun" name="skhun" class="file-upload-input hidden" accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'skhun')">
+                            
+                            @error('skhun') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                        
                         </div>
                         <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg" id="skhun_preview_container">
                             <div class="flex items-center justify-between">
@@ -807,6 +908,9 @@
                             <p class="text-gray-600 text-sm mb-2">Akta kelahiran siswa</p>
                             <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
                             <input type="file" id="akta" name="akta_kelahiran" class="file-upload-input hidden" accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'akta')">
+                           
+                            @error('akta_kelahiran') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                        
                         </div>
                         <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg" id="akta_preview_container">
                             <div class="flex items-center justify-between">
@@ -833,6 +937,9 @@
                             <p class="text-gray-600 text-sm mb-2">Kartu Keluarga</p>
                             <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
                             <input type="file" id="kk" name="kartu_keluarga" class="file-upload-input hidden" accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'kk')">
+                            
+                            @error('kartu_keluarga') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                        
                         </div>
                         <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg" id="kk_preview_container">
                             <div class="flex items-center justify-between">
@@ -859,6 +966,9 @@
                             <p class="text-gray-600 text-sm mb-2">KTP Ayah dan Ibu (bisa digabung)</p>
                             <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
                             <input type="file" id="ktp" name="ktp_orang_tua" class="file-upload-input hidden" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFileSelect(this, 'ktp')">
+                            
+                            @error('ktp_orang_tua') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                        
                         </div>
                         <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg" id="ktp_preview_container">
                             <div class="flex items-center justify-between">
@@ -920,11 +1030,18 @@
                             <option value="BRI" {{ old('bank_transfer') == 'BRI' ? 'selected' : '' }}>BRI</option>
                             <option value="Mandiri" {{ old('bank_transfer') == 'Mandiri' ? 'selected' : '' }}>Mandiri</option>
                         </select>
+                        @error('bank_transfer')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Bank tujuan wajib dipilih</div>
                     </div>
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">Tanggal Transfer <span class="text-red-500">*</span></label>
-                        <input type="date" name="tanggal_transfer" value="{{ old('tanggal_transfer', $data['tanggal_transfer'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100" required>
+                        <input type="date" name="tanggal_transfer"  value="{{ old('tanggal_transfer', date('Y-m-d')) }}"  class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100" required>
+                        @error('tanggal_transfer')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Tanggal transfer wajib diisi</div>
                     </div>
                     <div class="form-group col-span-full">
@@ -935,6 +1052,9 @@
                             <p class="text-gray-600 text-sm mb-2">Foto struk transfer atau screenshot bukti transfer</p>
                             <small class="text-gray-500 text-xs italic">Format: JPG/PNG | Max: 2MB</small>
                             <input type="file" id="bukti_transfer" name="bukti_transfer" class="file-upload-input hidden" accept="image/*" required onchange="handleFileSelect(this, 'bukti_transfer')">
+                            
+                            @error('bukti_transfer') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+
                         </div>
                         <div class="file-preview-container hidden mt-4 p-3 bg-white border-2 border-gray-200 rounded-lg" id="bukti_transfer_preview_container">
                             <div class="flex items-center justify-between">
@@ -1375,17 +1495,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Auto-update summary
-    const namaInput = document.querySelector('input[name="nama_lengkap"]');
-    const nisnInput = document.querySelector('input[name="nisn"]');
-    const jurusanSelect = document.querySelector('select[name="jurusan"]');
-    
-    namaInput?.addEventListener('input', function() {
-        document.getElementById('summary_nama').textContent = this.value || '-';
+    function updateSummaryFromInputs() {
+        const namaInput = document.querySelector('input[name="nama_lengkap"]');
+        const nisnInput = document.querySelector('input[name="nisn"]');
+        const jurusanSelect = document.querySelector('select[name="jurusan"]');
+        
+        if (namaInput) {
+            document.getElementById('summary_nama').textContent = namaInput.value || '-';
+        }
+        if (nisnInput) {
+            document.getElementById('summary_nisn').textContent = nisnInput.value || '-';
+        }
+        if (jurusanSelect) {
+            const jurusanMap = {
+                'RPL': 'Rekayasa Perangkat Lunak',
+                'TKJ': 'Teknik Komputer dan Jaringan',
+                'DKV': 'Desain Komunikasi Visual',
+                'BD': 'Bisnis Digital',
+                'AK': 'Akuntansi'
+            };
+            document.getElementById('summary_jurusan').textContent = jurusanMap[jurusanSelect.value] || '-';
+        }
+    }
+
+    // Update saat input berubah
+    document.querySelectorAll('input[name="nama_lengkap"], input[name="nisn"]').forEach(input => {
+        input.addEventListener('input', updateSummaryFromInputs);
     });
-    nisnInput?.addEventListener('input', function() {
-        document.getElementById('summary_nisn').textContent = this.value || '-';
-    });
-    jurusanSelect?.addEventListener('change', updateSummary);
+    document.querySelector('select[name="jurusan"]')?.addEventListener('change', updateSummaryFromInputs);
+
+    // Update saat halaman load (untuk handle old() values)
+    document.addEventListener('DOMContentLoaded', updateSummaryFromInputs);
+    // =========================================================
 
     // ============ MOBILE MENU ============
     const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -1479,11 +1620,10 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     </div>
-
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         
-        // ✅ Fungsi buka modal
+        // Fungsi buka modal
         window.openConfirmModal = function() {
             console.log('🔘 Tombol Submit diklik!');
             
@@ -1523,12 +1663,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('confirmModal');
             if (modal) {
                 modal.classList.remove('hidden');
-                modal.style.display = 'block'; // Fallback jika Tailwind belum load
-                console.log('✅ Modal ditampilkan');
+                modal.style.display = 'block';
+                console.log('Modal ditampilkan');
             }
         };
 
-        // ✅ Fungsi tutup modal
+        //  Fungsi tutup modal
         window.closeConfirmModal = function() {
             const modal = document.getElementById('confirmModal');
             if (modal) {
@@ -1538,7 +1678,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
 
-        // ✅ Event listener checkbox (dipasang setelah DOM ready)
+        //  Event listener checkbox (dipasang setelah DOM ready)
         const confirmCheckbox = document.getElementById('confirmCheckbox');
         const finalSubmitBtn = document.getElementById('finalSubmitBtn');
         
@@ -1549,9 +1689,9 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // ✅ Fungsi submit final
+        // Fungsi submit final
         window.submitFormFinal = function() {
-            console.log('🚀 Submit form dipanggil');
+            console.log('Submit form dipanggil');
             closeConfirmModal();
             
             // Loading
@@ -1569,15 +1709,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (form) form.submit();
         };
 
-        // ✅ Tutup modal dengan ESC key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeConfirmModal();
             }
         });
 
-    }); // ← Akhir DOMContentLoaded
+    });
     </script>
+    <!-- End Modal Konfirmasi -->
 
     {{-- // Toggle Profile Dropdown --}}
     <script>

@@ -48,7 +48,7 @@ class PendaftaranController extends Controller
             'no_hp_ibu' => 'required|regex:/^08[0-9]{8,11}$/',
             'alamat_ibu' => 'required|string|max:500',
             
-            // Section 3 - File Upload
+            // Section 3 - Dokumen Upload
             'pas_foto' => 'required|image|mimes:jpeg,png|max:2048',
             'ijazah' => 'required|file|mimes:jpeg,png,pdf|max:2048',
             'skhun' => 'required|file|mimes:jpeg,png,pdf|max:2048',
@@ -61,15 +61,122 @@ class PendaftaranController extends Controller
             'tanggal_transfer' => 'required|date|before_or_equal:today',
             'bukti_transfer' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ], [
-            'nisn.unique' => 'NISN sudah terdaftar.',
-            'nik.unique' => 'NIK sudah terdaftar.',
-            'pas_foto.image' => 'Pas foto harus berupa gambar.',
+            // ========================================
+            //  SECTION 1: DATA DIRI SISWA
+            // ========================================
+            'nama_lengkap.required' => 'Nama lengkap wajib diisi sesuai ijazah.',
+            'nama_lengkap.max' => 'Nama lengkap terlalu panjang (maksimal 255 karakter).',
+            
+            'nisn.required' => 'NISN wajib diisi.',
+            'nisn.digits' => 'NISN harus terdiri dari 10 digit angka.',
+            'nisn.unique' => 'NISN ini sudah terdaftar. Silakan periksa kembali.',
+            
+            'nik.required' => 'NIK wajib diisi.',
+            'nik.digits' => 'NIK harus terdiri dari 16 digit angka.',
+            'nik.unique' => 'NIK ini sudah terdaftar.',
+            
+            'no_kk.required' => 'Nomor KK wajib diisi.',
+            'no_kk.digits' => 'Nomor KK harus terdiri dari 16 digit angka.',
+            
+            'tempat_lahir.required' => 'Tempat lahir wajib diisi.',
+            
+            'tanggal_lahir.required' => 'Tanggal lahir wajib diisi.',
+            'tanggal_lahir.date' => 'Format tanggal lahir tidak valid.',
+            'tanggal_lahir.before' => 'Tanggal lahir tidak boleh di masa depan.',
+            
+            'jenis_kelamin.required' => 'Pilih jenis kelamin terlebih dahulu.',
+            'jenis_kelamin.in' => 'Pilihan jenis kelamin tidak valid.',
+            
+            'agama.required' => 'Pilih agama terlebih dahulu.',
+            'agama.in' => 'Pilihan agama tidak valid.',
+            
+            'no_hp_siswa.required' => 'Nomor HP wajib diisi.',
+            'no_hp_siswa.regex' => 'Format nomor HP tidak valid (contoh: 081234567890).',
+            
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            
+            'alamat_siswa.required' => 'Alamat lengkap wajib diisi.',
+            'alamat_siswa.max' => 'Alamat terlalu panjang (maksimal 500 karakter).',
+            
+            'jurusan.required' => 'Pilih program keahlian terlebih dahulu.',
+            'jurusan.in' => 'Pilihan program keahlian tidak valid.',
+            
+            'asal_sekolah.required' => 'Asal sekolah wajib diisi.',
+
+            // ========================================
+            // ✅ SECTION 2: DATA ORANG TUA
+            // ========================================
+            'nama_ayah.required' => 'Nama ayah wajib diisi.',
+            'nik_ayah.required' => 'NIK ayah wajib diisi.',
+            'nik_ayah.digits' => 'NIK ayah harus 16 digit angka.',
+            'pekerjaan_ayah.required' => 'Pekerjaan ayah wajib diisi.',
+            'pendidikan_ayah.required' => 'Pendidikan ayah wajib dipilih.',
+            'no_hp_ayah.required' => 'Nomor HP ayah wajib diisi.',
+            'no_hp_ayah.regex' => 'Format nomor HP ayah tidak valid.',
+            'alamat_ayah.required' => 'Alamat ayah wajib diisi.',
+            
+            'nama_ibu.required' => 'Nama ibu wajib diisi.',
+            'nik_ibu.required' => 'NIK ibu wajib diisi.',
+            'nik_ibu.digits' => 'NIK ibu harus 16 digit angka.',
+            'pekerjaan_ibu.required' => 'Pekerjaan ibu wajib diisi.',
+            'pendidikan_ibu.required' => 'Pendidikan ibu wajib dipilih.',
+            'no_hp_ibu.required' => 'Nomor HP ibu wajib diisi.',
+            'no_hp_ibu.regex' => 'Format nomor HP ibu tidak valid.',
+            'alamat_ibu.required' => 'Alamat ibu wajib diisi.',
+
+            // ========================================
+            // ✅ SECTION 3: DOKUMEN UPLOAD
+            // ========================================
+            'pas_foto.required' => 'Pas foto wajib diupload.',
+            'pas_foto.image' => 'File pas foto harus berupa gambar.',
+            'pas_foto.mimes' => 'Format pas foto harus JPG atau PNG.',
+            'pas_foto.max' => 'Ukuran pas foto maksimal 2MB.',
+            
+            'ijazah.required' => 'File ijazah wajib diupload.',
+            'ijazah.file' => 'File ijazah tidak valid.',
+            'ijazah.mimes' => 'Format ijazah harus JPG, PNG, atau PDF.',
+            'ijazah.max' => 'Ukuran ijazah maksimal 2MB.',
+            
+            'skhun.required' => 'File SKHUN wajib diupload.',
+            'skhun.file' => 'File SKHUN tidak valid.',
+            'skhun.mimes' => 'Format SKHUN harus JPG, PNG, atau PDF.',
+            'skhun.max' => 'Ukuran SKHUN maksimal 2MB.',
+            
+            'akta_kelahiran.required' => 'File akta kelahiran wajib diupload.',
+            'akta_kelahiran.file' => 'File akta tidak valid.',
+            'akta_kelahiran.mimes' => 'Format akta harus JPG, PNG, atau PDF.',
+            'akta_kelahiran.max' => 'Ukuran akta maksimal 2MB.',
+            
+            'kartu_keluarga.required' => 'File KK wajib diupload.',
+            'kartu_keluarga.file' => 'File KK tidak valid.',
+            'kartu_keluarga.mimes' => 'Format KK harus JPG, PNG, atau PDF.',
+            'kartu_keluarga.max' => 'Ukuran KK maksimal 2MB.',
+            
+            'ktp_orang_tua.file' => 'File KTP orang tua tidak valid.',
+            'ktp_orang_tua.mimes' => 'Format KTP harus JPG, PNG, atau PDF.',
+            'ktp_orang_tua.max' => 'Ukuran KTP maksimal 2MB.',
+
+            // ========================================
+            // ✅ SECTION 4: PEMBAYARAN
+            // ========================================
+            'bank_transfer.required' => 'Pilih bank tujuan transfer.',
+            'bank_transfer.in' => 'Pilih bank yang tersedia (BRI atau Mandiri).',
+            
+            'tanggal_transfer.required' => 'Tanggal transfer wajib diisi.',
+            'tanggal_transfer.date' => 'Format tanggal tidak valid.',
+            'tanggal_transfer.before_or_equal' => 'Tanggal transfer tidak boleh lebih dari hari ini.',
+            
+            'bukti_transfer.required' => 'Bukti transfer wajib diupload.',
+            'bukti_transfer.image' => 'Bukti transfer harus berupa gambar.',
+            'bukti_transfer.mimes' => 'Format bukti transfer harus JPG atau PNG.',
+            'bukti_transfer.max' => 'Ukuran bukti transfer maksimal 2MB.',
         ]);
 
         DB::beginTransaction();
 
         try {
-            // ✅ 3. Proses upload file
+            //  3. Proses upload file
             $uploadFields = [
                 'pas_foto' => 'pas_foto_path',
                 'ijazah' => 'ijazah_path',
@@ -90,10 +197,10 @@ class PendaftaranController extends Controller
                 }
             }
 
-            // ✅ 4. Generate nomor pendaftaran unik
+            //  Generate nomor pendaftaran unik
             $nomorPendaftaran = 'BPM-' . date('Y') . '-' . str_pad(Pendaftaran::count() + 1, 6, '0', STR_PAD_LEFT);
 
-            // ✅ 5. Simpan ke database
+            //  Simpan ke database
             $pendaftaran = Pendaftaran::create([
                 'user_id' => auth()->id(),
                 // Data Diri
@@ -136,20 +243,20 @@ class PendaftaranController extends Controller
 
             DB::commit();
 
-            // ✅ 6. Redirect sukses (pakai route name)
+            //  Redirect sukses (pakai route name)
             return redirect()->route('pendaftaran.status')->with('success', 'Pendaftaran berhasil! Nomor: ' . $nomorPendaftaran);
 
         } catch (\Exception $e) {
             DB::rollback();
             
-            // ✅ 7. Cleanup file jika gagal
+            //  Cleanup file jika gagal
             foreach ($filePaths as $path) {
                 if ($path && Storage::disk('public')->exists($path)) {
                     Storage::disk('public')->delete($path);
                 }
             }
             
-            // ✅ 8. Log error
+            //  Log error
             Log::error('Pendaftaran Failed', [
                 'user_id' => auth()->id(),
                 'error' => $e->getMessage(),
@@ -168,13 +275,13 @@ class PendaftaranController extends Controller
             return redirect('/dashboard')->with('info', 'Anda belum melakukan pendaftaran.');
         }
 
-        // ✅ View path sesuai lokasi file kamu
+        // View path sesuai lokasi file kamu
         return view('dashboard.status_pendaftaran', compact('pendaftaran'));
     }
 
     public function create()
     {
-        // ✅ Cek sudah submit, redirect ke status
+        // Cek sudah submit, redirect ke status
         if (Pendaftaran::where('user_id', auth()->id())->exists()) {
             return redirect()->route('pendaftaran.status');
         }
