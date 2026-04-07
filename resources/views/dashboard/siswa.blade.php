@@ -211,9 +211,8 @@
         </nav>
 
 
-        <!-- Profile & Dark Mode Toggle -->
+       <!-- Profile & Dark Mode Toggle -->
         <div class="hidden sm:flex items-center gap-3">
-            <!-- Dark Mode Toggle -->
             <button id="dark-mode-toggle" class="p-2 rounded-lg text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition" aria-label="Toggle dark mode">
                 <i class="fas fa-moon dark:hidden"></i>
                 <i class="fas fa-sun hidden dark:inline"></i>
@@ -1807,6 +1806,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
 </body>
 </html>

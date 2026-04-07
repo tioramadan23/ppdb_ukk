@@ -98,51 +98,10 @@
                 <i class="fas fa-moon dark:hidden"></i>
                 <i class="fas fa-sun hidden dark:inline"></i>
             </button>
-              <!-- Profile Dropdown Container -->
-            <div class="relative" id="profileDropdown">
-                <!-- Profile Button (Trigger) -->
-                <button onclick="toggleProfileDropdown()" class="flex items-center gap-2 focus:outline-none">
-                    <img alt="Profile"
-                        src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=1e40af&color=fff"
-                        class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-primary-500 transition" />
-                    <span class="hidden md:block text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {{ Auth::user()->name }}
-                    </span>
-                    <i class="fas fa-chevron-down text-xs text-gray-500"></i>
-                </button>
-
-                <!-- Dropdown Menu -->
-                <div id="profileMenu" class="hidden absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50">
-                    <!-- User Info Header -->
-                    <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-                        <p class="text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->name }}</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ Auth::user()->email }}</p>
-                        <span class="inline-block mt-1 px-2 py-0.5 text-xs font-medium bg-primary-100 text-primary-700 rounded-full">
-                            {{ ucfirst(Auth::user()->role) }}
-                        </span>
+             <div class="hidden lg:flex lg:items-center lg:space-x-4">
+                        <a href="{{ route('register') }}" title="" class="rounded-full border border-transparent bg-blue-800 px-4 py-2 text-base font-semibold text-white transition-all duration-200 hover:bg-blue-900 focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-600" role="button"> Registrasi </a>
+                        <a href="{{ route('login') }}" title="" class="rounded-full border border-blue-800 bg-transparent px-4 py-2 text-base font-semibold text-blue-800 transition-all duration-200 hover:bg-blue-50 hover:text-blue-900 focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 focus:outline-none dark:border-blue-500 dark:text-blue-400 dark:hover:bg-blue-900/20 dark:hover:text-white dark:focus:ring-blue-500" role="button"> Login </a>
                     </div>
-
-                    <!-- Menu Items -->
-                    <div class="py-2">
-                        <!-- Status Pendaftaran -->
-                        <a href="{{ route('pendaftaran.status') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-clipboard-list w-5 text-primary-600"></i>
-                            <span class="ml-3">Status Pendaftaran</span>
-                        </a>
-
-                        <!-- Form Pendaftaran (jika belum submit) -->
-                        @if(!\App\Models\Pendaftaran::where('user_id', Auth::id())->exists())
-                        <a href="{{ route('pendaftaran.create') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-edit w-5 text-blue-600"></i>
-                            <span class="ml-3">Isi Pendaftaran</span>
-                        </a>
-                        @endif
-
-                        <!-- Dashboard -->
-                        <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-tachometer-alt w-5 text-green-600"></i>
-                            <span class="ml-3">Dashboard</span>
-                        </a>
         </div>
 
        
