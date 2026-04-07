@@ -20,11 +20,10 @@ return new class extends Migration
             ->unique();
 
         $table->string('nama_wali', 100)->nullable();
-        $table->string('nik_wali', 20)->nullable();
         $table->text('alamat_wali')->nullable();
-        $table->string('pendidikan_wali', 50)->nullable();
         $table->string('pekerjaan_wali', 50)->nullable();
         $table->string('no_hp_wali', 15)->nullable();
+         $table->string('hubungan_wali', 50)->nullable();
 
         $table->timestamps();
         });

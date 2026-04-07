@@ -166,4 +166,8 @@ Route::get('/status', [PendaftaranController::class, 'status'])
     ->middleware('auth');
 });
 
+Route::get('/status-pendaftaran', function () {
+        return view('status_pendaftaran');
+    })->name('status_pendaftaran');
+
 
