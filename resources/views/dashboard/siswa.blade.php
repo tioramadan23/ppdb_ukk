@@ -529,7 +529,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             Email Siswa <span class="text-red-500">*</span>
                         </label>
-                        <input type="email" name="email" value="{{ auth()->user()->email }}" readonly class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 bg-gray-100 dark:bg-gray-700 cursor-not-allowed" placeholder="contoh@email.com" required>
+                        <input type="email" name="email" value="{{ auth()->user()->email }}" readonly class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 bg-gray-100 white:bg-gray-700 cursor-not-allowed" placeholder="contoh@email.com" required>
                         @error('email')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
@@ -553,7 +553,7 @@
                         <label class="block font-semibold text-gray-800 mb-2">
                             Program Keahlian Pilihan <span class="text-red-500">*</span>
                         </label>
-                        <select name="jurusan" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" required>
+                        <select name="jurusan" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all bg-white white:bg-gray-800 text-gray-900 dark:text-gray-100" required>
                             <option value="">-- Pilih Program Keahlian --</option>
                             <option value="RPL" {{ old('jurusan', $data['jurusan'] ?? '') == 'RPL' ? 'selected' : '' }}>Rekayasa Perangkat Lunak (RPL)</option>
                             <option value="TKJ" {{ old('jurusan', $data['jurusan'] ?? '') == 'TKJ' ? 'selected' : '' }}>Teknik Komputer dan Jaringan (TKJ)</option>
@@ -807,7 +807,7 @@
                         <li><i class="fas fa-check text-green-500 mr-2"></i>KTP Orang Tua (Ayah & Ibu)</li>
                     </ul>
                     <p class="mt-3 mb-0 text-xs font-semibold text-primary-900">
-                        <span class="block"><i class="fas fa-info-circle mr-1"></i>Format file: JPG, PNG, atau PDF | Ukuran maksimal: 2MB per file</span>
+                        <span class="block"><i class="fas fa-info-circle mr-1"></i>Format file: JPG, PNG, atau PDF | Ukuran maksimal: 5MB per file</span>
                     </p>
                 </div>
 
@@ -820,7 +820,7 @@
                             <div class="text-5xl text-primary-600 mb-3"><i class="fas fa-image"></i></div>
                             <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
                             <p class="text-gray-600 text-sm mb-2">Pas foto terbaru dengan background merah</p>
-                            <small class="text-gray-500 text-xs italic">Format: JPG/PNG | Max: 2MB</small>
+                            <small class="text-gray-500 text-xs italic">Format: JPG/PNG | Max: 5MB</small>
                             <input type="file" id="pas_foto" name="pas_foto" class="file-upload-input hidden" accept="image/jpeg,image/png" required onchange="handleFileSelect(this, 'pas_foto')">
                            
                             @error('pas_foto') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -848,7 +848,7 @@
                             <div class="text-5xl text-primary-600 mb-3"><i class="fas fa-file-certificate"></i></div>
                             <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
                             <p class="text-gray-600 text-sm mb-2">Ijazah yang sudah dilegalisir</p>
-                            <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
+                            <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 5MB</small>
                             <input type="file" id="ijazah" name="ijazah" class="file-upload-input hidden" accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'ijazah')">
                             
                             @error('ijazah') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -877,7 +877,7 @@
                             <div class="text-5xl text-primary-600 mb-3"><i class="fas fa-file-contract"></i></div>
                             <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
                             <p class="text-gray-600 text-sm mb-2">Surat Keterangan Hasil Ujian Nasional</p>
-                            <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
+                            <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 5MB</small>
                             <input type="file" id="skhun" name="skhun" class="file-upload-input hidden" accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'skhun')">
                             
                             @error('skhun') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -906,7 +906,7 @@
                             <div class="text-5xl text-primary-600 mb-3"><i class="fas fa-file-signature"></i></div>
                             <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
                             <p class="text-gray-600 text-sm mb-2">Akta kelahiran siswa</p>
-                            <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
+                            <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 5MB</small>
                             <input type="file" id="akta" name="akta_kelahiran" class="file-upload-input hidden" accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'akta')">
                            
                             @error('akta_kelahiran') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -935,7 +935,7 @@
                             <div class="text-5xl text-primary-600 mb-3"><i class="fas fa-users"></i></div>
                             <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
                             <p class="text-gray-600 text-sm mb-2">Kartu Keluarga</p>
-                            <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
+                            <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 5MB</small>
                             <input type="file" id="kk" name="kartu_keluarga" class="file-upload-input hidden" accept=".pdf,.jpg,.jpeg,.png" required onchange="handleFileSelect(this, 'kk')">
                             
                             @error('kartu_keluarga') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -964,7 +964,7 @@
                             <div class="text-5xl text-primary-600 mb-3"><i class="fas fa-id-card"></i></div>
                             <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
                             <p class="text-gray-600 text-sm mb-2">KTP Ayah dan Ibu (bisa digabung)</p>
-                            <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 2MB</small>
+                            <small class="text-gray-500 text-xs italic">Format: JPG/PNG/PDF | Max: 5MB</small>
                             <input type="file" id="ktp" name="ktp_orang_tua" class="file-upload-input hidden" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFileSelect(this, 'ktp')">
                             
                             @error('ktp_orang_tua') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -1050,7 +1050,7 @@
                             <div class="text-5xl text-primary-600 mb-3"><i class="fas fa-file-invoice-dollar"></i></div>
                             <h5 class="font-semibold text-gray-800 mb-2">Drag & Drop atau Klik untuk Upload</h5>
                             <p class="text-gray-600 text-sm mb-2">Foto struk transfer atau screenshot bukti transfer</p>
-                            <small class="text-gray-500 text-xs italic">Format: JPG/PNG | Max: 2MB</small>
+                            <small class="text-gray-500 text-xs italic">Format: JPG/PNG | Max: 5MB</small>
                             <input type="file" id="bukti_transfer" name="bukti_transfer" class="file-upload-input hidden" accept="image/*" required onchange="handleFileSelect(this, 'bukti_transfer')">
                             
                             @error('bukti_transfer') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -1313,8 +1313,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const file = input.files[0];
         if (!file) return;
 
-        if (file.size > 2 * 1024 * 1024) {
-            showToast(`File ${file.name} terlalu besar! Maksimal 2MB`, 'error');
+        if (file.size > 5 * 1024 * 1024) {
+            showToast(`File ${file.name} terlalu besar! Maksimal 5MB`, 'error');
             input.value = '';
             return;
         }
@@ -1745,6 +1745,68 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     </script>
 
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+// Initialize AOS
+document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+        duration: 600,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 50
+    });
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuButton.querySelector('svg');
+            const isHidden = mobileMenu.classList.contains('hidden');
+            icon.innerHTML = isHidden 
+                ? '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />'
+                : '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />';
+        });
+
+        // Close menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.querySelector('svg').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />';
+            });
+        });
+    }
+
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    if (darkModeToggle) {
+        // Check for saved preference or system preference
+        if (localStorage.getItem('darkMode') === 'true' || 
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+        });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (mobileMenuButton && mobileMenu && 
+            !mobileMenuButton.contains(e.target) && 
+            !mobileMenu.contains(e.target) && 
+            !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.querySelector('svg').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />';
+        }
+    });
+});
+</script>
 
 </body>
 </html>

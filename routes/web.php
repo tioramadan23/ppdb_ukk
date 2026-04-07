@@ -11,7 +11,7 @@ use App\Http\Controllers\PendaftaranController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
 })->name('home');
 
 /*
@@ -165,3 +165,5 @@ Route::get('/status', [PendaftaranController::class, 'status'])
     ->name('pendaftaran.status')
     ->middleware('auth');
 });
+
+

@@ -49,17 +49,17 @@ class PendaftaranController extends Controller
             'alamat_ibu' => 'required|string|max:500',
             
             // Section 3 - Dokumen Upload
-            'pas_foto' => 'required|image|mimes:jpeg,png|max:2048',
-            'ijazah' => 'required|file|mimes:jpeg,png,pdf|max:2048',
-            'skhun' => 'required|file|mimes:jpeg,png,pdf|max:2048',
-            'akta_kelahiran' => 'required|file|mimes:jpeg,png,pdf|max:2048',
-            'kartu_keluarga' => 'required|file|mimes:jpeg,png,pdf|max:2048',
-            'ktp_orang_tua' => 'nullable|file|mimes:jpeg,png,pdf|max:2048',
+            'pas_foto' => 'required|image|mimes:jpeg,png|max:5120',
+            'ijazah' => 'required|file|mimes:jpeg,png,pdf|max:5120',
+            'skhun' => 'required|file|mimes:jpeg,png,pdf|max:5120',
+            'akta_kelahiran' => 'required|file|mimes:jpeg,png,pdf|max:5120',
+            'kartu_keluarga' => 'required|file|mimes:jpeg,png,pdf|max:5120',
+            'ktp_orang_tua' => 'nullable|file|mimes:jpeg,png,pdf|max:5120',
             
             // Section 4 - Pembayaran
             'bank_transfer' => 'required|in:BRI,Mandiri',
             'tanggal_transfer' => 'required|date|before_or_equal:today',
-            'bukti_transfer' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'bukti_transfer' => 'required|image|mimes:jpeg,png,jpg|max:5120',
         ], [
             // ========================================
             //  SECTION 1: DATA DIRI SISWA

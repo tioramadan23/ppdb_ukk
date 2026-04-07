@@ -175,17 +175,21 @@
                 <i class="fas fa-moon dark:hidden"></i>
                 <i class="fas fa-sun hidden dark:inline"></i>
             </button>
-            <a href="#" class="shrink-0">
-                <img alt="Profile" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80" class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-blue-500 transition" />
-            </a>
+             <!-- Profile Dropdown Container -->
+            <div class="relative" id="profileDropdown">
+                <!-- Profile Button (Trigger) -->
+                <button onclick="toggleProfileDropdown()" class="flex items-center gap-2 focus:outline-none">
+                    <img alt="Profile"
+                        src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=1e40af&color=fff"
+                        class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-primary-500 transition" />
+                    <span class="hidden md:block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        {{ Auth::user()->name }}
+                    </span>
+                    <i class="fas fa-chevron-down text-xs text-gray-500"></i>
+                </button>
         </div>
 
-        <!-- Mobile menu button -->
-        <button id="mobile-menu-button" class="md:hidden p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Toggle menu">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button>
+       
     </div>
 
     <!-- Mobile Menu -->
@@ -1028,54 +1032,10 @@
     </footer>
 
 <!-- AOS Animation Script -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <script>
-// Initialize AOS
-AOS.init({
-    duration: 800,
-    easing: 'ease-in-out',
-    once: true,
-    offset: 100
-});
 
-// Mobile menu toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    if (!mobileMenuButton || !mobileMenu) return;
-    
-    mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-});
-
-// FAQ Toggle
-function toggleFaq(button) {
-    const faqItem = button.closest('.faq-item');
-    const content = button.nextElementSibling;
-    const icon = button.querySelector('i');
-    
-    // Close all other FAQ items
-    document.querySelectorAll('.faq-item').forEach(item => {
-        if (item !== faqItem) {
-            item.classList.remove('active');
-            item.querySelector('.faq-content').classList.remove('open');
-            item.querySelector('i').style.transform = 'rotate(0deg)';
-        }
-    });
-    
-    // Toggle current FAQ item
-    faqItem.classList.toggle('active');
-    content.classList.toggle('open');
-    
-    if (content.classList.contains('open')) {
-        icon.style.transform = 'rotate(180deg)';
-    } else {
-        icon.style.transform = 'rotate(0deg)';
-    }
-}
-
+   
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
