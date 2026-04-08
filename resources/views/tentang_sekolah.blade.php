@@ -183,14 +183,10 @@ backdrop-blur-md shadow-sm">
                 </div>
             </div>
         </div>
-
         </div>
-
     </div>
     
            
-            
-      
         <!-- Mobile menu button -->
         <button id="mobile-menu-button" class="md:hidden p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Toggle menu">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -209,6 +205,8 @@ backdrop-blur-md shadow-sm">
         </div>
     </div>
 </header>
+{{-- Nabar End --}}
+
    <!-- Kepala Sekolah Section -->
     <section id="kepala-sekolah" class="py-20 px-6 bg-blue-50 dark:bg-gray-900">
         <div class="max-w-7xl mx-auto">
