@@ -175,7 +175,7 @@
                 <i class="fas fa-moon dark:hidden"></i>
                 <i class="fas fa-sun hidden dark:inline"></i>
             </button>
-             <!-- Profile Dropdown Container -->
+            <!-- Profile Dropdown Container -->
             <div class="relative" id="profileDropdown">
                 <!-- Profile Button (Trigger) -->
                 <button onclick="toggleProfileDropdown()" class="flex items-center gap-2 focus:outline-none">
@@ -187,6 +187,66 @@
                     </span>
                     <i class="fas fa-chevron-down text-xs text-gray-500"></i>
                 </button>
+
+                <!-- Dropdown Menu -->
+                <div id="profileMenu" class="hidden absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50">
+                    <!-- User Info Header -->
+                    <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                        <p class="text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->name }}</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ Auth::user()->email }}</p>
+                        <span class="inline-block mt-1 px-2 py-0.5 text-xs font-medium bg-primary-100 text-primary-700 rounded-full">
+                            {{ ucfirst(Auth::user()->role) }}
+                        </span>
+                    </div>
+
+                    <!-- Menu Items -->
+                    <div class="py-2">
+                        <!-- Status Pendaftaran -->
+                        <a href="{{ route('pendaftaran.status') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <i class="fas fa-clipboard-list w-5 text-primary-600"></i>
+                            <span class="ml-3">Status Pendaftaran</span>
+                        </a>
+
+                        <!-- Form Pendaftaran (jika belum submit) -->
+                        @if(!\App\Models\Pendaftaran::where('user_id', Auth::id())->exists())
+                        <a href="{{ route('pendaftaran.create') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <i class="fas fa-edit w-5 text-blue-600"></i>
+                            <span class="ml-3">Isi Pendaftaran</span>
+                        </a>
+                        @endif
+
+                        <!-- Dashboard -->
+                        <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <i class="fas fa-tachometer-alt w-5 text-green-600"></i>
+                            <span class="ml-3">Dashboard</span>
+                        </a>
+
+                        {{-- <!-- Profile Settings (Optional - bisa dihapus jika belum ada) -->
+                        <!--
+                        <a href="{{ route('profile.edit') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <i class="fas fa-user-cog w-5 text-purple-600"></i>
+                            <span class="ml-3">Pengaturan Akun</span>
+                        </a>
+                        --> --}}
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="border-t border-gray-200 dark:border-gray-700"></div>
+
+                    <!-- Logout -->
+                    <div class="py-2">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="w-full flex items-center px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition">
+                                <i class="fas fa-sign-out-alt w-5"></i>
+                                <span class="ml-3">Logout</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         </div>
 
        
@@ -959,26 +1019,84 @@
                         </a>
                     </div>
                 </div>
-                <div>
-                    <h3 class="footer-title">Program Keahlian</h3>
-                    <ul class="footer-list">
-                        <li>Rekayasa Perangkat Lunak</li>
-                        <li>Teknik Komputer & Jaringan</li>
-                        <li>Desain Komunikasi Visual</li>
-                        <li>Bisnis Digital</li>
-                        <li>Akuntansi</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="footer-title">Informasi</h3>
-                    <ul class="footer-list">
-                        <li>Tentang Sekolah</li>
-                        <li>Fasilitas Sekolah</li>
-                        <li>Galeri Kegiatan</li>
-                        <li>Informasi Pendaftaran</li>
-                        <li>Hubungi Kami</li>
-                    </ul>
-                </div>
+                       <!-- Bagian Program Keahlian -->
+<div>
+    <h3 class="footer-title text-lg font-bold mb-4 text-white">Program Keahlian</h3>
+    <ul class="footer-list space-y-2">
+        <li>
+            <a href="/program/rpl" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                Rekayasa Perangkat Lunak
+            </a>
+        </li>
+        <li>
+            <a href="/program/tkj" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                Teknik Komputer & Jaringan
+            </a>
+        </li>
+        <li>
+            <a href="/program/dkv" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                Desain Komunikasi Visual
+            </a>
+        </li>
+        <li>
+            <a href="/program/bisnis-digital" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                Bisnis Digital
+            </a>
+        </li>
+        <li>
+            <a href="/program/akuntansi" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                Akuntansi
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Bagian Informasi -->
+<div>
+    <h3 class="footer-title text-lg font-bold mb-4 text-white">Informasi</h3>
+    <ul class="footer-list space-y-2">
+        <li>
+            <a href="/tentang-sekolah" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                
+                Tentang Sekolah
+            </a>
+        </li>
+        <li>
+            <a href="/fasilitas" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                
+                Fasilitas Sekolah
+            </a>
+        </li>
+        <li>
+            <a href="/galeri" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+               
+                Galeri Kegiatan
+            </a>
+        </li>
+        <li>
+            <a href="/pendaftaran" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                
+                Informasi Pendaftaran
+            </a>
+        </li>
+        <li>
+            <a href="/kontak" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+               
+                Hubungi Kami
+            </a>
+        </li>
+    </ul>
+</div>
                 <div class="space-y-6">
                     <h3 class="footer-title">Kontak Kami</h3>
                     <ul class="space-y-4 text-blue-100 text-sm">
@@ -1030,7 +1148,30 @@
             </p>
         </div>
     </footer>
+{{-- // Toggle Profile Dropdown --}}
+    <script>
+    function toggleProfileDropdown() {
+        const menu = document.getElementById('profileMenu');
+        menu.classList.toggle('hidden');
+    }
 
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('profileDropdown');
+        const menu = document.getElementById('profileMenu');
+        
+        if (dropdown && !dropdown.contains(event.target)) {
+            menu.classList.add('hidden');
+        }
+    });
+    // Close dropdown when pressing ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const menu = document.getElementById('profileMenu');
+            if (menu) menu.classList.add('hidden');
+        }
+    });
+    </script>
 <!-- AOS Animation Script -->
 
 <script>

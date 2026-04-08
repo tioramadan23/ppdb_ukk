@@ -211,9 +211,8 @@
         </nav>
 
 
-        <!-- Profile & Dark Mode Toggle -->
+       <!-- Profile & Dark Mode Toggle -->
         <div class="hidden sm:flex items-center gap-3">
-            <!-- Dark Mode Toggle -->
             <button id="dark-mode-toggle" class="p-2 rounded-lg text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition" aria-label="Toggle dark mode">
                 <i class="fas fa-moon dark:hidden"></i>
                 <i class="fas fa-sun hidden dark:inline"></i>
@@ -316,20 +315,34 @@
 <div class="max-w-6xl mx-auto px-4 py-8">
     <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
         <!-- ✅ FIX HEADER: Gradient biru yang lebih menyatu -->
-        <div class="bg-gradient-to-r from-primary-800 via-primary-600 to-primary-500 p-8 text-white relative overflow-hidden">
-            <div class="absolute inset-0 bg-white/10 rounded-full blur-3xl"></div>
-            <div class="relative z-10 text-center">
-                <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center justify-center">
-                    <i class="fas fa-graduation-cap mr-3"></i>
-                    Pendaftaran Siswa Baru SMK BPM
-                </h1>
-                <p class="text-lg opacity-95 mb-2">Tahun Ajaran 2026/2027</p>
-                <div class="inline-block bg-white/20 px-6 py-2 rounded-full mt-3">
-                    <i class="fas fa-calendar-alt mr-2"></i>
-                    Gelombang I: 1 Januari - 31 Desember 2025
-                </div>
-            </div>
+        
+       <div class="bg-gradient-to-r from-primary-800 via-primary-600 to-primary-500 p-8 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-white/10 rounded-full blur-3xl"></div>
+    <div class="relative z-10 text-center">
+        <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center justify-center">
+            <i class="fas fa-graduation-cap mr-3"></i>
+            Pendaftaran Siswa Baru SMK BPM
+        </h1>
+        <p class="text-lg opacity-95 mb-2">Tahun Ajaran 2026/2027</p>
+        
+        <!-- Status Verifikasi -->
+        {{-- <div class="inline-block <?php echo $currentStatus['bg']; ?> px-6 py-2 rounded-full mt-3 backdrop-blur-sm border border-white/20">
+            <i class="fas <?php echo $currentStatus['icon']; ?> mr-2"></i>
+            <span class="font-semibold"><?php echo $currentStatus['label']; ?></span>
         </div>
+         <?php if($status == 'menunggu'): ?>
+        <p class="text-sm mt-2 opacity-80">
+            <i class="fas fa-info-circle mr-1"></i>
+            Verifikasi akan diproses dalam 1-3 hari kerja
+        </p>
+        <?php elseif($status == 'lulus'): ?>
+        <p class="text-sm mt-2 opacity-80">
+            <i class="fas fa-check mr-1"></i>
+            Selamat! Anda dapat melanjutkan ke tahap berikutnya
+        </p>
+        <?php endif; ?> --}}
+    </div>
+</div>
 
         <!-- ✅ FIX PROGRESS BAR: Tanpa width hardcoded -->
         <div class="bg-white px-8 py-5 border-b">
@@ -630,7 +643,7 @@
                     </div>
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">Pendidikan Terakhir <span class="text-red-500">*</span></label>
-                        <select name="pendidikan_ayah" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" required>
+                        <select name="pendidikan_ayah" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all bg-white  text-gray-900 dark:text-gray-100" required>
                             <option value="">-- Pilih Pendidikan --</option>
                             <option value="Tidak Sekolah">Tidak Sekolah</option>
                             <option value="SD">SD</option>
@@ -701,7 +714,7 @@
                     </div>
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">Pendidikan Terakhir <span class="text-red-500">*</span></label>
-                        <select name="pendidikan_ibu" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" required>
+                        <select name="pendidikan_ibu" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all bg-white  text-gray-900 dark:text-gray-100" required>
                             <option value="">-- Pilih Pendidikan --</option>
                             <option value="Tidak Sekolah">Tidak Sekolah</option>
                             <option value="SD">SD</option>
@@ -758,7 +771,7 @@
                     </div>
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">Hubungan dengan Siswa</label>
-                        <select name="hubungan_wali" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                        <select name="hubungan_wali" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all bg-white  text-gray-900 dark:text-gray-100">
                             <option value="">-- Pilih Hubungan --</option>
                             <option value="Kakek">Kakek</option>
                             <option value="Nenek">Nenek</option>
@@ -1807,6 +1820,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
 </body>
 </html>

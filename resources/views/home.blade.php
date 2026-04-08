@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SMK Bina Putra Mandiri - PPDB 2026/2027">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,6 +13,9 @@
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Home - SMK Bina Putra Mandiri</title>
+     <link rel="shortcut icon" href="c:\Users\tioramadan\Downloads\Desain tanpa judul (5).png" type="image/x-icon">
+    <link rel="icon" href="c:\Users\tioramadan\Downloads\Desain tanpa judul (5).png" type="image/png">
+    <link rel="apple-touch-icon" href="c:\Users\tioramadan\Downloads\Desain tanpa judul (5).png">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -42,6 +46,19 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+         .footer-title {
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            padding-left: 0.75rem;
+            border-left: 4px solid #60a5fa;
+        }
+        .footer-list li {
+            @apply text-blue-100 text-sm py-2 transition-colors hover:text-white cursor-pointer;
+        }
+        .footer-link {
+            @apply text-blue-200 hover:text-white transition-colors;
+        }
         .jurusan-card {
             transition: all 0.3s ease;
         }
@@ -54,6 +71,7 @@
         }
         html { scroll-behavior: smooth; }
     </style>
+    
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
@@ -98,51 +116,10 @@
                 <i class="fas fa-moon dark:hidden"></i>
                 <i class="fas fa-sun hidden dark:inline"></i>
             </button>
-              <!-- Profile Dropdown Container -->
-            <div class="relative" id="profileDropdown">
-                <!-- Profile Button (Trigger) -->
-                <button onclick="toggleProfileDropdown()" class="flex items-center gap-2 focus:outline-none">
-                    <img alt="Profile"
-                        src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=1e40af&color=fff"
-                        class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-primary-500 transition" />
-                    <span class="hidden md:block text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {{ Auth::user()->name }}
-                    </span>
-                    <i class="fas fa-chevron-down text-xs text-gray-500"></i>
-                </button>
-
-                <!-- Dropdown Menu -->
-                <div id="profileMenu" class="hidden absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50">
-                    <!-- User Info Header -->
-                    <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-                        <p class="text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->name }}</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ Auth::user()->email }}</p>
-                        <span class="inline-block mt-1 px-2 py-0.5 text-xs font-medium bg-primary-100 text-primary-700 rounded-full">
-                            {{ ucfirst(Auth::user()->role) }}
-                        </span>
+             <div class="hidden lg:flex lg:items-center lg:space-x-4">
+                        <a href="{{ route('register') }}" title="" class="rounded-full border border-transparent bg-blue-800 px-4 py-2 text-base font-semibold text-white transition-all duration-200 hover:bg-blue-900 focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-600" role="button"> Registrasi </a>
+                        <a href="{{ route('login') }}" title="" class="rounded-full border border-blue-800 bg-transparent px-4 py-2 text-base font-semibold text-blue-800 transition-all duration-200 hover:bg-blue-50 hover:text-blue-900 focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 focus:outline-none dark:border-blue-500 dark:text-blue-400 dark:hover:bg-blue-900/20 dark:hover:text-white dark:focus:ring-blue-500" role="button"> Login </a>
                     </div>
-
-                    <!-- Menu Items -->
-                    <div class="py-2">
-                        <!-- Status Pendaftaran -->
-                        <a href="{{ route('pendaftaran.status') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-clipboard-list w-5 text-primary-600"></i>
-                            <span class="ml-3">Status Pendaftaran</span>
-                        </a>
-
-                        <!-- Form Pendaftaran (jika belum submit) -->
-                        @if(!\App\Models\Pendaftaran::where('user_id', Auth::id())->exists())
-                        <a href="{{ route('pendaftaran.create') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-edit w-5 text-blue-600"></i>
-                            <span class="ml-3">Isi Pendaftaran</span>
-                        </a>
-                        @endif
-
-                        <!-- Dashboard -->
-                        <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-tachometer-alt w-5 text-green-600"></i>
-                            <span class="ml-3">Dashboard</span>
-                        </a>
         </div>
 
        
@@ -409,134 +386,171 @@
                 </div>
             </div>
 
-            <!-- Multimedia Card -->
-            <div class="jurusan-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-md flex flex-col h-full">
-                <div class="h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1531251445707-1f000e1e87d0?w=400&h=192&fit=crop&crop=center" alt="Multimedia" class="w-full h-full object-cover">
-                </div>
-                <div class="p-6 flex flex-col flex-grow">
-                    <div class="flex-grow">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Multimedia</h3>
-                        <p class="text-gray-700 dark:text-gray-300">Menggabungkan seni dan teknologi untuk menciptakan konten audio visual yang menarik.</p>
-                    </div>
-                    <a href="" class="w-full flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-4 rounded-xl transition duration-300 mt-4">
-                        <span>Selengkapnya</span>
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
+           
+                
             </div>
         </div>
     </div>
 </section>
 
 <!-- Footer -->
-<footer class="relative bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white pt-20 pb-10">
-    <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.15),transparent_55%)]"></div>
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-            <!-- Brand -->
-            <div class="space-y-4">
-                <div class="flex items-center gap-1 text-2xl font-extrabold">
-                    <span>SMK</span>
-                    <span class="text-blue-300">BPM</span>
+    <footer class="relative bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 pt-20 pb-10">
+        <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.15),transparent_55%)]"></div>
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-1 text-2xl font-extrabold tracking-wide">
+                        <span>SMK</span>
+                        <span class="text-blue-300">BPM</span>
+                    </div>
+                    <p class="text-blue-100/90 text-sm leading-relaxed max-w-sm">
+                        Membangun generasi unggul melalui pendidikan vokasi berkualitas
+                        yang adaptif, inovatif, dan siap bersaing di era digital.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-blue-600 transition duration-300 backdrop-blur-sm">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-pink-500 transition duration-300 backdrop-blur-sm">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-red-600 transition duration-300 backdrop-blur-sm">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-gray-900 transition duration-300 backdrop-blur-sm">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
                 </div>
-                <p class="text-blue-100/90 text-sm leading-relaxed">
-                    Membangun generasi unggul melalui pendidikan vokasi berkualitas yang adaptif, inovatif, dan siap bersaing di era digital.
-                </p>
-                <!-- Social Media -->
-                <div class="flex items-center gap-3 pt-2">
-                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-blue-600 transition backdrop-blur-sm" aria-label="Facebook">
-                        <i class="fab fa-facebook-f"></i>
+                <!-- Bagian Program Keahlian -->
+<div>
+    <h3 class="footer-title text-lg font-bold mb-4 text-white">Program Keahlian</h3>
+    <ul class="footer-list space-y-2">
+        <li>
+            <a href="/program/rpl" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                Rekayasa Perangkat Lunak
+            </a>
+        </li>
+        <li>
+            <a href="/program/tkj" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                Teknik Komputer & Jaringan
+            </a>
+        </li>
+        <li>
+            <a href="/program/dkv" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                Desain Komunikasi Visual
+            </a>
+        </li>
+        <li>
+            <a href="/program/bisnis-digital" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                Bisnis Digital
+            </a>
+        </li>
+        <li>
+            <a href="/program/akuntansi" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                Akuntansi
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Bagian Informasi -->
+<div>
+    <h3 class="footer-title text-lg font-bold mb-4 text-white">Informasi</h3>
+    <ul class="footer-list space-y-2">
+        <li>
+            <a href="/tentang-sekolah" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                
+                Tentang Sekolah
+            </a>
+        </li>
+        <li>
+            <a href="/fasilitas" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                
+                Fasilitas Sekolah
+            </a>
+        </li>
+        <li>
+            <a href="/galeri" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+               
+                Galeri Kegiatan
+            </a>
+        </li>
+        <li>
+            <a href="/pendaftaran" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+                
+                Informasi Pendaftaran
+            </a>
+        </li>
+        <li>
+            <a href="/kontak" 
+               class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
+               
+                Hubungi Kami
+            </a>
+        </li>
+    </ul>
+</div>
+                <div class="space-y-6">
+                    <h3 class="footer-title">Kontak Kami</h3>
+                    <ul class="space-y-4 text-blue-100 text-sm">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Jl. Bina No. 23, Bandung</li>
+                        <li><i class="fas fa-phone mr-2"></i> (022) 123 4567</li>
+                        <li><i class="fas fa-envelope mr-2"></i> info@smkbpm.sch.id</li>
+                    </ul>
+                    <a href="https://wa.me/6281234567890"
+                       class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 px-6 py-3 rounded-xl font-semibold text-sm text-white transition-all duration-300 shadow-md hover:shadow-lg">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Chat WhatsApp</span>
                     </a>
-                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-pink-500 transition backdrop-blur-sm" aria-label="Instagram">
+                </div>
+            </div>
+            <div class="mt-16 border-t border-blue-700/40"></div>
+            <div class="mt-10 text-center">
+                <h4 class="text-sm font-semibold text-blue-200 mb-4 tracking-wide">
+                    Tim Developer Website
+                </h4>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://www.instagram.com/rindria08/" target="_blank"
+                       class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-pink-500 rounded-full text-sm font-medium transition duration-300 backdrop-blur-sm">
                         <i class="fab fa-instagram"></i>
+                        <span>@rindria08</span>
                     </a>
-                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-red-600 transition backdrop-blur-sm" aria-label="YouTube">
-                        <i class="fab fa-youtube"></i>
+                    <a href="https://www.instagram.com/tioramdan23/" target="_blank"
+                       class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-pink-500 rounded-full text-sm font-medium transition duration-300 backdrop-blur-sm">
+                        <i class="fab fa-instagram"></i>
+                        <span>@tioramdan23</span>
                     </a>
-                    <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-gray-900 transition backdrop-blur-sm" aria-label="X">
-                        <i class="fab fa-x-twitter"></i>
+                    <a href="https://www.instagram.com/syafira_td/" target="_blank"
+                       class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-pink-500 rounded-full text-sm font-medium transition duration-300 backdrop-blur-sm">
+                        <i class="fab fa-instagram"></i>
+                        <span>@syafira_td</span>
                     </a>
                 </div>
             </div>
-
-            <!-- Program -->
-            <div>
-                <h3 class="text-lg font-bold mb-4 pb-1 border-l-4 border-blue-400 pl-3">Program Keahlian</h3>
-                <ul class="space-y-2 text-sm text-blue-100">
-                    <li><a href="#" class="hover:text-white transition">Rekayasa Perangkat Lunak</a></li>
-                    <li><a href="#" class="hover:text-white transition">Teknik Komputer & Jaringan</a></li>
-                    <li><a href="#" class="hover:text-white transition">Desain Komunikasi Visual</a></li>
-                    <li><a href="#" class="hover:text-white transition">Bisnis Digital</a></li>
-                    <li><a href="#" class="hover:text-white transition">Akuntansi</a></li>
-                </ul>
+            <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-blue-200">
+                <p>© 2026 SMK Bina Putra Mandiri. All Rights Reserved.</p>
+                <div class="flex flex-wrap items-center gap-6">
+                    <a href="#" class="footer-link">Privasi</a>
+                    <a href="#" class="footer-link">Syarat</a>
+                    <a href="#" class="footer-link">Sitemap</a>
+                    <span class="flex items-center gap-1"><i class="far fa-clock mr-1"></i> 08.00 – 16.00 WIB</span>
+                </div>
             </div>
-
-            <!-- Informasi -->
-            <div>
-                <h3 class="text-lg font-bold mb-4 pb-1 border-l-4 border-blue-400 pl-3">Informasi</h3>
-                <ul class="space-y-2 text-sm text-blue-100">
-                    <li><a href="{{ route('tentang_sekolah') }}" class="hover:text-white transition">Tentang Sekolah</a></li>
-                    <li><a href="#" class="hover:text-white transition">Fasilitas Sekolah</a></li>
-                    <li><a href="#" class="hover:text-white transition">Galeri Kegiatan</a></li>
-                    <li><a href="{{ route('informasi') }}" class="hover:text-white transition">Informasi Pendaftaran</a></li>
-                    <li><a href="#" class="hover:text-white transition">Hubungi Kami</a></li>
-                </ul>
-            </div>
-
-            <!-- Kontak -->
-            <div class="space-y-4">
-                <h3 class="text-lg font-bold mb-4 pb-1 border-l-4 border-blue-400 pl-3">Kontak Kami</h3>
-                <ul class="space-y-3 text-blue-100 text-sm">
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-map-marker-alt mt-1"></i>
-                        <span>Jl. Bina No. 23, Bandung</span>
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <i class="fas fa-phone"></i>
-                        <span>(022) 123 4567</span>
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <i class="fas fa-envelope"></i>
-                        <span>info@smkbpm.sch.id</span>
-                    </li>
-                </ul>
-                <a href="https://wa.me/6281234567890" class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 px-5 py-2.5 rounded-xl font-medium text-sm transition shadow-md">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>Chat WhatsApp</span>
-                </a>
-            </div>
+            <p class="mt-6 text-center text-xs text-blue-300/70">
+                Dikembangkan oleh Tim IT SMK BPM • v2.1.0
+            </p>
         </div>
-
-        <!-- Divider -->
-        <div class="mt-12 border-t border-blue-700/40"></div>
-
-        <!-- Developer Info -->
-        <div class="mt-8 text-center">
-            <p class="text-sm font-medium text-blue-200 mb-3">Tim Developer Website</p>
-            <div class="flex flex-wrap justify-center gap-3">
-                <a href="https://www.instagram.com/rindria08/" target="_blank" class="px-4 py-1.5 bg-white/10 hover:bg-pink-500 rounded-full text-xs font-medium transition backdrop-blur-sm">@rindria08</a>
-                <a href="https://www.instagram.com/tioramdan23/" target="_blank" class="px-4 py-1.5 bg-white/10 hover:bg-pink-500 rounded-full text-xs font-medium transition backdrop-blur-sm">@tioramdan23</a>
-                <a href="https://www.instagram.com/syafira_td/" target="_blank" class="px-4 py-1.5 bg-white/10 hover:bg-pink-500 rounded-full text-xs font-medium transition backdrop-blur-sm">@syafira_td</a>
-            </div>
-        </div>
-
-        <!-- Bottom Footer -->
-        <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-blue-200">
-            <p>© 2026 SMK Bina Putra Mandiri. All Rights Reserved.</p>
-            <div class="flex flex-wrap items-center gap-4">
-                <a href="#" class="hover:text-white transition">Privasi</a>
-                <a href="#" class="hover:text-white transition">Syarat</a>
-                <a href="#" class="hover:text-white transition">Sitemap</a>
-                <span class="flex items-center gap-1"><i class="far fa-clock"></i> 08.00 – 16.00 WIB</span>
-            </div>
-        </div>
-        <p class="mt-4 text-center text-xs text-blue-300/70">
-            Dikembangkan oleh Tim IT SMK BPM • v2.1.0
-        </p>
-    </div>
-</footer>
-
+    </footer>
     {{-- // Toggle Profile Dropdown --}}
     <script>
     function toggleProfileDropdown() {
