@@ -9,14 +9,15 @@ class Wali extends Model
 {
     use HasFactory;
 
+    protected $table = 'wali';
+
     protected $fillable = [
         'pendaftaran_id',
         'nama_wali',
-        'nik_wali',
-        'alamat_wali',
-        'pendidikan_wali',
         'pekerjaan_wali',
         'no_hp_wali',
+        'hubungan_wali',
+        'alamat_wali',
     ];
 
     // ✅ Relasi: Wali -> Pendaftaran

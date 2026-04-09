@@ -14,6 +14,8 @@ class Pembayaran extends Model
 
     protected $fillable = [
         'pendaftaran_id',
+        'bank_transfer',
+        'tanggal_transfer',
         'bukti_pembayaran_path',
         'status_pembayaran',
         'tanggal_upload',

@@ -21,16 +21,16 @@ return new class extends Migration
 
         $table->string('nama_lengkap', 100);
         $table->string('nisn', 20)->unique();
-        $table->string('nik', 20)->nullable();
-        $table->string('no_kk', 20)->nullable();
-        $table->string('tempat_lahir', 50)->nullable();
-        $table->date('tanggal_lahir')->nullable();
-        $table->enum('jenis_kelamin', ['L','P'])->nullable();
-        $table->string('agama', 20)->nullable();
-        $table->string('no_hp', 15)->nullable();
-        $table->text('alamat_lengkap')->nullable();
-        $table->string('jurusan', 50)->nullable();
-        $table->string('asal_sekolah', 100)->nullable();
+        $table->string('nik', 20);
+        $table->string('no_kk', 20);
+        $table->string('tempat_lahir', 50);
+        $table->date('tanggal_lahir');
+        $table->enum('jenis_kelamin', ['L','P']);
+        $table->string('agama', 20);
+        $table->string('no_hp', 15);
+        $table->text('alamat_lengkap');
+        $table->string('jurusan', 50);
+        $table->string('asal_sekolah', 100);
 
         // Status proses
         $table->enum('status_pendaftaran', ['draft','submit','diverifikasi'])

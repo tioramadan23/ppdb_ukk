@@ -7,52 +7,8 @@
     <title>SMK BPM</title>
 </head>
 <body>
-    <!-- Navbar start -->
-    <header class="border-b border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-900 shadow-sm">
-        <div class="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-            <a href="#" title="" class="flex text-xl">
-                <span class="font-bold text-gray-800 dark:text-gray-200">SMK</span>
-                <span class="text-blue-800 dark:text-blue-400">BPM</span>
-            </a>
-
-            <div class="flex flex-1 items-center justify-end md:justify-between">
-                <nav aria-label="Global" class="hidden md:block">
-                    <ul class="flex items-center gap-6 text-sm">
-                        <li>
-                            <a class="border-b-2 border-blue-700 pb-5 text-sm font-medium text-gray-900 dark:border-blue-500 dark:text-white" href="{{ route('home') }}"> Home </a>
-                        </li>
-
-                        <li>
-                            <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('tentang_sekolah') }}"> Tentang Sekolah </a>
-                        </li>
-
-                        <li>
-                            <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('informasi') }}"> Informasi </a>
-                        </li>
-
-                        <li>
-                            <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('dashboard.siswa') }}"> Pendaftaran </a>
-                        </li>
-                    </ul>
-                </nav>
-
-                <div class="flex items-center gap-4">
-                    <div class="hidden lg:flex lg:items-center lg:space-x-4">
-                        <a href="{{ route('register') }}" title="" class="rounded-full border border-transparent bg-blue-800 px-4 py-2 text-base font-semibold text-white transition-all duration-200 hover:bg-blue-900 focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-600" role="button"> Registrasi </a>
-                        <a href="{{ route('login') }}" title="" class="rounded-full border border-blue-800 bg-transparent px-4 py-2 text-base font-semibold text-blue-800 transition-all duration-200 hover:bg-blue-50 hover:text-blue-900 focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 focus:outline-none dark:border-blue-500 dark:text-blue-400 dark:hover:bg-blue-900/20 dark:hover:text-white dark:focus:ring-blue-500" role="button"> Login </a>
-                    </div>
-                    
-                    <button class="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-800 md:hidden dark:bg-gray-800 dark:text-gray-300 dark:hover:text-white">
-                        <span class="sr-only">Toggle menu</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- Navbar end -->
+       
+<x-navbar />
 
     <section class="relative py-24 px-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
         <div class="absolute inset-0">

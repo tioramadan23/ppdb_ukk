@@ -21,12 +21,14 @@ class OrangTua extends Model
         'pendidikan_ayah',
         'pekerjaan_ayah',
         'no_hp_ayah',
+        'alamat_ayah',
         // Data Ibu
         'nama_ibu',
         'nik_ibu',
         'pendidikan_ibu',
         'pekerjaan_ibu',
         'no_hp_ibu',
+        'alamat_ibu',
     ];
 
     // ✅ Relasi: OrangTua -> Pendaftaran

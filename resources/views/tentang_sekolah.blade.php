@@ -69,143 +69,120 @@
 dark:bg-gray-950 dark:text-gray-200 transition-colors duration-300">
     
    <!-- Navbar -->
-    <header class="sticky top-0 z-50 border-b 
-border-gray-200 dark:border-gray-800 
-bg-white/90 dark:bg-gray-900/90 
-backdrop-blur-md shadow-sm">
+        <header class="sticky top-0 z-50 border-b 
+    border-gray-200 dark:border-gray-800 
+    bg-white/90 dark:bg-gray-900/90 
+    backdrop-blur-md shadow-sm">
 
-        <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-            <a href="index.html" class="flex-shrink-0 text-xl font-bold">
-                <span class="font-bold text-gray-800 dark:text-gray-200">SMK</span>
-                <span class="text-blue-800 dark:text-blue-400">BPM</span>
-            </a>
+            <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+                <a href="index.html" class="flex-shrink-0 text-xl font-bold">
+                    <span class="font-bold text-gray-800 dark:text-gray-200">SMK</span>
+                    <span class="text-blue-800 dark:text-blue-400">BPM</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:block">
+                    <ul class="flex items-center gap-6 text-sm font-medium">
+                        <li>
+                            <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('home') }}">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a class="border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white" href="{{ route('tentang_sekolah') }}">
+                                Tentang Sekolah
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('informasi') }}">
+                                Informasi
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('dashboard.siswa') }}">
+                                Pendaftaran
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+        <!-- Profile & Dark Mode Toggle -->
+        <div class="hidden sm:flex items-center gap-3">
+            <button id="dark-mode-toggle" class="p-2 rounded-lg text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition" aria-label="Toggle dark mode">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:inline"></i>
+            </button>
             
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:block">
-                <ul class="flex items-center gap-6 text-sm font-medium">
-                    <li>
-                        <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('home') }}">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a class="border-b-2 border-blue-700 pb-1 text-gray-900 dark:border-blue-500 dark:text-white" href="{{ route('tentang_sekolah') }}">
-                            Tentang Sekolah
-                        </a>
-                    </li>
-                    <li>
-                        <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('informasi') }}">
-                            Informasi
-                        </a>
-                    </li>
-                    <li>
-                        <a class="text-gray-600 transition hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" href="{{ route('dashboard.siswa') }}">
-                            Pendaftaran
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            
-            <!-- Profile & Dark Mode Toggle -->
-    <div class="hidden sm:flex items-center gap-3">
-        <button id="dark-mode-toggle" class="p-2 rounded-lg text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition" aria-label="Toggle dark mode">
-            <i class="fas fa-moon dark:hidden"></i>
-            <i class="fas fa-sun hidden dark:inline"></i>
-        </button>
-         <!-- Profile Dropdown Container -->
-            <div class="relative" id="profileDropdown">
-                <!-- Profile Button (Trigger) -->
-                <button onclick="toggleProfileDropdown()" class="flex items-center gap-2 focus:outline-none">
-                    <img alt="Profile"
-                        src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=1e40af&color=fff"
-                        class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-primary-500 transition" />
-                    <span class="hidden md:block text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {{ Auth::user()->name }}
-                    </span>
-                    <i class="fas fa-chevron-down text-xs text-gray-500"></i>
-                </button>
-
-                <!-- Dropdown Menu -->
-                <div id="profileMenu" class="hidden absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50">
-                    <!-- User Info Header -->
-                    <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-                        <p class="text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->name }}</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ Auth::user()->email }}</p>
-                        <span class="inline-block mt-1 px-2 py-0.5 text-xs font-medium bg-primary-100 text-primary-700 rounded-full">
-                            {{ ucfirst(Auth::user()->role) }}
+            {{-- User Sudah Login --}}
+            @auth
+                <div class="relative" id="profileDropdown">
+                    <button onclick="toggleProfileDropdown()" class="flex items-center gap-2 focus:outline-none">
+                        <img alt="Profile"
+                            src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=1e40af&color=fff"
+                            class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-primary-500 transition" />
+                        <span class="hidden md:block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            {{ Auth::user()->name }}
                         </span>
-                    </div>
+                        <i class="fas fa-chevron-down text-xs text-gray-500"></i>
+                    </button>
 
-                    <!-- Menu Items -->
-                    <div class="py-2">
-                        <!-- Status Pendaftaran -->
-                        <a href="{{ route('pendaftaran.status') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-clipboard-list w-5 text-primary-600"></i>
-                            <span class="ml-3">Status Pendaftaran</span>
-                        </a>
+                    <!-- Dropdown Menu -->
+                    <div id="profileMenu" class="hidden absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50">
+                        <!-- User Info Header -->
+                        <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                            <p class="text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->name }}</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ Auth::user()->email }}</p>
+                            <span class="inline-block mt-1 px-2 py-0.5 text-xs font-medium bg-primary-100 text-primary-700 rounded-full">
+                                {{ ucfirst(Auth::user()->role) }}
+                            </span>
+                        </div>
 
-                        <!-- Form Pendaftaran (jika belum submit) -->
-                        @if(!\App\Models\Pendaftaran::where('user_id', Auth::id())->exists())
-                        <a href="{{ route('pendaftaran.create') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-edit w-5 text-blue-600"></i>
-                            <span class="ml-3">Isi Pendaftaran</span>
-                        </a>
-                        @endif
+                        
+                        <!-- Divider -->
+                        <div class="border-t border-gray-200 dark:border-gray-700"></div>
 
-                        <!-- Dashboard -->
-                        <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-tachometer-alt w-5 text-green-600"></i>
-                            <span class="ml-3">Dashboard</span>
-                        </a>
-
-                        {{-- <!-- Profile Settings (Optional - bisa dihapus jika belum ada) -->
-                        <!--
-                        <a href="{{ route('profile.edit') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-user-cog w-5 text-purple-600"></i>
-                            <span class="ml-3">Pengaturan Akun</span>
-                        </a>
-                        --> --}}
-                    </div>
-
-                    <!-- Divider -->
-                    <div class="border-t border-gray-200 dark:border-gray-700"></div>
-
-                    <!-- Logout -->
-                    <div class="py-2">
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="w-full flex items-center px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition">
-                                <i class="fas fa-sign-out-alt w-5"></i>
-                                <span class="ml-3">Logout</span>
-                            </button>
-                        </form>
+                        <!-- Logout -->
+                        <div class="py-2">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="w-full flex items-center px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition">
+                                    <i class="fas fa-sign-out-alt w-5"></i>
+                                    <span class="ml-3">Logout</span>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
+            
+            {{-- User Belum Login --}}
+            @else
+                <div class="hidden lg:flex lg:items-center lg:space-x-4">
+                            <a href="{{ route('register') }}" title="" class="rounded-full border border-transparent bg-blue-800 px-4 py-2 text-base font-semibold text-white transition-all duration-200 hover:bg-blue-900 focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-600" role="button"> Registrasi </a>
+                            <a href="{{ route('login') }}" title="" class="rounded-full border border-blue-800 bg-transparent px-4 py-2 text-base font-semibold text-blue-800 transition-all duration-200 hover:bg-blue-50 hover:text-blue-900 focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 focus:outline-none dark:border-blue-500 dark:text-blue-400 dark:hover:bg-blue-900/20 dark:hover:text-white dark:focus:ring-blue-500" role="button"> Login </a>
+                        </div>
+            @endauth
+        </div>
+        
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Toggle menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+            <div class="px-4 pt-4 pb-6 space-y-1">
+                <a href="{{ route('home') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('home') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Home</a>
+                <a href="{{ route('tentang_sekolah') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('tentang_sekolah') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Tentang Sekolah</a>
+                <a href="{{ route('informasi') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('informasi') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Informasi</a>
+                <a href="{{ route('dashboard.siswa') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('dashboard.siswa') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Pendaftaran</a>
             </div>
         </div>
-        </div>
-    </div>
-    
-           
-        <!-- Mobile menu button -->
-        <button id="mobile-menu-button" class="md:hidden p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Toggle menu">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
-        <div class="px-4 pt-4 pb-6 space-y-1">
-            <a href="{{ route('home') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('home') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Home</a>
-            <a href="{{ route('tentang_sekolah') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('tentang_sekolah') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Tentang Sekolah</a>
-            <a href="{{ route('informasi') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('informasi') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Informasi</a>
-            <a href="{{ route('dashboard.siswa') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('dashboard.siswa') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Pendaftaran</a>
-        </div>
-    </div>
-</header>
-{{-- Nabar End --}}
+    </header>
+    {{-- Nabar End --}}
 
    <!-- Kepala Sekolah Section -->
     <section id="kepala-sekolah" class="py-20 px-6 bg-blue-50 dark:bg-gray-900">

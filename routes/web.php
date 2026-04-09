@@ -4,170 +4,54 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PendaftaranController;
 
-/*
-|--------------------------------------------------------------------------
-| HOME
-|--------------------------------------------------------------------------
-*/
+// ================= PUBLIC ROUTES =================
+Route::get('/', function () { return view('main'); })->name('home');
+Route::get('/tentang_sekolah', function () { return view('tentang_sekolah'); })->name('tentang_sekolah');
+Route::get('/informasi', function () { return view('informasi'); })->name('informasi');
 
-Route::get('/', function () {
-    return view('main');
-})->name('home');
-
-/*
-|--------------------------------------------------------------------------
-| AUTH
-|--------------------------------------------------------------------------
-*/
-
+// ================= AUTH ROUTES =================
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'store'])->name('register.store');
-
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login.auth');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::post('/logout', [AuthController::class, 'logout'])
-    ->name('logout')
-    ->middleware('auth');
-
-/*
-|--------------------------------------------------------------------------
-| AREA LOGIN
-|--------------------------------------------------------------------------
-*/
-
-Route::middleware('auth')->group(function () {
-
-    Route::get('/dashboard', function () {
-        return 'Login berhasil';
-    })->name('dashboard');
-
-    Route::get('/pendaftaran', [PendaftaranController::class, 'create'])
-        ->name('pendaftaran');
-
-    Route::post('/pendaftaran', [PendaftaranController::class, 'store'])
-        ->name('pendaftaran.store');
-});
-
-// Forgot Password Routes
+// Forgot Password
 Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('password.request');
 Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])->name('password.email');
 Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 
-/*
-|--------------------------------------------------------------------------
-| PUBLIC PAGES
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/utama', function () {
-    return view('halaman_utama');
-})->name('utama');
-
-Route::get('/registrasi', function () {
-    return view('registrasi');
-})->name('registrasi');
-
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
-
-Route::get('/tentang_sekolah', function () {
-    return view('tentang_sekolah');
-})->name('tentang_sekolah');
-
-Route::get('/informasi', function () {
-    return view('informasi');
-})->name('informasi');
-
-Route::get('/dashboard/siswa', function () {
-    return view('dashboard.siswa');
-})->name('dashboard.siswa');
-
-/*
-|--------------------------------------------------------------------------
-| DASHBOARD ADMIN & SISWA
-|--------------------------------------------------------------------------
-*/
-
-Route::middleware(['auth'])->group(function () {
-
-    Route::get('/dashboard/admin', function () {
-        return view('dashboard.admin');
-    })->name('admin.dashboard');
-
-    Route::get('/dashboard/siswa', function () {
-        return view('dashboard.siswa');
-    })->name('dashboard.siswa');
-});
-
-/*
-|--------------------------------------------------------------------------
-| AKSES KHUSUS ADMIN
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/dashboard/admin', function () {
-    return view('dashboard.admin');
-})->name('dashboard.admin');
-
-Route::get('/dashboard/siswa', function () {
-    return view('dashboard.siswa');
-})->name('dashboard.siswa');
-
-/*
-|--------------------------------------------------------------------------
-| DASHBOARD ADMIN (ROLE)
-|--------------------------------------------------------------------------
-*/
-
-Route::middleware(['auth', 'role:admin'])->group(function () {
-
-    Route::get('/dashboard/admin', function () {
-        return view('dashboard.admin');
-    })->name('dashboard.admin');
-});
-
-/*
-|--------------------------------------------------------------------------
-| DASHBOARD SISWA (ROLE)
-|--------------------------------------------------------------------------
-*/
-
-Route::middleware(['auth', 'role:calon_siswa'])->group(function () {
-
-    Route::get('/dashboard/siswa', function () {
-        return view('dashboard.siswa');
-    })->name('dashboard.siswa');
-});
-
-/*
-|--------------------------------------------------------------------------
-| STATUS PENDAFTARAN
-|--------------------------------------------------------------------------
-*/
-
+// ================= PROTECTED ROUTES (AUTH) =================
 Route::middleware('auth')->group(function () {
+    
+    // Dashboard default
+    Route::get('/dashboard', function () {
+        return auth()->user()->role === 'admin' 
+            ? view('dashboard.admin') 
+            : view('dashboard.siswa');
+    })->name('dashboard');
 
-// Route untuk form pendaftaran (CREATE)
-Route::get('/pendaftaran', [PendaftaranController::class, 'create'])
-    ->name('pendaftaran.create')
-    ->middleware('auth');
+    // ✅ PENDAFTARAN ROUTES (FIXED - NO DUPLICATES)
+    Route::get('/pendaftaran', [PendaftaranController::class, 'create'])
+        ->name('pendaftaran.create');
+    
+    Route::post('/pendaftaran', [PendaftaranController::class, 'store'])
+        ->name('pendaftaran.store');
+    
+    Route::get('/pendaftaran/status', [PendaftaranController::class, 'status'])
+        ->name('pendaftaran.status');
 
-// Route untuk submit form (STORE)
-Route::post('/pendaftaran', [PendaftaranController::class, 'store'])
-    ->name('pendaftaran.store')
-    ->middleware('auth');
+    // Dashboard per role (jika butuh beda view)
+    Route::middleware('role:admin')->group(function () {
+        Route::get('/dashboard/admin', function () { return view('dashboard.admin'); })->name('dashboard.admin');
+    });
 
-// Route untuk lihat status (STATUS)
-Route::get('/status', [PendaftaranController::class, 'status'])
-    ->name('pendaftaran.status')
-    ->middleware('auth');
+    Route::middleware('role:calon_siswa')->group(function () {
+        Route::get('/dashboard/siswa', function () { return view('dashboard.siswa'); })->name('dashboard.siswa');
+    });
 });
 
-Route::get('/status-pendaftaran', function () {
-        return view('status_pendaftaran');
-    })->name('status_pendaftaran');
-
-
+// ================= PUBLIC FALLBACK (jika masih butuh) =================
+Route::get('/registrasi', function () { return view('registrasi'); })->name('registrasi');
+Route::get('/status-pendaftaran', function () { return view('status_pendaftaran'); })->name('status_pendaftaran');

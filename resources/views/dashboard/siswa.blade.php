@@ -152,7 +152,7 @@
 
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-
+    
 <!-- Toast Notification -->
 <div id="toastNotification" class="fixed top-20 right-4 z-50 bg-white border-l-4 border-green-500 rounded-lg shadow-lg p-4 pr-12 translate-x-full">
     <div class="flex items-start">
@@ -242,37 +242,7 @@
                         </span>
                     </div>
 
-                    <!-- Menu Items -->
-                    <div class="py-2">
-                        <!-- Status Pendaftaran -->
-                        <a href="{{ route('pendaftaran.status') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-clipboard-list w-5 text-primary-600"></i>
-                            <span class="ml-3">Status Pendaftaran</span>
-                        </a>
-
-                        <!-- Form Pendaftaran (jika belum submit) -->
-                        @if(!\App\Models\Pendaftaran::where('user_id', Auth::id())->exists())
-                        <a href="{{ route('pendaftaran.create') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-edit w-5 text-blue-600"></i>
-                            <span class="ml-3">Isi Pendaftaran</span>
-                        </a>
-                        @endif
-
-                        <!-- Dashboard -->
-                        <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-tachometer-alt w-5 text-green-600"></i>
-                            <span class="ml-3">Dashboard</span>
-                        </a>
-
-                        {{-- <!-- Profile Settings (Optional - bisa dihapus jika belum ada) -->
-                        <!--
-                        <a href="{{ route('profile.edit') }}" class="flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-                            <i class="fas fa-user-cog w-5 text-purple-600"></i>
-                            <span class="ml-3">Pengaturan Akun</span>
-                        </a>
-                        --> --}}
-                    </div>
-
+                  
                     <!-- Divider -->
                     <div class="border-t border-gray-200 dark:border-gray-700"></div>
 
@@ -359,13 +329,17 @@
         <div class="border-l-4 border-primary-600 px-8 py-6 mx-8 my-6 rounded-r-lg">
             <h5 class="font-bold text-primary-800 flex items-center mb-3">
                 <i class="fas fa-info-circle mr-2 text-lg"></i>
-                Petunjuk Pendaftaran
+                Petunjuk dan Validasi Form
             </h5>
             <ul class="text-gray-700 space-y-2 text-sm">
                 <li><i class="fas fa-check text-green-500 mr-2"></i>Lengkapi semua data yang bertanda <span class="text-red-500">*</span> (wajib diisi)</li>
-                <li><i class="fas fa-check text-green-500 mr-2"></i>Unggah berkas dalam format JPG, PNG, atau PDF (max 2MB per file)</li>
-                <li><i class="fas fa-check text-green-500 mr-2"></i>Pastikan data yang diisi sudah benar sebelum submit</li>
-                <li><i class="fas fa-check text-green-500 mr-2"></i>Simpan nomor pendaftaran Anda setelah berhasil mendaftar</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i><strong>NISN:</strong> 10 digit angka (contoh: 1234567890)</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i><strong>NIK:</strong> 16 digit angka (contoh: 1234567890123456)</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i><strong>No. KK:</strong> 16 digit angka</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i><strong>No. HP:</strong> 10-15 digit angka (contoh: 081234567890)</li>
+                <li><i class="fas fa-check text-green-500 mr-2"></i>Unggah berkas dalam format JPG, PNG, atau PDF (max 5MB per file)</li>
+                <li><i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>Pastikan data yang diisi sudah benar sebelum submit</li>
+                <li><i class="fas fa-save text-blue-500 mr-2"></i>Data tersimpan otomatis di browser lokal</li>
             </ul>
         </div>
 
@@ -393,8 +367,32 @@
 
         {{-- <!-- Form -->
         @if(session('success'))
-        <div style="color:green">
-            {{ session('success') }}
+        <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-6 rounded-r-lg animate-fade-in">
+            <div class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 text-xl mr-3"></i>
+                <div class="flex-1">
+                    <h4 class="font-bold text-green-800">Pendaftaran Berhasil!</h4>
+                    <p class="text-green-700 mt-1" id="successMessage">{!! session('success') !!}</p>
+                </div>
+                <button onclick="closeAlert(this)" class="text-green-400 hover:text-green-600">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        @endif
+
+        @if(session('error'))
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded-r-lg animate-fade-in">
+            <div class="flex items-center">
+                <i class="fas fa-exclamation-circle text-red-500 text-xl mr-3"></i>
+                <div class="flex-1">
+                    <h4 class="font-bold text-red-800">Pendaftaran Gagal!</h4>
+                    <p class="text-red-700 mt-1">{!! session('error') !!}</p>
+                </div>
+                <button onclick="closeAlert(this)" class="text-red-400 hover:text-red-600">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
         </div>
         @endif --}}
         
@@ -432,9 +430,13 @@
                         </label>
                         <input type="text" name="nisn" value="{{ old('nisn', $data['nisn'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Contoh: 1234567890" maxlength="10" required>
                         @error('nisn')
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            <p class="text-red-500 text-xs mt-1 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-1"></i> {{ $message }}
+                            </p>
                         @enderror
-                        <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NISN wajib diisi dan harus 10 digit angka</div>
+                        <div class="invalid-feedback text-red-500 text-sm mt-1 hidden flex items-center">
+                            <i class="fas fa-exclamation-circle mr-1"></i>NISN harus diisi dan terdiri dari 10 digit angka
+                        </div>
                     </div>
 
                     <!-- NIK Siswa -->
@@ -444,9 +446,13 @@
                         </label>
                         <input type="text" name="nik" value="{{ old('nik', $data['nik'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Contoh: 1234567890123456" maxlength="16" required>
                         @error('nik')
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            <p class="text-red-500 text-xs mt-1 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-1"></i> {{ $message }}
+                            </p>
                         @enderror
-                        <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">NIK wajib diisi dan harus 16 digit angka</div>
+                        <div class="invalid-feedback text-red-500 text-sm mt-1 hidden flex items-center">
+                            <i class="fas fa-exclamation-circle mr-1"></i>NIK harus diisi dan terdiri dari 16 digit angka
+                        </div>
                     </div>
 
                     <!-- No. KK -->
@@ -525,16 +531,20 @@
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Agama wajib dipilih</div>
                     </div>
 
-                    <!-- No HP Siswa -->
+                    <!-- 🔧 FIX: No HP Siswa - ubah name ke no_hp -->
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">
                             No. HP Siswa <span class="text-red-500">*</span>
                         </label>
-                        <input type="tel" name="no_hp_siswa" value="{{ old('no_hp_siswa', $data['no_hp_siswa'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Contoh: 081234567890" maxlength="13" required>
-                        @error('no_hp_siswa')
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        <input type="tel" name="no_hp" value="{{ old('no_hp', $data['no_hp'] ?? '') }}" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" placeholder="Contoh: 081234567890" maxlength="15" required>
+                        @error('no_hp')
+                            <p class="text-red-500 text-xs mt-1 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-1"></i> {{ $message }}
+                            </p>
                         @enderror
-                        <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">No. HP wajib diisi</div>
+                        <div class="invalid-feedback text-red-500 text-sm mt-1 hidden flex items-center">
+                            <i class="fas fa-exclamation-circle mr-1"></i>Nomor HP harus diisi dengan 10-15 digit angka
+                        </div>
                     </div>
 
                     <!-- Email Siswa -->
@@ -549,13 +559,13 @@
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Email wajib diisi dan harus valid</div>
                     </div>
 
-                    <!-- Alamat Lengkap -->
+                    <!-- 🔧 FIX: Alamat Lengkap - ubah name ke alamat_lengkap -->
                     <div class="form-group col-span-full">
                         <label class="block font-semibold text-gray-800 mb-2">
                             Alamat Lengkap <span class="text-red-500">*</span>
                         </label>
-                        <textarea name="alamat_siswa" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" rows="3" placeholder="Alamat lengkap sesuai KTP/KK" required>{{ old('alamat_siswa', $data['alamat_siswa'] ?? '') }}</textarea>
-                        @error('alamat_siswa')
+                        <textarea name="alamat_lengkap" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all text-gray-900 dark:text-gray-100 placeholder-gray-400" rows="3" placeholder="Alamat lengkap sesuai KTP/KK" required>{{ old('alamat_lengkap', $data['alamat_lengkap'] ?? '') }}</textarea>
+                        @error('alamat_lengkap')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
                         <div class="invalid-feedback text-red-500 text-sm mt-1 hidden">Alamat lengkap wajib diisi</div>
@@ -1038,7 +1048,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">Bank Tujuan Transfer <span class="text-red-500">*</span></label>
-                        <select name="bank_transfer" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" required>
+                        <select name="bank_transfer" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all bg-white text-gray-900 dark:text-gray-100" required>
                             <option value="">-- Pilih Bank --</option>
                             <option value="BRI" {{ old('bank_transfer') == 'BRI' ? 'selected' : '' }}>BRI</option>
                             <option value="Mandiri" {{ old('bank_transfer') == 'Mandiri' ? 'selected' : '' }}>Mandiri</option>
@@ -1268,13 +1278,89 @@ document.addEventListener('DOMContentLoaded', function() {
             const nisnInput = document.querySelector('input[name="nisn"]');
             if (nisnInput?.value && !/^\d{10}$/.test(nisnInput.value)) {
                 isValid = false;
-                showToast('NISN harus 10 digit angka', 'error');
+                showToast('NISN harus tepat 10 digit angka', 'error');
                 nisnInput.classList.add('border-red-500', 'shake');
                 setTimeout(() => nisnInput.classList.remove('shake'), 500);
             }
+            
+            // Validasi NIK
+            const nikInput = document.querySelector('input[name="nik"]');
+            if (nikInput?.value && !/^\d{16}$/.test(nikInput.value)) {
+                isValid = false;
+                showToast('NIK harus tepat 16 digit angka', 'error');
+                nikInput.classList.add('border-red-500', 'shake');
+                setTimeout(() => nikInput.classList.remove('shake'), 500);
+            }
+            
+            // Validasi No KK
+            const kkInput = document.querySelector('input[name="no_kk"]');
+            if (kkInput?.value && !/^\d{16}$/.test(kkInput.value)) {
+                isValid = false;
+                showToast('Nomor KK harus tepat 16 digit angka', 'error');
+                kkInput.classList.add('border-red-500', 'shake');
+                setTimeout(() => kkInput.classList.remove('shake'), 500);
+            }
+            
+            // Validasi No HP
+            const hpInput = document.querySelector('input[name="no_hp"]');
+            if (hpInput?.value && !/^\d{10,15}$/.test(hpInput.value)) {
+                isValid = false;
+                showToast('Nomor HP harus 10-15 digit angka', 'error');
+                hpInput.classList.add('border-red-500', 'shake');
+                setTimeout(() => hpInput.classList.remove('shake'), 500);
+            }
         }
 
-        // Validasi file upload section 3
+        // Validasi Section 2 (Orang Tua)
+        if (section === 2) {
+            // Validasi NIK Ayah
+            const nikAyahInput = document.querySelector('input[name="nik_ayah"]');
+            if (nikAyahInput?.value && !/^\d{16}$/.test(nikAyahInput.value)) {
+                isValid = false;
+                showToast('NIK Ayah harus tepat 16 digit angka', 'error');
+                nikAyahInput.classList.add('border-red-500', 'shake');
+                setTimeout(() => nikAyahInput.classList.remove('shake'), 500);
+            }
+            
+            // Validasi NIK Ibu
+            const nikIbuInput = document.querySelector('input[name="nik_ibu"]');
+            if (nikIbuInput?.value && !/^\d{16}$/.test(nikIbuInput.value)) {
+                isValid = false;
+                showToast('NIK Ibu harus tepat 16 digit angka', 'error');
+                nikIbuInput.classList.add('border-red-500', 'shake');
+                setTimeout(() => nikIbuInput.classList.remove('shake'), 500);
+            }
+            
+            // Validasi HP Ayah
+            const hpAyahInput = document.querySelector('input[name="no_hp_ayah"]');
+            if (hpAyahInput?.value && !/^\d{10,15}$/.test(hpAyahInput.value)) {
+                isValid = false;
+                showToast('Nomor HP Ayah harus 10-15 digit angka', 'error');
+                hpAyahInput.classList.add('border-red-500', 'shake');
+                setTimeout(() => hpAyahInput.classList.remove('shake'), 500);
+            }
+            
+            // Validasi HP Ibu
+            const hpIbuInput = document.querySelector('input[name="no_hp_ibu"]');
+            if (hpIbuInput?.value && !/^\d{10,15}$/.test(hpIbuInput.value)) {
+                isValid = false;
+                showToast('Nomor HP Ibu harus 10-15 digit angka', 'error');
+                hpIbuInput.classList.add('border-red-500', 'shake');
+                setTimeout(() => hpIbuInput.classList.remove('shake'), 500);
+            }
+        }
+
+        // Validasi Section 4 (Pembayaran)
+        if (section === 4) {
+            const buktiTransferInput = document.getElementById('bukti_transfer');
+            if (!buktiTransferInput?.files || buktiTransferInput.files.length === 0) {
+                isValid = false;
+                buktiTransferInput?.closest('.file-upload-container')?.classList.add('border-red-500');
+                showToast('Bukti transfer wajib diupload', 'error');
+            } else {
+                buktiTransferInput?.closest('.file-upload-container')?.classList.remove('border-red-500');
+            }
+        }
         if (section === 3) {
             const requiredFiles = ['pas_foto', 'ijazah', 'skhun', 'akta', 'kk'];
             requiredFiles.forEach(fileId => {
@@ -1282,7 +1368,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!fileInput?.files || fileInput.files.length === 0) {
                     isValid = false;
                     fileInput?.closest('.file-upload-container')?.classList.add('border-red-500');
-                    showToast(`File ${fileId.replace('_', ' ')} wajib diupload`, 'error');
+                    const fileNames = {
+                        'pas_foto': 'Pas Foto',
+                        'ijazah': 'Ijazah SMP/MTs',
+                        'skhun': 'SKHUN',
+                        'akta': 'Akta Kelahiran',
+                        'kk': 'Kartu Keluarga'
+                    };
+                    showToast(`File ${fileNames[fileId]} wajib diupload`, 'error');
                 } else {
                     fileInput?.closest('.file-upload-container')?.classList.remove('border-red-500');
                 }
@@ -1327,7 +1420,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!file) return;
 
         if (file.size > 5 * 1024 * 1024) {
-            showToast(`File ${file.name} terlalu besar! Maksimal 5MB`, 'error');
+            showToast(`File ${file.name} terlalu besar! Maksimal 5MB. Ukuran file saat ini: ${(file.size / (1024 * 1024)).toFixed(2)}MB`, 'error');
             input.value = '';
             return;
         }
@@ -1344,7 +1437,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const allowedExtensions = allowedTypes[fileId] || ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
         if (!allowedExtensions.includes(file.type)) {
-            showToast(`Format file ${file.name} tidak valid!`, 'error');
+            const fileNames = {
+                'pas_foto': 'Pas Foto',
+                'ijazah': 'Ijazah',
+                'skhun': 'SKHUN',
+                'akta': 'Akta Kelahiran',
+                'kk': 'Kartu Keluarga',
+                'ktp': 'KTP Orang Tua',
+                'bukti_transfer': 'Bukti Transfer'
+            };
+            const allowedFormats = fileId === 'bukti_transfer' ? 'JPG, PNG' : 'JPG, PNG, PDF';
+            showToast(`Format file ${fileNames[fileId] || fileId} tidak valid! Hanya format ${allowedFormats} yang diperbolehkan`, 'error');
             input.value = '';
             return;
         }
@@ -1406,23 +1509,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============ FORM SUBMISSION ============
     if (form) {
         form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (!validateForm()) return;
-            if (!confirm('Apakah Anda yakin data sudah benar? Setelah submit, data tidak dapat diubah.')) return;
-
-            document.getElementById('loadingOverlay')?.classList.remove('hidden');
-            document.querySelector('.btn-submit')?.setAttribute('disabled', 'true');
-            updateSummary();
-
-            setTimeout(() => {
-                alert('Pendaftaran berhasil! Nomor pendaftaran Anda: BPM-2026-001234');
-                document.getElementById('loadingOverlay')?.classList.add('hidden');
-                form.reset();
-                resetFilePreviews();
-                resetSummary();
-                goToSection(1);
-                document.querySelector('.btn-submit')?.removeAttribute('disabled');
-            }, 1500);
+            if (!validateForm()) {
+                e.preventDefault();
+                return;
+            }
+            
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const submitBtn = document.querySelector('.btn-submit');
+            
+            if (loadingOverlay) loadingOverlay.classList.remove('hidden');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Memproses...';
+            }
         });
     }
 
@@ -1488,23 +1587,65 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('toastNotification')?.classList.add('translate-x-full');
     }
 
-    // ============ AUTO-SAVE TO LOCALSTORAGE ============
-    const savedData = JSON.parse(localStorage.getItem("form_ppdb")) || {};
-    Object.keys(savedData).forEach(name => {
-        const field = form?.querySelector(`[name="${name}"]`);
-        if (!field) return;
-        if (field.type === "radio" || field.type === "checkbox") {
-            field.checked = savedData[name] === field.value;
+    // ============ ALERT CLOSE FUNCTION ============
+    window.closeAlert = function(button) {
+        const alertDiv = button.closest('.bg-green-50, .bg-red-50');
+        if (alertDiv) {
+            alertDiv.style.transition = 'opacity 0.3s ease-out';
+            alertDiv.style.opacity = '0';
+            setTimeout(() => alertDiv.remove(), 300);
+        }
+    }
+
+    // ============ REAL-TIME VALIDATION ============
+    // Validasi NISN real-time
+    const nisnInput = document.querySelector('input[name="nisn"]');
+    nisnInput?.addEventListener('input', function() {
+        if (this.value && !/^\d{10}$/.test(this.value)) {
+            this.classList.add('border-red-500');
+            showToast('NISN harus tepat 10 digit angka', 'error');
         } else {
-            field.value = savedData[name];
+            this.classList.remove('border-red-500');
         }
     });
 
-    form?.addEventListener("input", function(e) {
-        const name = e.target.name;
-        if (!name) return;
-        savedData[name] = e.target.value;
-        localStorage.setItem("form_ppdb", JSON.stringify(savedData));
+    // Validasi NIK real-time
+    const nikInputs = document.querySelectorAll('input[name="nik"], input[name="nik_ayah"], input[name="nik_ibu"]');
+    nikInputs.forEach(input => {
+        input?.addEventListener('input', function() {
+            if (this.value && !/^\d{16}$/.test(this.value)) {
+                this.classList.add('border-red-500');
+                const label = this.previousElementSibling?.textContent || 'NIK';
+                showToast(`${label} harus tepat 16 digit angka`, 'error');
+            } else {
+                this.classList.remove('border-red-500');
+            }
+        });
+    });
+
+    // Validasi No HP real-time
+    const hpInputs = document.querySelectorAll('input[name="no_hp"], input[name="no_hp_ayah"], input[name="no_hp_ibu"]');
+    hpInputs.forEach(input => {
+        input?.addEventListener('input', function() {
+            if (this.value && !/^\d{10,15}$/.test(this.value)) {
+                this.classList.add('border-red-500');
+                const label = this.previousElementSibling?.textContent || 'Nomor HP';
+                showToast(`${label} harus 10-15 digit angka`, 'error');
+            } else {
+                this.classList.remove('border-red-500');
+            }
+        });
+    });
+
+    // Validasi No KK real-time
+    const kkInput = document.querySelector('input[name="no_kk"]');
+    kkInput?.addEventListener('input', function() {
+        if (this.value && !/^\d{16}$/.test(this.value)) {
+            this.classList.add('border-red-500');
+            showToast('Nomor KK harus tepat 16 digit angka', 'error');
+        } else {
+            this.classList.remove('border-red-500');
+        }
     });
 
     // Auto-update summary
@@ -1537,9 +1678,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     document.querySelector('select[name="jurusan"]')?.addEventListener('change', updateSummaryFromInputs);
 
-    // Update saat halaman load (untuk handle old() values)
+    // Update saat halaman load
     document.addEventListener('DOMContentLoaded', updateSummaryFromInputs);
-    // =========================================================
 
     // ============ MOBILE MENU ============
     const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -1584,8 +1724,8 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
         });
     }
-    });
-    </script>
+});
+</script>
 
     <!-- AOS Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -1606,7 +1746,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h3 class="text-xl font-bold text-gray-800">Konfirmasi Pendaftaran</h3>
             </div>
 
-            <div class="bg-gray-50 rounded-lg p-4 mb-4 space-y-2 text-sm">
+            <div class="bg-gray-50 rounded-lg p-4 mb-4 space-y-2 text-black">
                 <p><strong>Nama:</strong> <span id="modalNama">-</span></p>
                 <p><strong>NISN:</strong> <span id="modalNisn">-</span></p>
                 <p><strong>Jurusan:</strong> <span id="modalJurusan">-</span></p>
@@ -1636,11 +1776,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         
-        // Fungsi buka modal
         window.openConfirmModal = function() {
             console.log('🔘 Tombol Submit diklik!');
             
-            // Validasi semua section
             let allValid = true;
             for (let i = 1; i <= 4; i++) {
                 if (typeof validateSection === 'function' && !validateSection(i)) {
@@ -1650,7 +1788,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            // Isi ringkasan
             const namaInput = document.querySelector('input[name="nama_lengkap"]');
             const nisnInput = document.querySelector('input[name="nisn"]');
             const jurusanSelect = document.querySelector('select[name="jurusan"]');
@@ -1667,7 +1804,6 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             document.getElementById('modalJurusan').textContent = jurusanMap[jurusanSelect?.value] || '-';
 
-            // Reset & tampilkan modal
             const checkbox = document.getElementById('confirmCheckbox');
             const submitBtn = document.getElementById('finalSubmitBtn');
             if (checkbox) checkbox.checked = false;
@@ -1681,7 +1817,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
 
-        //  Fungsi tutup modal
         window.closeConfirmModal = function() {
             const modal = document.getElementById('confirmModal');
             if (modal) {
@@ -1691,7 +1826,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
 
-        //  Event listener checkbox (dipasang setelah DOM ready)
         const confirmCheckbox = document.getElementById('confirmCheckbox');
         const finalSubmitBtn = document.getElementById('finalSubmitBtn');
         
@@ -1702,12 +1836,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Fungsi submit final
         window.submitFormFinal = function() {
             console.log('Submit form dipanggil');
             closeConfirmModal();
             
-            // Loading
             const loading = document.getElementById('loadingOverlay');
             const submitBtn = document.querySelector('button[onclick="openConfirmModal()"]');
             
@@ -1717,7 +1849,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Memproses...';
             }
             
-            // Submit form
             const form = document.getElementById('registrationForm');
             if (form) form.submit();
         };
@@ -1730,7 +1861,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     });
     </script>
-    <!-- End Modal Konfirmasi -->
 
     {{-- // Toggle Profile Dropdown --}}
     <script>
@@ -1739,7 +1869,6 @@ document.addEventListener('DOMContentLoaded', function() {
         menu.classList.toggle('hidden');
     }
 
-    // Close dropdown when clicking outside
     document.addEventListener('click', function(event) {
         const dropdown = document.getElementById('profileDropdown');
         const menu = document.getElementById('profileMenu');
@@ -1749,7 +1878,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Close dropdown when pressing ESC key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             const menu = document.getElementById('profileMenu');
@@ -1761,7 +1889,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Scripts -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-// Initialize AOS
 document.addEventListener('DOMContentLoaded', function() {
     AOS.init({
         duration: 600,
@@ -1770,7 +1897,6 @@ document.addEventListener('DOMContentLoaded', function() {
         offset: 50
     });
 
-    // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     
@@ -1784,7 +1910,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 : '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />';
         });
 
-        // Close menu when clicking a link
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
@@ -1793,10 +1918,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Dark mode toggle
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     if (darkModeToggle) {
-        // Check for saved preference or system preference
         if (localStorage.getItem('darkMode') === 'true' || 
             (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
@@ -1808,7 +1931,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
         if (mobileMenuButton && mobileMenu && 
             !mobileMenuButton.contains(e.target) && 
