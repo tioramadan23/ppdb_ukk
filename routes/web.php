@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PendaftaranController;
 
 // ================= PUBLIC ROUTES =================
-Route::get('/', function () { return view('main'); })->name('home');
+Route::get('/home', function () { return view('home'); })->name('home');
 Route::get('/tentang_sekolah', function () { return view('tentang_sekolah'); })->name('tentang_sekolah');
 Route::get('/informasi', function () { return view('informasi'); })->name('informasi');
 

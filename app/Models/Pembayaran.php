@@ -23,8 +23,9 @@ class Pembayaran extends Model
     ];
 
     protected $casts = [
-        'tanggal_upload' => 'datetime',
-    ];
+    'tanggal_transfer' => 'datetime',
+    'tanggal_upload' => 'datetime',
+];
 
     // ✅ Relasi: Pembayaran -> Pendaftaran
     public function pendaftaran()
