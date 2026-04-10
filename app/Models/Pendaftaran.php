@@ -12,6 +12,7 @@ class Pendaftaran extends Model
     // ✅ $fillable sesuai kolom tabel pendaftarans
     protected $fillable = [
         'user_id',
+        'no_pendaftaran',
         'nama_lengkap',
         'nisn',
         'nik',

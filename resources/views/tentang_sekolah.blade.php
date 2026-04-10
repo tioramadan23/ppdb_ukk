@@ -137,7 +137,11 @@ dark:bg-gray-950 dark:text-gray-200 transition-colors duration-300">
                             </span>
                         </div>
 
-                        
+                        {{-- status --}}
+                        <a href="{{ route('pendaftaran.status') }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <i class="fas fa-file-alt mr-2"></i>Status Pendaftaran
+                        </a>
+
                         <!-- Divider -->
                         <div class="border-t border-gray-200 dark:border-gray-700"></div>
 
@@ -191,8 +195,8 @@ dark:bg-gray-950 dark:text-gray-200 transition-colors duration-300">
 
             <div class="max-w-5xl mx-auto bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700">
                 <div class="grid grid-cols-1 lg:grid-cols-2">
-                    <div class="relative h-80 lg:h-auto">
-                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=400&fit=crop" alt="Kepala Sekolah" class="w-full h-full object-cover">
+                    <div class="relative h-80 lg:h-[34rem] overflow-hidden">
+                        <img src="{{ asset('storage/kepala_sekolah.jpeg') }}" alt="Kepala Sekolah" class="w-full h-full object-cover object-center">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                         <div class="absolute bottom-6 left-6 text-white">
                             <div class="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center mb-3">

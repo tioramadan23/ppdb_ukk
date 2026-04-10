@@ -257,7 +257,7 @@
                     Data Diri Siswa
                 </h3>
                 <div class="bg-gray-50 p-6 rounded-xl">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-black">
                         <div><strong>Nama Lengkap:</strong> {{ $pendaftaran->nama_lengkap }}</div>
                         <div><strong>NISN:</strong> {{ $pendaftaran->nisn }}</div>
                         <div><strong>NIK:</strong> {{ $pendaftaran->nik }}</div>
@@ -286,7 +286,7 @@
                         <!-- Ayah -->
                         <div>
                             <h4 class="font-semibold text-gray-700 mb-2">Data Ayah</h4>
-                            <div class="space-y-1 text-sm">
+                            <div class="space-y-1 text-sm text-black">
                                 <div><strong>Nama:</strong> {{ $pendaftaran->orangTua->nama_ayah }}</div>
                                 <div><strong>NIK:</strong> {{ $pendaftaran->orangTua->nik_ayah }}</div>
                                 <div><strong>Pekerjaan:</strong> {{ $pendaftaran->orangTua->pekerjaan_ayah }}</div>
@@ -297,7 +297,7 @@
                         <!-- Ibu -->
                         <div>
                             <h4 class="font-semibold text-gray-700 mb-2">Data Ibu</h4>
-                            <div class="space-y-1 text-sm">
+                            <div class="space-y-1 text-sm text-black">
                                 <div><strong>Nama:</strong> {{ $pendaftaran->orangTua->nama_ibu }}</div>
                                 <div><strong>NIK:</strong> {{ $pendaftaran->orangTua->nik_ibu }}</div>
                                 <div><strong>Pekerjaan:</strong> {{ $pendaftaran->orangTua->pekerjaan_ibu }}</div>
@@ -318,7 +318,7 @@
                     Data Wali
                 </h3>
                 <div class="bg-gray-50 p-6 rounded-xl">
-                    <div class="space-y-1 text-sm">
+                    <div class="space-y-1 text-sm text-black" >
                         <div><strong>Nama:</strong> {{ $pendaftaran->wali->nama_wali }}</div>
                         <div><strong>Pekerjaan:</strong> {{ $pendaftaran->wali->pekerjaan_wali }}</div>
                         <div><strong>No. HP:</strong> {{ $pendaftaran->wali->no_hp_wali }}</div>
@@ -336,7 +336,7 @@
                     Dokumen yang Diupload
                 </h3>
                 <div class="bg-gray-50 p-6 rounded-xl">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-black">
                         @foreach($pendaftaran->dokumens as $dokumen)
                         <div class="flex items-center justify-between p-3 bg-white rounded-lg border">
                             <div class="flex items-center">
@@ -364,7 +364,7 @@
                     Data Pembayaran
                 </h3>
                 <div class="bg-gray-50 p-6 rounded-xl">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-black">
                         <div><strong>Bank Transfer:</strong> {{ $pendaftaran->pembayaran->bank_transfer }}</div>
                         <div><strong>Tanggal Transfer:</strong> {{ $pendaftaran->pembayaran->tanggal_transfer->format('d M Y') }}</div>
                         <div><strong>Status Pembayaran:</strong> {{ ucfirst($pendaftaran->pembayaran->status_pembayaran) }}</div>

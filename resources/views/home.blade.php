@@ -141,6 +141,9 @@
                             </span>
                         </div>
 
+                        <a href="{{ route('pendaftaran.status') }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <i class="fas fa-file-alt mr-2"></i>Status Pendaftaran
+                        </a>
                         
                         <!-- Divider -->
                         <div class="border-t border-gray-200 dark:border-gray-700"></div>
@@ -356,7 +359,7 @@
             <!-- RPL Card -->
             <div class="jurusan-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-md flex flex-col h-full">
                 <div class="h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=192&fit=crop&crop=center" alt="Rekayasa Perangkat Lunak" class="w-full h-full object-cover">
+                    <img src="{{ asset('storage/jurusan/RPL.jpeg') }}" alt="Rekayasa Perangkat Lunak" class="w-full h-full object-cover">
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
                     <div class="flex-grow">
@@ -373,7 +376,7 @@
             <!-- TKJ Card -->
             <div class="jurusan-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-md flex flex-col h-full">
                 <div class="h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1581276879432-15e50529f34b?w=400&h=192&fit=crop&crop=center" alt="Teknik Komputer & Jaringan" class="w-full h-full object-cover">
+                    <img src="{{ asset('storage/jurusan/TKJ.jpeg') }}" alt="Teknik Komputer & Jaringan" class="w-full h-full object-cover">
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
                     <div class="flex-grow">
@@ -390,7 +393,7 @@
             <!-- DKV Card -->
             <div class="jurusan-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-md flex flex-col h-full">
                 <div class="h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=192&fit=crop&crop=center" alt="Desain Komunikasi Visual" class="w-full h-full object-cover">
+                    <img src="{{ asset('storage/jurusan/DKV.jpeg') }}" alt="Desain Komunikasi Visual" class="w-full h-full object-cover">
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
                     <div class="flex-grow">
@@ -407,7 +410,7 @@
             <!-- Bisnis Digital Card -->
             <div class="jurusan-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-md flex flex-col h-full">
                 <div class="h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=192&fit=crop&crop=center" alt="Bisnis Digital" class="w-full h-full object-cover">
+                    <img src="{{ asset('storage/jurusan/Bidi.jpeg') }}" alt="Bisnis Digital" class="w-full h-full object-cover">
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
                     <div class="flex-grow">
@@ -424,7 +427,7 @@
             <!-- Akuntansi Card -->
             <div class="jurusan-card bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-md flex flex-col h-full">
                 <div class="h-48 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1554224145-66d668709f03?w=400&h=192&fit=crop&crop=center" alt="Akuntansi" class="w-full h-full object-cover">
+                    <img src="{{ asset('storage/jurusan/akutansi.jpeg') }}" alt="Akuntansi" class="w-full h-full object-cover">
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
                     <div class="flex-grow">

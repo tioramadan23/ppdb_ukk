@@ -54,4 +54,4 @@ Route::middleware('auth')->group(function () {
 
 // ================= PUBLIC FALLBACK (jika masih butuh) =================
 Route::get('/registrasi', function () { return view('registrasi'); })->name('registrasi');
-Route::get('/status-pendaftaran', function () { return view('status_pendaftaran'); })->name('status_pendaftaran');
+// Route::get('/status-pendaftaran', function () { return view('status_pendaftaran'); })->name('status_pendaftaran');
