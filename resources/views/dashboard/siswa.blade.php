@@ -1044,7 +1044,7 @@
                     <div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 mt-4 rounded-r-lg">
                         <p class="text-yellow-800 mb-0 flex items-center">
                             <i class="fas fa-exclamation-triangle mr-2"></i>
-                            <strong>Penting:</strong> Simpan bukti transfer Anda. Upload bukti transfer setelah melakukan pembayaran.
+                            <strong>Penting: </strong> Simpan bukti transfer Anda. Upload bukti transfer setelah melakukan pembayaran.
                         </p>
                     </div>
                 </div>

@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ... existing head content ... -->
+    <!-- Untuk CSRF token & base URL di JavaScript -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="base-url" content="{{ url('/') }}">
+    
+    <!-- ... existing head content ... -->
   <title>Admin PPDB - SMK BPM</title>
   
   <!-- Dependencies -->
@@ -158,6 +165,7 @@
          
         </div>
       </div>
+
     </header>
 
     <!-- Pages Container -->
@@ -176,7 +184,7 @@
         <div class="card p-4">
           <div class="flex flex-col lg:flex-row justify-between gap-4">
             <div class="flex flex-wrap gap-2">
-              <select id="filterStatus" onchange="applyFilters()" class="input-field select-field px-3 py-2 rounded-lg text-sm"><option value="all">Semua Status</option><option value="pending">Menunggu</option><option value="approved">Diterima</option><option value="rejected">Ditolak</option></select>
+              <select id="filterStatus" onchange="applyFilters()" class="input-field select-field px-3 py-2 rounded-lg text-sm"><option value="all">Semua Status</option><option value="submit">Menunggu</option><option value="diverifikasi">Diterima</option><option value="rejected">Ditolak</option></select>
               <select id="filterJurusan" onchange="applyFilters()" class="input-field select-field px-3 py-2 rounded-lg text-sm"><option value="all">Semua Jurusan</option><option value="RPL">RPL</option><option value="TKJ">TKJ</option><option value="DKV">DKV</option><option value="BD">Bisnis Digital</option><option value="AK">Akuntansi</option></select>
               <button onclick="resetFilters()" class="btn-glass px-3 py-2 rounded-lg text-sm"><i class="fas fa-filter mr-1.5"></i>Reset</button>
             </div>
@@ -280,156 +288,291 @@
 
   <!-- JavaScript -->
   <script>
-    // ================= DATA =================
-    const dataPendaftar = [
-      { id:1, no:'BPM-2026-001', nama:'Ahmad Rizki', nisn:'0061234567', nik:'3201234567890123', ttl:'Bandung, 15 Mar 2010', jk:'L', hp:'081234567890', sekolah:'SMPN 1 Bandung', alamat:'Jl. Merdeka 12, Bandung', jurusan:'RPL', tanggal:'2026-01-15', status:'pending', ayah:'Budi Rizki', kerjaAyah:'PNS', ibu:'Siti Aminah', kerjaIbu:'Guru' },
-      { id:2, no:'BPM-2026-002', nama:'Dewi Lestari', nisn:'0062345678', nik:'3202345678901234', ttl:'Jakarta, 22 Mei 2010', jk:'P', hp:'082345678901', sekolah:'SMPN 5 Jakarta', alamat:'Jl. Sudirman 45, Jakarta', jurusan:'DKV', tanggal:'2026-01-16', status:'approved', ayah:'Agus Setiawan', kerjaAyah:'Wiraswasta', ibu:'Rina Kartika', kerjaIbu:'IRT' },
-      { id:3, no:'BPM-2026-003', nama:'Fajar Pratama', nisn:'0063456789', nik:'3203456789012345', ttl:'Surabaya, 08 Jul 2010', jk:'L', hp:'083456789012', sekolah:'MTsN 2 Surabaya', alamat:'Jl. Pahlawan 78, Surabaya', jurusan:'TKJ', tanggal:'2026-01-17', status:'rejected', ayah:'Hendra Wijaya', kerjaAyah:'Karyawan', ibu:'Maya Sari', kerjaIbu:'Perawat' },
-      { id:4, no:'BPM-2026-004', nama:'Siti Nurhaliza', nisn:'0064567890', nik:'3204567890123456', ttl:'Medan, 12 Sep 2010', jk:'P', hp:'084567890123', sekolah:'SMPN 3 Medan', alamat:'Jl. Diponegoro 56, Medan', jurusan:'BD', tanggal:'2026-02-01', status:'pending', ayah:'Rizal Fahmi', kerjaAyah:'Dokter', ibu:'Anita Dewi', kerjaIbu:'Apoteker' },
-      { id:5, no:'BPM-2026-005', nama:'Rizky Febian', nisn:'0065678901', nik:'3205678901234567', ttl:'Semarang, 25 Nov 2010', jk:'L', hp:'085678901234', sekolah:'SMPN 8 Semarang', alamat:'Jl. Pemuda 89, Semarang', jurusan:'AK', tanggal:'2026-02-03', status:'approved', ayah:'David Simanjuntak', kerjaAyah:'Polisi', ibu:'Maria Simbolon', kerjaIbu:'Guru' }
-    ];
+    // ================= CONFIG =================
+const BASE_URL = document.querySelector('meta[name="base-url"]')?.content || '';
+const CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]')?.content || '';
 
-    let filtered = [...dataPendaftar], page = 1, perPage = 10, selectedIds = [], currentPendaftar = null;
-    let charts = {};
+// ================= STATE =================
+let dataPendaftar = [];
+let pagination = { current_page: 1, last_page: 1, total: 0, per_page: 10 };
+let currentPendaftar = null;
+let charts = {};
+let selectedIds = [];
 
-    // ================= INIT =================
-    document.addEventListener('DOMContentLoaded', () => {
-      renderTable();
-      updateStats();
-      document.addEventListener('click', e => {
-        const pm = document.getElementById('profileMenu');
-        if (pm && !pm.contains(e.target) && !e.target.closest('[onclick="toggleProfile()"]')) pm.classList.add('hidden');
-      });
+// ================= INIT =================
+document.addEventListener('DOMContentLoaded', () => {
+    fetchDataPendaftar(); // Panggil API saat web pertama kali dibuka
+    
+    // Setup event listener untuk pencarian (Debounce agar tidak spam API)
+    let timeout;
+    document.getElementById('searchInput')?.addEventListener('input', (e) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            fetchDataPendaftar({ search: e.target.value, page: 1 });
+        }, 500); 
     });
 
-    // ================= NAVIGATION =================
-    function switchPage(pg) {
-      document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-      
-      document.getElementById(`page-${pg}`).classList.add('active');
-      document.getElementById(`nav-${pg}`).classList.add('active');
-      
-      const titles = { dashboard: ['Dashboard', 'Kelola data pendaftar PPDB'], stats: ['Statistik', 'Analitik dan laporan data pendaftar'] };
-      document.getElementById('pageTitle').textContent = titles[pg][0];
-      document.getElementById('pageSub').textContent = titles[pg][1];
-      
-      if (pg === 'stats' && !charts.trend) initCharts();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    // Tutup dropdown profile jika klik di luar
+    document.addEventListener('click', e => {
+        const pm = document.getElementById('profileMenu');
+        if (pm && !pm.contains(e.target) && !e.target.closest('[onclick="toggleProfile()"]')) pm.classList.add('hidden');
+    });
+});
 
-    // ================= DASHBOARD LOGIC =================
-    function updateStats() {
-      const t = dataPendaftar.length, p = dataPendaftar.filter(d=>d.status==='pending').length, a = dataPendaftar.filter(d=>d.status==='approved').length, r = dataPendaftar.filter(d=>d.status==='rejected').length;
-      document.getElementById('stat-total').textContent = t; document.getElementById('stat-pending').textContent = p;
-      document.getElementById('stat-approved').textContent = a; document.getElementById('stat-rejected').textContent = r;
-      document.getElementById('nav-count').textContent = p;
-      document.getElementById('prog-pending').style.width = `${t?(p/t)*100:0}%`;
-      document.getElementById('prog-approved').style.width = `${t?(a/t)*100:0}%`;
-      document.getElementById('prog-rejected').style.width = `${t?(r/t)*100:0}%`;
-    }
+// ================= 1. API: AMBIL DATA TABEL =================
+async function fetchDataPendaftar(params = {}) {
+    try {
+        showLoader();
+        const url = new URL(`${BASE_URL}/admin/pendaftarans/data`); // Sesuaikan dengan route web.php kamu
+        
+        // Ambil value dari filter jika tidak ada parameter khusus
+        const search = params.search !== undefined ? params.search : document.getElementById('searchInput').value;
+        const status = document.getElementById('filterStatus').value;
+        const jurusan = document.getElementById('filterJurusan').value;
+        const page = params.page || pagination.current_page;
 
-    function renderTable() {
-      const tb = document.getElementById('tableBody'), es = document.getElementById('emptyState');
-      const s = (page-1)*perPage, e = s+perPage, pg = filtered.slice(s, e);
-      
-      if (!pg.length) { tb.innerHTML=''; es.classList.remove('hidden'); updatePag(); return; }
-      es.classList.add('hidden');
-      
-      tb.innerHTML = pg.map(d => `
+        if(search) url.searchParams.append('search', search);
+        if(status && status !== 'all') url.searchParams.append('status', status);
+        if(jurusan && jurusan !== 'all') url.searchParams.append('jurusan', jurusan);
+        url.searchParams.append('page', page);
+        
+        const response = await fetch(url.toString(), {
+            headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' }
+        });
+        
+        if (!response.ok) throw new Error('Gagal mengambil data');
+        
+        const result = await response.json();
+        dataPendaftar = result.data;
+        pagination = result.pagination;
+        
+        renderTable();
+        updateStats(result.stats); // Update card statistik
+        
+    } catch (error) {
+        console.error('Fetch error:', error);
+        showToast('Gagal memuat data pendaftar', 'error');
+    } finally {
+        hideLoader();
+    }
+}
+
+// ================= 2. API: AMBIL DETAIL (MODAL) =================
+async function viewDetail(id) {
+    try {
+        showLoader();
+        const response = await fetch(`${BASE_URL}/admin/pendaftarans/${id}`, {
+            headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' }
+        });
+        
+        if (!response.ok) throw new Error('Gagal mengambil detail');
+        const detail = await response.json();
+        currentPendaftar = detail;
+
+        // Render Data Diri
+        document.getElementById('mName').textContent = detail.nama_lengkap;
+        document.getElementById('mNo').textContent = detail.no_pendaftaran;
+        document.getElementById('mNisn').textContent = detail.nisn;
+        document.getElementById('mNik').textContent = detail.nik;
+        document.getElementById('mTtl').textContent = `${detail.tempat_lahir}, ${detail.tanggal_lahir}`;
+        document.getElementById('mJk').textContent = detail.jenis_kelamin;
+        document.getElementById('mHp').textContent = detail.no_hp;
+        document.getElementById('mSekolah').textContent = detail.asal_sekolah;
+        document.getElementById('mAlamat').textContent = detail.alamat;
+
+        // Render Status Badge
+        const badgeClass = detail.status === 'draft' ? 'badge-pending' : (detail.status === 'diverifikasi' ? 'badge-approved' : (detail.status === 'rejected' ? 'badge-rejected' : 'badge-pending'));
+        const iconClass = detail.status === 'diverifikasi' ? 'check' : (detail.status === 'rejected' ? 'times' : 'clock');
+        const textStatus = detail.status === 'draft' || detail.status === 'submit' ? 'Menunggu' : (detail.status === 'diverifikasi' ? 'Diterima' : 'Ditolak');
+        
+        document.getElementById('mStatus').className = `badge ${badgeClass}`;
+        document.getElementById('mStatus').innerHTML = `<i class="fas fa-${iconClass}"></i> ${textStatus}`;
+
+        // Render Orang Tua
+        if(detail.orang_tua) {
+            document.getElementById('mAyah').textContent = detail.orang_tua.nama_ayah || '-';
+            document.getElementById('mKerjaAyah').textContent = detail.orang_tua.pekerjaan_ayah || '-';
+            document.getElementById('mIbu').textContent = detail.orang_tua.nama_ibu || '-';
+            document.getElementById('mKerjaIbu').textContent = detail.orang_tua.pekerjaan_ibu || '-';
+        }
+
+        // Render Berkas (Loop dokumen)
+        const tabBerkas = document.getElementById('tab-berkas');
+        if(detail.dokumen && detail.dokumen.length > 0) {
+            let htmlBerkas = '<div class="grid grid-cols-2 md:grid-cols-4 gap-4">';
+            detail.dokumen.forEach(d => {
+                htmlBerkas += `
+                <a href="${d.url}" target="_blank" class="bg-white/5 rounded-lg p-4 text-center cursor-pointer hover:bg-white/10 transition block">
+                    <i class="fas fa-file-alt text-2xl text-navy-400 mb-2"></i>
+                    <p class="text-sm capitalize">${d.jenis.replace('_', ' ')}</p>
+                </a>`;
+            });
+            // Tambah Bukti Pembayaran jika ada
+            if(detail.pembayaran && detail.pembayaran.bukti_url) {
+                htmlBerkas += `
+                <a href="${detail.pembayaran.bukti_url}" target="_blank" class="bg-white/5 rounded-lg p-4 text-center cursor-pointer hover:bg-white/10 transition block">
+                    <i class="fas fa-receipt text-2xl text-emerald-400 mb-2"></i>
+                    <p class="text-sm">Bukti Pembayaran</p>
+                    <p class="text-xs text-gray-400 mt-1">${detail.pembayaran.bank}</p>
+                </a>`;
+            }
+            htmlBerkas += '</div>';
+            tabBerkas.innerHTML = htmlBerkas;
+        } else {
+            tabBerkas.innerHTML = '<p class="text-center text-gray-400 py-4">Belum ada berkas yang diunggah.</p>';
+        }
+
+        // Atur Tombol Action
+        const ba = document.getElementById('btnApprove'), br = document.getElementById('btnReject');
+        const isPending = detail.status === 'submit' || detail.status === 'draft';
+        ba.classList.toggle('hidden', !isPending);
+        br.classList.toggle('hidden', !isPending);
+
+        openModal('modalDetail');
+    } catch (error) {
+        showToast('Gagal memuat detail pendaftar', 'error');
+    } finally {
+        hideLoader();
+    }
+}
+
+// ================= 3. API: UPDATE STATUS =================
+async function executeUpdateStatus(id, status, keterangan = '') {
+    try {
+        showLoader();
+        const response = await fetch(`${BASE_URL}/admin/pendaftarans/${id}/status`, { // Pastikan route sesuai
+            method: 'PATCH', // atau POST jika route di web.php menggunakan post
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': CSRF_TOKEN,
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify({ status: status, keterangan: keterangan })
+        });
+        
+        if (!response.ok) throw new Error('Gagal update status');
+        const result = await response.json();
+        
+        showToast(result.message || 'Status berhasil diperbarui');
+        closeModal('modalDetail');
+        closeModal('modalReject');
+        
+        fetchDataPendaftar(); // Refresh Data Tabel
+    } catch (error) {
+        showToast('Terjadi kesalahan', 'error');
+    } finally {
+        hideLoader();
+    }
+}
+
+// Handler Tombol Action
+function approve() { if(currentPendaftar) executeUpdateStatus(currentPendaftar.id, 'diverifikasi'); }
+function quickApprove(id) { if(confirm('Terima pendaftar ini?')) executeUpdateStatus(id, 'diverifikasi'); }
+function openReject(id) { 
+    if(id) currentPendaftar = { id: id }; // Set dummy ID jika dari tabel
+    document.getElementById('reason').value = ''; 
+    openModal('modalReject'); 
+}
+function submitReject() { 
+    const r = document.getElementById('reason').value.trim(); 
+    if(!r) return showToast('Isi alasan penolakan', 'error'); 
+    executeUpdateStatus(currentPendaftar.id, 'rejected', r); 
+}
+
+// ================= RENDER UI FUNGSI =================
+function renderTable() {
+    const tb = document.getElementById('tableBody');
+    const es = document.getElementById('emptyState');
+    
+    if (!dataPendaftar || dataPendaftar.length === 0) { 
+        tb.innerHTML = ''; es.classList.remove('hidden'); updatePagUI(); return; 
+    }
+    
+    es.classList.add('hidden');
+    tb.innerHTML = dataPendaftar.map(d => {
+        const bgStatus = d.status === 'draft' || d.status === 'submit' ? 'pending' : (d.status === 'diverifikasi' ? 'approved' : 'rejected');
+        const iconStatus = d.status === 'diverifikasi' ? 'check' : (d.status === 'rejected' ? 'times' : 'clock');
+        const txtStatus = d.status === 'draft' || d.status === 'submit' ? 'Menunggu' : (d.status === 'diverifikasi' ? 'Diterima' : 'Ditolak');
+        const inisial = d.nama ? d.nama.split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase() : 'NN';
+
+        return `
         <tr>
-          <td class="text-center"><input type="checkbox" ${selectedIds.includes(d.id)?'checked':''} onchange="toggleSel(${d.id})" class="accent-navy-500"></td>
-          <td class="font-mono text-xs text-navy-400 bg-navy-500/10 px-2 py-1 rounded w-fit">${d.no}</td>
-          <td><div class="flex items-center gap-2"><div class="w-8 h-8 bg-gradient-navy rounded-lg flex items-center justify-center text-xs font-bold">${d.nama.split(' ').map(x=>x[0]).join('').slice(0,2)}</div><div><p class="font-medium text-sm">${d.nama}</p><p class="text-xs text-gray-500">${d.nisn}</p></div></div></td>
-          <td><span class="text-xs bg-navy-500/10 text-navy-300 px-2 py-1 rounded">${d.jurusan}</span></td>
-          <td class="text-sm">${d.sekolah}</td>
-          <td class="text-sm text-gray-400">${new Date(d.tanggal).toLocaleDateString('id-ID',{day:'numeric',month:'short'})}</td>
-          <td><span class="badge badge-${d.status}"><i class="fas fa-${d.status==='pending'?'clock':d.status==='approved'?'check':'times'}"></i>${d.status==='pending'?'Menunggu':d.status==='approved'?'Diterima':'Ditolak'}</span></td>
-          <td class="text-center"><div class="flex justify-center gap-1">
-            <button onclick="viewDetail(${d.id})" class="btn-glass w-7 h-7 rounded flex items-center justify-center hover:text-navy-300"><i class="fas fa-eye text-xs"></i></button>
-            ${d.status==='pending'?`<button onclick="quickApprove(${d.id})" class="btn-success w-7 h-7 rounded flex items-center justify-center"><i class="fas fa-check text-xs"></i></button><button onclick="openReject(${d.id})" class="btn-danger w-7 h-7 rounded flex items-center justify-center"><i class="fas fa-times text-xs"></i></button>`:''}
-          </div></td>
-        </tr>`).join('');
-      updatePag();
-    }
+            <td class="text-center"><input type="checkbox" ${selectedIds.includes(d.id)?'checked':''} onchange="toggleSel(${d.id})" class="accent-navy-500"></td>
+            <td class="font-mono text-xs text-navy-400 bg-navy-500/10 px-2 py-1 rounded w-fit">${d.no}</td>
+            <td>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-gradient-navy rounded-lg flex items-center justify-center text-xs font-bold text-white">${inisial}</div>
+                    <div><p class="font-medium text-sm text-white">${d.nama}</p><p class="text-xs text-gray-500">${d.nisn}</p></div>
+                </div>
+            </td>
+            <td><span class="text-xs bg-navy-500/10 text-navy-300 px-2 py-1 rounded">${d.jurusan}</span></td>
+            <td class="text-sm">${d.sekolah}</td>
+            <td class="text-sm text-gray-400">${d.tanggal}</td>
+            <td><span class="badge badge-${bgStatus}"><i class="fas fa-${iconStatus}"></i>${txtStatus}</span></td>
+            <td class="text-center">
+                <div class="flex justify-center gap-1">
+                    <button onclick="viewDetail(${d.id})" class="btn-glass w-7 h-7 rounded flex items-center justify-center hover:text-navy-300"><i class="fas fa-eye text-xs"></i></button>
+                    ${(d.status === 'submit' || d.status === 'draft') ? `<button onclick="quickApprove(${d.id})" class="btn-success w-7 h-7 rounded flex items-center justify-center"><i class="fas fa-check text-xs"></i></button><button onclick="openReject(${d.id})" class="btn-danger w-7 h-7 rounded flex items-center justify-center"><i class="fas fa-times text-xs"></i></button>` : ''}
+                </div>
+            </td>
+        </tr>`
+    }).join('');
+    updatePagUI();
+}
 
-    function toggleSel(id) { selectedIds = selectedIds.includes(id) ? selectedIds.filter(i=>i!==id) : [...selectedIds, id]; updateBulkBtn(); }
-    function toggleSelectAll() { const all = document.getElementById('selectAll').checked, pg = filtered.slice((page-1)*perPage, page*perPage); selectedIds = all ? pg.map(d=>d.id) : []; updateBulkBtn(); renderTable(); }
-    function updateBulkBtn() { const c = document.getElementById('sel-count'), b = document.getElementById('btnBulk'); c.textContent = selectedIds.length; b.disabled = !selectedIds.length; b.classList.toggle('opacity-50', !selectedIds.length); b.classList.toggle('cursor-not-allowed', !selectedIds.length); }
+function updateStats(backendStats) {
+    if(!backendStats) return;
+    const { total, pending, approved, rejected } = backendStats;
+    document.getElementById('stat-total').textContent = total; 
+    document.getElementById('stat-pending').textContent = pending;
+    document.getElementById('stat-approved').textContent = approved; 
+    document.getElementById('stat-rejected').textContent = rejected;
+    document.getElementById('nav-count').textContent = pending;
+    
+    document.getElementById('prog-pending').style.width = `${total ? (pending/total)*100 : 0}%`;
+    document.getElementById('prog-approved').style.width = `${total ? (approved/total)*100 : 0}%`;
+    document.getElementById('prog-rejected').style.width = `${total ? (rejected/total)*100 : 0}%`;
+}
 
-    function viewDetail(id) {
-      currentPendaftar = dataPendaftar.find(d=>d.id===id); if(!currentPendaftar) return;
-      document.getElementById('mName').textContent = currentPendaftar.nama;
-      document.getElementById('mNo').textContent = currentPendaftar.no;
-      document.getElementById('mStatus').className = `badge badge-${currentPendaftar.status}`;
-      document.getElementById('mStatus').innerHTML = `<i class="fas fa-${currentPendaftar.status==='pending'?'clock':currentPendaftar.status==='approved'?'check':'times'}"></i> ${currentPendaftar.status==='pending'?'Menunggu':currentPendaftar.status==='approved'?'Diterima':'Ditolak'}`;
-      ['Nisn','Nik','Ttl','Jk','Hp','Sekolah','Alamat','Ayah','KerjaAyah','Ibu','KerjaIbu'].forEach(f => {
-        const el = document.getElementById(`m${f}`); if(el) el.textContent = currentPendaftar[f.replace(/^./, c=>c.toLowerCase())] || '-';
-      });
-      document.getElementById('mJk').textContent = currentPendaftar.jk==='L'?'Laki-laki':'Perempuan';
-      const ba = document.getElementById('btnApprove'), br = document.getElementById('btnReject');
-      ba.classList.toggle('hidden', currentPendaftar.status!=='pending'); br.classList.toggle('hidden', currentPendaftar.status!=='pending');
-      openModal('modalDetail');
-    }
-
-    function approve() { if(!currentPendaftar) return; showLoader(); setTimeout(()=>{ currentPendaftar.status='approved'; closeModal('modalDetail'); renderTable(); updateStats(); hideLoader(); showToast('Berhasil diterima'); }, 600); }
-    function quickApprove(id) { if(confirm('Terima pendaftar ini?')) { dataPendaftar.find(d=>d.id===id).status='approved'; renderTable(); updateStats(); showToast('Berhasil diterima'); } }
-    function openReject(id) { currentPendaftar = id ? dataPendaftar.find(d=>d.id===id) : currentPendaftar; document.getElementById('reason').value=''; openModal('modalReject'); }
-    function submitReject() { const r = document.getElementById('reason').value.trim(); if(!r) { showToast('Isi alasan penolakan', 'error'); return; } showLoader(); setTimeout(()=>{ if(currentPendaftar) currentPendaftar.status='rejected'; closeModal('modalReject'); renderTable(); updateStats(); hideLoader(); showToast('Berhasil ditolak'); }, 600); }
-
-    function searchData() { const k = document.getElementById('searchInput').value.toLowerCase(); filtered = dataPendaftar.filter(d => d.nama.toLowerCase().includes(k) || d.nisn.includes(k) || d.no.toLowerCase().includes(k)); page=1; renderTable(); }
-    function applyFilters() { const s = document.getElementById('filterStatus').value, j = document.getElementById('filterJurusan').value; filtered = dataPendaftar.filter(d => (s==='all'||d.status===s) && (j==='all'||d.jurusan===j)); page=1; renderTable(); }
-    function resetFilters() { document.getElementById('searchInput').value=''; document.getElementById('filterStatus').value='all'; document.getElementById('filterJurusan').value='all'; filtered=[...dataPendaftar]; page=1; renderTable(); }
-    function refreshData() { showLoader(); setTimeout(()=>{ hideLoader(); renderTable(); updateStats(); showToast('Data diperbarui'); }, 800); }
-
-    // ================= PAGINATION =================
-    function updatePag() {
-      const t = filtered.length, tp = Math.max(1, Math.ceil(t/perPage));
-      document.getElementById('showingInfo').textContent = `Menampilkan ${t} data`;
-      const pg = document.getElementById('pagination'); pg.innerHTML='';
-      for(let i=1; i<=tp; i++) {
-        const b = document.createElement('button'); b.textContent = i; b.className = `w-8 h-8 rounded-lg text-sm transition ${i===page?'bg-navy-500 text-white shadow-glow':'btn-glass hover:text-white'}`;
-        b.onclick = () => { page=i; renderTable(); window.scrollTo({top:0,behavior:'smooth'}); };
+function updatePagUI() {
+    document.getElementById('showingInfo').textContent = `Menampilkan halaman ${pagination.current_page} dari ${pagination.last_page} (${pagination.total} Total Data)`;
+    const pg = document.getElementById('pagination'); 
+    pg.innerHTML = '';
+    
+    for(let i = 1; i <= pagination.last_page; i++) {
+        const b = document.createElement('button'); 
+        b.textContent = i; 
+        b.className = `w-8 h-8 rounded-lg text-sm transition ${i === pagination.current_page ? 'bg-navy-500 text-white shadow-glow' : 'btn-glass hover:text-white'}`;
+        b.onclick = () => { fetchDataPendaftar({ page: i }); window.scrollTo({top:0,behavior:'smooth'}); };
         pg.appendChild(b);
-      }
     }
+}
 
-    // ================= STATS CHARTS =================
-    function initCharts() {
-      Chart.defaults.color = '#94A3B8'; Chart.defaults.font.family = 'Plus Jakarta Sans';
-      charts.trend = new Chart(document.getElementById('chartTrend'), { type:'line', data:{ labels:['Jan','Feb','Mar','Apr','Mei','Jun'], datasets:[{ label:'Baru', data:[12,19,15,25,22,30], borderColor:'#6366F1', backgroundColor:'rgba(99,102,241,0.1)', fill:true, tension:0.4, pointRadius:2, borderWidth:2 }] }, options:{ responsive:true, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true,grid:{color:'rgba(99,102,241,0.1)'}},x:{grid:{display:false}}} } });
-      charts.jurusan = new Chart(document.getElementById('chartJurusan'), { type:'doughnut', data:{ labels:['RPL','TKJ','DKV','BD','AK'], datasets:[{ data:[35,28,20,12,5], backgroundColor:['#6366F1','#8B5CF6','#06B6D4','#EC4899','#F59E0B'], borderWidth:0 }] }, options:{ responsive:true, cutout:'65%', plugins:{legend:{position:'bottom',labels:{color:'#94A3B8',padding:15}}} } });
-      charts.status = new Chart(document.getElementById('chartStatus'), { type:'bar', data:{ labels:['Menunggu','Diterima','Ditolak'], datasets:[{ data:[24,45,8], backgroundColor:['rgba(245,158,11,0.8)','rgba(16,185,129,0.8)','rgba(239,68,68,0.8)'], borderRadius:6 }] }, options:{ indexAxis:'y', responsive:true, plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true,grid:{color:'rgba(99,102,241,0.1)'}},y:{grid:{display:false}}} } });
-      
-      document.getElementById('statTotal').textContent = '144'; document.getElementById('statRatio').textContent = '68%';
-      document.getElementById('statTime').textContent = '1.8h'; document.getElementById('statFiles').textContent = '92%';
-      
-      const schools = [{n:'SMPN 1 Bandung',p:16},{n:'SMPN 5 Jakarta',p:12},{n:'MTsN 2 Surabaya',p:9},{n:'SMPN 3 Medan',p:8},{n:'SMPN 8 Semarang',p:6}];
-      document.getElementById('topSchools').innerHTML = schools.map((s,i)=>`<div class="flex items-center gap-3"><div class="w-7 h-7 rounded bg-navy-500/20 flex items-center justify-center text-xs font-bold text-navy-300">${i+1}</div><div class="flex-1"><p class="text-sm font-medium">${s.n}</p><div class="progress-bg mt-1"><div class="progress-fill" style="width:${s.p}%"></div></div></div><span class="text-sm font-semibold">${s.p}%</span></div>`).join('');
-    }
-    function updateStatsCharts() { showToast('Filter statistik diterapkan'); }
+// Fitur Tambahan UI
+function applyFilters() { fetchDataPendaftar({ page: 1 }); }
+function resetFilters() { 
+    document.getElementById('searchInput').value = ''; 
+    document.getElementById('filterStatus').value = 'all'; 
+    document.getElementById('filterJurusan').value = 'all'; 
+    fetchDataPendaftar({ page: 1 }); 
+}
+function toggleSel(id) { selectedIds = selectedIds.includes(id) ? selectedIds.filter(i=>i!==id) : [...selectedIds, id]; updateBulkBtn(); }
+function toggleSelectAll() { const all = document.getElementById('selectAll').checked; selectedIds = all ? dataPendaftar.map(d=>d.id) : []; updateBulkBtn(); renderTable(); }
+function updateBulkBtn() { const c = document.getElementById('sel-count'), b = document.getElementById('btnBulk'); c.textContent = selectedIds.length; b.disabled = !selectedIds.length; b.classList.toggle('opacity-50', !selectedIds.length); b.classList.toggle('cursor-not-allowed', !selectedIds.length); }
+function openBulk() { if(!selectedIds.length) return showToast('Pilih data dulu','error'); document.getElementById('bulkCount').textContent = selectedIds.length; openModal('modalBulk'); }
+function exportData() { window.location.href = `${BASE_URL}/admin/pendaftarans/export?status=${document.getElementById('filterStatus').value}`; }
 
-    // ================= UI HELPERS =================
-    function switchTab(btn, id) { document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active')); btn.classList.add('active'); document.getElementById(id).classList.add('active'); }
-    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('-translate-x-full'); document.getElementById('sidebarOverlay').classList.toggle('hidden'); }
-    function toggleProfile() { document.getElementById('profileMenu').classList.toggle('hidden'); }
-    function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow='hidden'; }
-    function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow=''; }
-    function showLoader() { document.getElementById('loader').classList.remove('hidden'); }
-    function hideLoader() { document.getElementById('loader').classList.add('hidden'); }
-    function showToast(msg, type='success') {
-      const t = document.getElementById('toast'), ic = document.getElementById('toastIcon'), ti = document.getElementById('toastTitle'), ms = document.getElementById('toastMsg');
-      ic.className = `w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${type==='success'?'bg-emerald-500/20':'bg-rose-500/20'}`;
-      ic.innerHTML = `<i class="fas fa-${type==='success'?'check':'exclamation'} ${type==='success'?'text-emerald-400':'text-rose-400'}"></i>`;
-      ti.textContent = type==='success'?'Sukses':'Error'; ms.textContent = msg;
-      t.classList.remove('translate-x-full'); setTimeout(()=>t.classList.add('translate-x-full'), 3000);
-    }
-    function openBulk() { if(!selectedIds.length) return showToast('Pilih data dulu','error'); document.getElementById('bulkCount').textContent=selectedIds.length; openModal('modalBulk'); }
-    function bulkApprove() { closeModal('modalBulk'); showToast('Bulk approve diproses'); }
-    function bulkReject() { closeModal('modalBulk'); showToast('Bulk reject diproses'); }
-    function bulkExport() { closeModal('modalBulk'); showToast('Export berhasil'); }
-    function exportData() { showToast('Data diekspor ke CSV'); }
-    function exportStats() { showToast('Laporan statistik digenerate'); }
+// Helper Modal & Tab
+function switchTab(btn, id) { document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active')); btn.classList.add('active'); document.getElementById(id).classList.add('active'); }
+function switchPage(pg) { document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active')); document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active')); document.getElementById(`page-${pg}`).classList.add('active'); document.getElementById(`nav-${pg}`).classList.add('active'); }
+function toggleSidebar() { document.getElementById('sidebar').classList.toggle('-translate-x-full'); document.getElementById('sidebarOverlay').classList.toggle('hidden'); }
+function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow='hidden'; }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow=''; }
+function showLoader() { document.getElementById('loader').classList.remove('hidden'); }
+function hideLoader() { document.getElementById('loader').classList.add('hidden'); }
+function showToast(msg, type='success') { const t = document.getElementById('toast'), ic = document.getElementById('toastIcon'), ti = document.getElementById('toastTitle'), ms = document.getElementById('toastMsg'); ic.className = `w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${type==='success'?'bg-emerald-500/20':'bg-rose-500/20'}`; ic.innerHTML = `<i class="fas fa-${type==='success'?'check':'exclamation'} ${type==='success'?'text-emerald-400':'text-rose-400'}"></i>`; ti.textContent = type==='success'?'Sukses':'Error'; ms.textContent = msg; t.classList.remove('translate-x-full'); setTimeout(()=>t.classList.add('translate-x-full'), 3000); }
   </script>
+
 </body>
-</html>
+</html>  
