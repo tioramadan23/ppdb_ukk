@@ -437,7 +437,7 @@ dark:bg-gray-950 dark:text-gray-200 transition-colors duration-300">
                             <p class="text-gray-800 dark:text-gray-200 text-lg font-semibold leading-relaxed text-center">
                                 "Dengan bekal keimanan & ketaqwaan mempercepat kemampuan wilayah dengan mempersiapkan
                                 sumber daya manusia yang berkualitas, memiliki daya nalar tinggi,kreatif,produktif & inovatif.
-                                mempersiapkan sumber daya manusia yang mampu beradaptasi dengan segala perkembangan keilmuan di era revolusi teknologi informasi & komunikasi"
+                                Mempersiapkan sumber daya manusia yang mampu beradaptasi dengan segala perkembangan keilmuan di era revolusi teknologi informasi & komunikasi."
                             </p>
                         </div>
                     </div>
@@ -454,23 +454,23 @@ dark:bg-gray-950 dark:text-gray-200 transition-colors duration-300">
                         <div class="space-y-4">
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm mr-3 mt-1">1</div>
-                                <p class="text-gray-700 dark:text-gray-300">memiliki aktivitas yang kreatif, aktif, produktif dan inovatif</p>
+                                <p class="text-gray-700 dark:text-gray-300">Memiliki aktivitas yang kreatif, aktif, produktif dan inovatif.</p>
                             </div>
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm mr-3 mt-1">2</div>
-                                <p class="text-gray-700 dark:text-gray-300">melaksanakan pembelajaran,pelatihan dan bimbingan secara efektif.</p>
+                                <p class="text-gray-700 dark:text-gray-300">Melaksanakan pembelajaran, pelatihan dan bimbingan secara efektif.</p>
                             </div>
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm mr-3 mt-1">3</div>
-                                <p class="text-gray-700 dark:text-gray-300">menghasilkan tenaga kerja profesional teknologi untuk memenuhi tuntutan dunia usaha dan bidang industri (DUDI)</p>
+                                <p class="text-gray-700 dark:text-gray-300">Menghasilkan tenaga kerja profesional teknologi untuk memenuhi tuntutan dunia usaha dan bidang industri (DUDI).</p>
                             </div>
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm mr-3 mt-1">4</div>
-                                <p class="text-gray-700 dark:text-gray-300">membekali peserta didik dengan kemampuan untuk dapat mengembangkan diri</p>
+                                <p class="text-gray-700 dark:text-gray-300">Membekali peserta didik dengan kemampuan untuk dapat mengembangkan diri.</p>
                             </div>
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm mr-3 mt-1">5</div>
-                                <p class="text-gray-700 dark:text-gray-300">mengembangkan pendidikan berbasis kompetensi yang berorientasi pada dunia kerja dan industri</p>
+                                <p class="text-gray-700 dark:text-gray-300">Mengembangkan pendidikan berbasis kompetensi yang berorientasi pada dunia kerja dan industri.</p>
                             </div>
                         </div>
                     </div>

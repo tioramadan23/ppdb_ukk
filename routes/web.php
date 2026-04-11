@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\Admin\PendaftaranAdminController; 
 
 // ================= PUBLIC ROUTES =================
+Route::get('/', function () { return view('home'); })->name('home');
 Route::get('/home', function () { return view('home'); })->name('home');
 Route::get('/tentang_sekolah', function () { return view('tentang_sekolah'); })->name('tentang_sekolah');
 Route::get('/informasi', function () { return view('informasi'); })->name('informasi');
@@ -25,14 +27,14 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 // ================= PROTECTED ROUTES (AUTH) =================
 Route::middleware('auth')->group(function () {
     
-    // Dashboard default
+    // Dashboard default (auto redirect by role)
     Route::get('/dashboard', function () {
         return auth()->user()->role === 'admin' 
-            ? view('dashboard.admin') 
+            ? redirect()->route('admin.dashboard') // ✅ Diubah sedikit agar memanggil nama route yang benar di group admin
             : view('dashboard.siswa');
     })->name('dashboard');
 
-    // ✅ PENDAFTARAN ROUTES (FIXED - NO DUPLICATES)
+    // ✅ PENDAFTARAN ROUTES (Siswa)
     Route::get('/pendaftaran', [PendaftaranController::class, 'create'])
         ->name('pendaftaran.create');
     
@@ -42,9 +44,41 @@ Route::middleware('auth')->group(function () {
     Route::get('/pendaftaran/status', [PendaftaranController::class, 'status'])
         ->name('pendaftaran.status');
 
-    // Dashboard per role (jika butuh beda view)
+    // ================= 🎯 ADMIN ROUTES =================
+    Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+        
+        // 📊 Dashboard Admin (Halaman Utama)
+        Route::get('/dashboard', function () {
+            return view('dashboard.admin'); 
+        })->name('dashboard');
+        
+        // 📡 API: Ambil data pendaftar (✅ URL Disesuaikan dengan JS jadi /pendaftarans/data)
+        Route::get('/pendaftarans/data', [PendaftaranAdminController::class, 'getData'])
+            ->name('pendaftarans.data');
+
+        // 📡 API: Export data ke CSV (✅ Dipindah ke ATAS {id} agar tidak terbaca sebagai ID)
+        Route::get('/pendaftarans/export', [PendaftaranAdminController::class, 'export'])
+            ->name('pendaftarans.export');
+        
+        // 📡 API: Detail lengkap satu pendaftar
+        Route::get('/pendaftarans/{id}', [PendaftaranAdminController::class, 'show'])
+            ->name('pendaftarans.show');
+        
+        // 📡 API: Update status (approve/reject)
+        Route::patch('/pendaftarans/{id}/status', [PendaftaranAdminController::class, 'updateStatus'])
+            ->name('pendaftarans.status');
+        
+        // 📡 API: Statistik untuk chart
+        Route::get('/stats', [PendaftaranAdminController::class, 'getStats'])
+            ->name('stats');
+    });
+    // ================= END ADMIN ROUTES =================
+
+    // Dashboard per role (jika butuh akses langsung)
     Route::middleware('role:admin')->group(function () {
-        Route::get('/dashboard/admin', function () { return view('dashboard.admin'); })->name('dashboard.admin');
+        Route::get('/dashboard/admin', function () { 
+            return redirect()->route('admin.dashboard'); 
+        })->name('dashboard.admin');
     });
 
     Route::middleware('role:calon_siswa')->group(function () {
@@ -52,6 +86,5 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-// ================= PUBLIC FALLBACK (jika masih butuh) =================
+// ================= PUBLIC FALLBACK =================
 Route::get('/registrasi', function () { return view('registrasi'); })->name('registrasi');
-// Route::get('/status-pendaftaran', function () { return view('status_pendaftaran'); })->name('status_pendaftaran');
