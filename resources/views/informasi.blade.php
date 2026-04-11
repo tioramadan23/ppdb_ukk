@@ -326,7 +326,7 @@
                     <i class="fas fa-clipboard-check text-white text-2xl"></i>
                 </div>
                 <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Seleksi</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-300">Ikuti test seleksi dan wawancara</p>
+                <p class="text-sm text-gray-600 dark:text-gray-300">Hasil seleksi menunggu dan diverifikasi  </p>
             </div>
 
             <!-- Step 5 -->
@@ -478,19 +478,7 @@
                         <i class="fas fa-check-circle text-green-500"></i>
                         <span>Formulir pendaftaran lengkap</span>
                     </li>
-                    <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                        <i class="fas fa-check-circle text-green-500"></i>
-                        <span>Test seleksi akademik</span>
-                    </li>
-                    <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                        <i class="fas fa-check-circle text-green-500"></i>
-                        <span>Wawancara calon siswa</span>
-                    </li>
-                    <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
-                        <i class="fas fa-check-circle text-green-500"></i>
-                        <span>Kartu peserta seleksi</span>
-                    </li>
-                </ul>
+                   
             </div>
 
             <!-- SPP -->
@@ -501,25 +489,25 @@
                         <i class="fas fa-graduation-cap text-white text-3xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">SPP Bulanan</h3>
-                    <div class="text-5xl font-extrabold text-green-700 dark:text-green-400 mb-2">Rp350.000</div>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm">Per bulan (10x per tahun)</p>
+                    <div class="text-5xl font-extrabold text-green-700 dark:text-green-400 mb-2">Sesuai Jurusan</div>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Per bulan (12x per tahun)</p>
                 </div>
                 <ul class="space-y-4 mb-8">
                     <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                         <i class="fas fa-check-circle text-green-500"></i>
-                        <span>Praktikum kejuruan</span>
+                        <span>DKV : Rp350.000</span>
                     </li>
                     <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                         <i class="fas fa-check-circle text-green-500"></i>
-                        <span>Ujian dan evaluasi</span>
+                        <span>RPL : Rp325.000</span>
                     </li>
                     <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                         <i class="fas fa-check-circle text-green-500"></i>
-                        <span>Fasilitas sekolah lengkap</span>
+                        <span>TKJ : Rp150.000</span>
                     </li>
                     <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                         <i class="fas fa-check-circle text-green-500"></i>
-                        <span>Asuransi siswa</span>
+                        <span>Bidi: Rp100.000</span>
                     </li>
                 </ul>
             </div>
@@ -684,7 +672,7 @@
                                 </div>
                             </div>
                             <span class="inline-block px-5 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full text-sm font-bold shadow-lg">
-                                <i class="fas fa-calendar-alt mr-2"></i>2 Jan - 28 Feb 2026
+                                <i class="fas fa-calendar-alt mr-2"></i>2 Jan - 31 Mar 2026
                             </span>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -730,7 +718,7 @@
                                 </div>
                             </div>
                             <span class="inline-block px-5 py-2 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full text-sm font-bold shadow-lg">
-                                <i class="fas fa-calendar-alt mr-2"></i>1 Mar - 30 Jun 2026
+                                <i class="fas fa-calendar-alt mr-2"></i>1 APR - 30 Jul 2026
                             </span>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -763,175 +751,10 @@
             </div>
         </div>
 
-        <!-- Kegiatan Seleksi -->
-        <div data-aos="fade-up" class="mt-20 bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700">
-            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-                <i class="fas fa-clipboard-list text-blue-600 mr-3"></i>
-                Kegiatan Seleksi
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="text-center p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl hover:shadow-lg transition-shadow duration-300">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i class="fas fa-pencil-alt text-white text-2xl"></i>
-                    </div>
-                    <h4 class="font-bold text-gray-900 dark:text-white mb-2">Test Tulis</h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Matematika, Bahasa Indonesia, Bahasa Inggris, IPA</p>
-                </div>
-                <div class="text-center p-6 bg-green-50 dark:bg-green-900/20 rounded-xl hover:shadow-lg transition-shadow duration-300">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i class="fas fa-comments text-white text-2xl"></i>
-                    </div>
-                    <h4 class="font-bold text-gray-900 dark:text-white mb-2">Wawancara</h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Test motivasi dan minat jurusan</p>
-                </div>
-                <div class="text-center p-6 bg-purple-50 dark:bg-purple-900/20 rounded-xl hover:shadow-lg transition-shadow duration-300">
-                    <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i class="fas fa-heartbeat text-white text-2xl"></i>
-                    </div>
-                    <h4 class="font-bold text-gray-900 dark:text-white mb-2">Test Kesehatan</h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Pemeriksaan kesehatan umum</p>
-                </div>
-                <div class="text-center p-6 bg-orange-50 dark:bg-orange-900/20 rounded-xl hover:shadow-lg transition-shadow duration-300">
-                    <div class="w-16 h-16 bg-gradient-to-br from-orange-600 to-orange-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i class="fas fa-bullhorn text-white text-2xl"></i>
-                    </div>
-                    <h4 class="font-bold text-gray-900 dark:text-white mb-2">Pengumuman</h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-300">Hasil seleksi akan diumumkan</p>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </section>
 
-<!-- FAQ Section dengan Accordion -->
-<section id="faq" class="py-20 px-6 bg-white dark:bg-gray-800">
-    <div class="max-w-4xl mx-auto">
-        <div data-aos="fade-up" class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Pertanyaan yang Sering Diajukan</h2>
-            <div class="w-24 h-1 bg-gradient-to-r from-blue-700 to-blue-900 mx-auto rounded-full"></div>
-            <p class="mt-4 text-gray-600 dark:text-gray-300">Temukan jawaban untuk pertanyaan umum seputar pendaftaran</p>
-        </div>
-
-        <div class="space-y-4">
-            <!-- FAQ Item 1 -->
-            <div data-aos="fade-up" data-aos-delay="0" class="faq-item bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-600">
-                <button class="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none" onclick="toggleFaq(this)">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-question text-blue-600 dark:text-blue-400"></i>
-                        </div>
-                        <span class="font-semibold text-gray-900 dark:text-white">Apakah bisa mendaftar online dari luar kota?</span>
-                    </div>
-                    <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
-                </button>
-                <div class="faq-content px-6">
-                    <div class="pb-5 pl-14 text-gray-700 dark:text-gray-300 leading-relaxed">
-                        Ya, pendaftaran dapat dilakukan secara online dari mana saja. Setelah pendaftaran online, calon siswa dapat mengirimkan berkas melalui email atau datang langsung ke sekolah untuk verifikasi. Kami juga menyediakan layanan konsultasi via WhatsApp untuk memudahkan calon siswa dari luar kota.
-                    </div>
-                </div>
-            </div>
-
-            <!-- FAQ Item 2 -->
-            <div data-aos="fade-up" data-aos-delay="100" class="faq-item bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-600">
-                <button class="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none" onclick="toggleFaq(this)">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-award text-green-600 dark:text-green-400"></i>
-                        </div>
-                        <span class="font-semibold text-gray-900 dark:text-white">Bagaimana cara mendaftar beasiswa?</span>
-                    </div>
-                    <i class="fas fa-chevron-down text-green-600 transition-transform duration-300"></i>
-                </button>
-                <div class="faq-content px-6">
-                    <div class="pb-5 pl-14 text-gray-700 dark:text-gray-300 leading-relaxed">
-                        Beasiswa dapat diajukan setelah siswa diterima di SMK BPM. Untuk beasiswa prestasi, diperlukan fotokopi rapor semester 1-5 dan sertifikat prestasi. Untuk beasiswa tidak mampu, diperlukan surat keterangan tidak mampu dari kelurahan dan fotokopi KK. Formulir beasiswa dapat diambil di bagian administrasi sekolah.
-                    </div>
-                </div>
-            </div>
-
-            <!-- FAQ Item 3 -->
-            <div data-aos="fade-up" data-aos-delay="200" class="faq-item bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-600">
-                <button class="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none" onclick="toggleFaq(this)">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-bed text-purple-600 dark:text-purple-400"></i>
-                        </div>
-                        <span class="font-semibold text-gray-900 dark:text-white">Apakah ada asrama untuk siswa?</span>
-                    </div>
-                    <i class="fas fa-chevron-down text-purple-600 transition-transform duration-300"></i>
-                </button>
-                <div class="faq-content px-6">
-                    <div class="pb-5 pl-14 text-gray-700 dark:text-gray-300 leading-relaxed">
-                        Saat ini SMK Bina Putra Mandiri belum menyediakan asrama. Namun sekolah dapat merekomendasikan asrama atau kos-kosan yang dekat dengan sekolah bagi siswa yang berasal dari luar kota. Kami memiliki daftar tempat tinggal yang aman dan terjangkau untuk siswa.
-                    </div>
-                </div>
-            </div>
-
-            <!-- FAQ Item 4 -->
-            <div data-aos="fade-up" data-aos-delay="300" class="faq-item bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-600">
-                <button class="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none" onclick="toggleFaq(this)">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-clock text-orange-600 dark:text-orange-400"></i>
-                        </div>
-                        <span class="font-semibold text-gray-900 dark:text-white">Bagaimana jika terlambat mendaftar gelombang I?</span>
-                    </div>
-                    <i class="fas fa-chevron-down text-orange-600 transition-transform duration-300"></i>
-                </button>
-                <div class="faq-content px-6">
-                    <div class="pb-5 pl-14 text-gray-700 dark:text-gray-300 leading-relaxed">
-                        Tidak perlu khawatir, masih ada gelombang II dan III. Namun kami sangat menyarankan untuk mendaftar di gelombang I karena kuota masih tersedia lebih banyak dan ada kemungkinan mendapatkan diskon khusus early bird. Pendaftaran gelombang berikutnya tetap membuka kesempatan yang sama.
-                    </div>
-                </div>
-            </div>
-
-            <!-- FAQ Item 5 -->
-            <div data-aos="fade-up" data-aos-delay="400" class="faq-item bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-600">
-                <button class="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none" onclick="toggleFaq(this)">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-exchange-alt text-red-600 dark:text-red-400"></i>
-                        </div>
-                        <span class="font-semibold text-gray-900 dark:text-white">Apakah bisa pindah jurusan setelah diterima?</span>
-                    </div>
-                    <i class="fas fa-chevron-down text-red-600 transition-transform duration-300"></i>
-                </button>
-                <div class="faq-content px-6">
-                    <div class="pb-5 pl-14 text-gray-700 dark:text-gray-300 leading-relaxed">
-                        Perpindahan jurusan dapat dilakukan dengan syarat ada kuota di jurusan yang dituju dan melalui proses persetujuan dari pihak sekolah. Permohonan pindah jurusan dapat diajukan maksimal 2 minggu setelah masa orientasi siswa (MOS) berakhir.
-                    </div>
-                </div>
-            </div>
-
-            <!-- FAQ Item 6 -->
-            <div data-aos="fade-up" data-aos-delay="500" class="faq-item bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-600">
-                <button class="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none" onclick="toggleFaq(this)">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-file-invoice-dollar text-yellow-600 dark:text-yellow-400"></i>
-                        </div>
-                        <span class="font-semibold text-gray-900 dark:text-white">Apakah ada cicilan untuk pembayaran SPP?</span>
-                    </div>
-                    <i class="fas fa-chevron-down text-yellow-600 transition-transform duration-300"></i>
-                </button>
-                <div class="faq-content px-6">
-                    <div class="pb-5 pl-14 text-gray-700 dark:text-gray-300 leading-relaxed">
-                        Untuk kondisi tertentu, sekolah dapat mempertimbangkan pembayaran SPP dengan sistem cicilan. Hal ini dapat dibahas langsung dengan bagian keuangan sekolah dengan menyertakan surat keterangan kondisi ekonomi dari kelurahan. Kami berkomitmen untuk membantu siswa yang memiliki keterbatasan ekonomi.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Contact CTA -->
-        <div data-aos="fade-up" class="mt-12 text-center">
-            <p class="text-gray-600 dark:text-gray-300 mb-4">Masih ada pertanyaan lain?</p>
-            <a href="https://wa.me/6281234567890" class="inline-flex items-center gap-3 px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
-                <i class="fab fa-whatsapp text-2xl"></i>
-                <span>Hubungi Panitia PPDB</span>
-            </a>
-        </div>
-    </div>
-</section>
 
 <!-- CTA Section -->
 <section class="py-20 px-6 bg-gradient-to-r from-blue-800 via-blue-900 to-blue-950 text-white relative overflow-hidden">

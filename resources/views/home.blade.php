@@ -261,7 +261,7 @@
             <div data-aos="fade-up" data-aos-delay="100" class="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                 <div class="h-1 bg-gradient-to-r from-blue-700 to-blue-900"></div>
                 <div class="h-40 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=160&fit=crop&crop=center" alt="Lokasi Strategis" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img src="{{ asset('storage/gedung_smk.jpeg') }}" alt="Lokasi Strategis" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Lokasi Strategis</h3>
@@ -275,7 +275,7 @@
             <div data-aos="fade-up" data-aos-delay="200" class="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                 <div class="h-1 bg-gradient-to-r from-blue-700 to-blue-900"></div>
                 <div class="h-40 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=400&h=160&fit=crop&crop=center" alt="Siap Kerja" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img src="{{ asset('storage/keunggulan/dunia_kerja.jpeg') }}" alt="Siap Kerja" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Siap Terjun ke Dunia Usaha</h3>
@@ -289,7 +289,7 @@
             <div data-aos="fade-up" data-aos-delay="300" class="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                 <div class="h-1 bg-gradient-to-r from-blue-700 to-blue-900"></div>
                 <div class="h-40 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1523580494863-132a890389f2?w=400&h=160&fit=crop&crop=center" alt="Beasiswa" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img src="{{ asset('storage/keunggulan/beasiswa.jpeg') }}" alt="Beasiswa" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Program Beasiswa</h3>
@@ -303,7 +303,7 @@
             <div data-aos="fade-up" data-aos-delay="400" class="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                 <div class="h-1 bg-gradient-to-r from-blue-700 to-blue-900"></div>
                 <div class="h-40 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=160&fit=crop&crop=center" alt="BKK" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img src="{{ asset('storage/keunggulan/bursa.jpeg') }}" alt="BKK" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Bursa Kerja Khusus (BKK)</h3>
@@ -317,7 +317,7 @@
             <div data-aos="fade-up" data-aos-delay="500" class="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                 <div class="h-1 bg-gradient-to-r from-blue-700 to-blue-900"></div>
                 <div class="h-40 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&h=160&fit=crop&crop=center" alt="Kuliah Lanjut" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img src="{{ asset('storage/keunggulan/perguruan_tinggi.jpg') }}" alt="Kuliah Lanjut" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Lanjut ke Perguruan Tinggi</h3>
@@ -331,7 +331,7 @@
             <div data-aos="fade-up" data-aos-delay="600" class="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
                 <div class="h-1 bg-gradient-to-r from-blue-700 to-blue-900"></div>
                 <div class="h-40 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=160&fit=crop&crop=center" alt="Kerja Sama Industri" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img src="{{ asset('storage/keunggulan/kerja_sama.jpeg') }}" alt="Kerja Sama Industri" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Kerja Sama Industri</h3>

@@ -251,7 +251,7 @@ dark:bg-gray-950 dark:text-gray-200 transition-colors duration-300">
                 <span class="font-medium text-sm md:text-base">Profil Sekolah</span>
             </div>
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-blue-700 dark:from-white dark:to-blue-400 mb-4 md:mb-5">
-                Tentang Kami
+                Tentang Sekolah
             </h2>
             <div class="w-16 md:w-20 h-1.5 bg-gradient-to-r from-blue-500 to-blue-700 mx-auto rounded-full"></div>
             <p class="text-gray-600 dark:text-gray-300 mt-4 md:mt-6 max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
@@ -262,7 +262,7 @@ dark:bg-gray-950 dark:text-gray-200 transition-colors duration-300">
         <!-- Hero Image with Overlay -->
         <div class="relative h-64 sm:h-80 md:h-96 lg:h-[450px] rounded-2xl md:rounded-3xl overflow-hidden shadow-xl md:shadow-2xl mb-12 md:mb-16 group">
             <img 
-                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=400&fit=crop" 
+               src="{{ asset('storage/gedung_smk.jpeg') }}"
                 alt="Gedung SMK Bina Putra Mandiri - Fasilitas Modern" 
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
@@ -281,7 +281,7 @@ dark:bg-gray-950 dark:text-gray-200 transition-colors duration-300">
                     <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-blue-600 flex items-center justify-center mr-3 md:mr-4 flex-shrink-0">
                         <i class="fas fa-crown text-white text-base md:text-xl"></i>
                     </div>
-                    <span class="text-blue-200 md:text-blue-300 font-medium text-sm md:text-lg">Didirikan sejak 2010</span>
+                    <span class="text-blue-200 md:text-blue-300 font-medium text-sm md:text-lg">Didirikan sejak 2007</span>
                 </div>
                 <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1 md:mb-2 leading-tight">
                     SMK Bina Putra Mandiri
@@ -501,7 +501,7 @@ dark:bg-gray-950 dark:text-gray-200 transition-colors duration-300">
                 <!-- Program 4: Kewirausahaan -->
                 <div class="program-card">
                     <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=400&h=192&fit=crop" alt="Kewirausahaan" class="w-full h-full object-cover">
+                        <img  src="{{ asset('storage/keunggulan/Kewirausahaan.jpeg') }}" alt="Kewirausahaan" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <div class="flex items-center mb-4">
@@ -525,7 +525,7 @@ dark:bg-gray-950 dark:text-gray-200 transition-colors duration-300">
                 <!-- Program 5: Karakter -->
                 <div class="program-card">
                     <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=192&fit=crop" alt="Pengembangan Karakter" class="w-full h-full object-cover">
+                        <img  src="{{ asset('storage/keunggulan/pengembangan karakter.jpeg') }}" alt="Pengembangan Karakter" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <div class="flex items-center mb-4">
@@ -549,7 +549,7 @@ dark:bg-gray-950 dark:text-gray-200 transition-colors duration-300">
                 <!-- Program 6: Bimbingan Karir -->
                 <div class="program-card">
                     <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=400&h=192&fit=crop" alt="Bimbingan Karir" class="w-full h-full object-cover">
+                        <img  src="{{ asset('storage/keunggulan/bimbingan karir.jpeg') }}" alt="Bimbingan Karir" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <div class="flex items-center mb-4">
