@@ -21,15 +21,14 @@ class Pendaftaran extends Model
         'tanggal_lahir',
         'jenis_kelamin',
         'agama',
-        'no_hp',              // ✅ Sudah diperbaiki
-        'alamat_lengkap',     // ✅ Sudah diperbaiki
+        'no_hp',             
+        'alamat_lengkap',
         'jurusan',
         'asal_sekolah',
         'status_pendaftaran',
         'status_hasil',
         'keterangan_hasil',
         'tanggal_pengumuman',
-        // 'email',           // ⚠️ Tambah ini HANYA jika kolom email ada di tabel pendaftarans
     ];
 
     protected $casts = [
@@ -37,6 +36,26 @@ class Pendaftaran extends Model
         'tanggal_pengumuman' => 'date',
         'submitted_at' => 'datetime',
     ];
+
+    // Boot method untuk auto-generate nomor pendaftaran
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($pendaftaran) {
+            if (empty($pendaftaran->no_pendaftaran)) {
+                $lastPendaftaran = static::orderBy('id', 'desc')->first();
+                $nextNumber = $lastPendaftaran ? intval(substr($lastPendaftaran->no_pendaftaran, -6)) + 1 : 1;
+                $pendaftaran->no_pendaftaran = 'BPM-' . date('Y') . '-' . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
+            }
+        });
+    }
+
+    // Accessor untuk nomor_pendaftaran (untuk kompatibilitas)
+    public function getNomorPendaftaranAttribute()
+    {
+        return $this->no_pendaftaran;
+    }
 
     // Relasi
     public function user() { return $this->belongsTo(User::class); }

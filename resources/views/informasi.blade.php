@@ -82,7 +82,7 @@
             border-radius: 50%;
             box-shadow: 0 4px 10px rgba(30, 64, 175, 0.3);
         }
-        .faq-item {
+        /* .faq-item {
             transition: all 0.3s ease;
         }
         .faq-item.active {
@@ -95,7 +95,7 @@
         }
         .faq-content.open {
             max-height: 500px;
-        }
+        } */
         .pulse-animation {
             animation: pulse 2s infinite;
         }
@@ -189,7 +189,7 @@
                         <i class="fas fa-chevron-down text-xs text-gray-500"></i>
                     </button>
 
-                    <!-- Dropdown Menu -->
+                <!-- Dropdown Menu -->
                 <div id="profileMenu" class="hidden absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50">
                     <!-- User Info Header -->
                     <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
@@ -230,13 +230,21 @@
             @endauth
         </div>
 
+    <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Toggle menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
         <div class="px-4 pt-4 pb-6 space-y-1">
             <a href="{{ route('home') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('home') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Home</a>
             <a href="{{ route('tentang_sekolah') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('tentang_sekolah') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Tentang Sekolah</a>
             <a href="{{ route('informasi') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('informasi') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Informasi</a>
-            <a href="{{ route('dashboard.siswa') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('dashboard.siswa') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-5  rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Pendaftaran</a>
+            <a href="{{ route('dashboard.siswa') }}" class="block py-3 px-4 text-base font-medium {{ request()->routeIs('dashboard.siswa') ? 'text-gray-900 dark:text-white border-l-4 border-blue-700 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-r-lg' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800' }}">Pendaftaran</a>
         </div>
     </div>
 </header>
@@ -273,10 +281,10 @@
                 <i class="fas fa-calendar-check group-hover:rotate-12 transition-transform"></i>
                 <span>Jadwal</span>
             </a>
-            <a href="#faq" class="group px-8 py-4 bg-white text-blue-800 font-bold rounded-xl hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2">
+            {{-- <a href="#faq" class="group px-8 py-4 bg-white text-blue-800 font-bold rounded-xl hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2">
                 <i class="fas fa-question-circle group-hover:rotate-12 transition-transform"></i>
                 <span>FAQ</span>
-            </a>
+            </a> --}}
         </div>
     </div>
 </section>
@@ -778,7 +786,7 @@
                 <i class="fas fa-user-plus group-hover:rotate-12 transition-transform"></i>
                 <span>Daftar Sekarang</span>
             </a>
-            <a href="https://wa.me/6281234567890" class="group px-10 py-5 bg-green-500 text-white font-bold rounded-xl hover:bg-green-600 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
+            <a href="https://wa.me/6281285425824" class="group px-10 py-5 bg-green-500 text-white font-bold rounded-xl hover:bg-green-600 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
                 <i class="fab fa-whatsapp group-hover:scale-110 transition-transform"></i>
                 <span>Hubungi Panitia</span>
             </a>
@@ -865,28 +873,28 @@
             <a href="/tentang-sekolah" 
                class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
                 
-                Tentang Sekolah
+                Alur Pendaftaran
             </a>
         </li>
         <li>
             <a href="/fasilitas" 
                class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
                 
-                Fasilitas Sekolah
+                Persyaratan Pendaftaran
             </a>
         </li>
         <li>
             <a href="/galeri" 
                class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
                
-                Galeri Kegiatan
+                Biaya Pendaftaran
             </a>
         </li>
         <li>
             <a href="/pendaftaran" 
                class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
                 
-                Informasi Pendaftaran
+                Jadwal Pendaftaran
             </a>
         </li>
         <li>
@@ -901,11 +909,11 @@
                 <div class="space-y-6">
                     <h3 class="footer-title">Kontak Kami</h3>
                     <ul class="space-y-4 text-blue-100 text-sm">
-                        <li><i class="fas fa-map-marker-alt mr-2"></i> Jl. Bina No. 23, Bandung</li>
-                        <li><i class="fas fa-phone mr-2"></i> (022) 123 4567</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Jl. Bina Putra Mandiri No.1 Parung Panjang - Bogor</li>
+                        <li><i class="fas fa-phone mr-2"></i> (021) 5428 1249</li>
                         <li><i class="fas fa-envelope mr-2"></i> info@smkbpm.sch.id</li>
                     </ul>
-                    <a href="https://wa.me/6281234567890"
+                    <a href="https://wa.me/6281285425824"
                        class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 px-6 py-3 rounded-xl font-semibold text-sm text-white transition-all duration-300 shadow-md hover:shadow-lg">
                         <i class="fab fa-whatsapp"></i>
                         <span>Chat WhatsApp</span>

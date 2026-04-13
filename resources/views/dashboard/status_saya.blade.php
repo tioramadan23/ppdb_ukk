@@ -117,7 +117,8 @@
             </ul>
         </nav>
 
-        <!-- Profile & Dark Mode Toggle -->
+
+       <!-- Profile & Dark Mode Toggle -->
         <div class="hidden sm:flex items-center gap-3">
             <button id="dark-mode-toggle" class="p-2 rounded-lg text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition" aria-label="Toggle dark mode">
                 <i class="fas fa-moon dark:hidden"></i>
@@ -128,50 +129,57 @@
             <div class="relative" id="profileDropdown">
                 <!-- Profile Button (Trigger) -->
                 <button onclick="toggleProfileDropdown()" class="flex items-center gap-2 focus:outline-none">
-                    <i class="fas fa-user-circle text-2xl text-gray-600 dark:text-gray-300"></i>
-                    <span class="hidden md:block text-sm font-medium text-gray-700 dark:text-gray-300">{{ auth()->user()->name }}</span>
-                    <i class="fas fa-chevron-down text-xs text-gray-500 dark:text-gray-400"></i>
+                    <img alt="Profile"
+                        src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=1e40af&color=fff"
+                        class="h-10 w-10 rounded-full object-cover ring-2 ring-transparent hover:ring-primary-500 transition" />
+                    <span class="hidden md:block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        {{ Auth::user()->name }}
+                    </span>
+                    <i class="fas fa-chevron-down text-xs text-gray-500"></i>
                 </button>
 
                 <!-- Dropdown Menu -->
                 <div id="profileMenu" class="hidden absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50">
-                    <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
-                                <i class="fas fa-user text-primary-600 dark:text-primary-400"></i>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-gray-900 dark:text-white">{{ auth()->user()->name }}</p>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">{{ auth()->user()->email }}</p>
-                            </div>
-                        </div>
+                    <!-- User Info Header -->
+                    <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                        <p class="text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->name }}</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ Auth::user()->email }}</p>
+                        <span class="inline-block mt-1 px-2 py-0.5 text-xs font-medium bg-primary-100 text-primary-700 rounded-full">
+                            {{ ucfirst(Auth::user()->role) }}
+                        </span>
                     </div>
+
+                    <a href="{{ route('dashboard.siswa') }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                    </a>
+                  
+                    <!-- Divider -->
+                    <div class="border-t border-gray-200 dark:border-gray-700"></div>
+
+                    <!-- Logout -->
                     <div class="py-2">
-                        <a href="{{ route('dashboard.siswa') }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
-                        </a>
-                        <a href="{{ route('pendaftaran.status') }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <i class="fas fa-file-alt mr-2"></i>Status Pendaftaran
-                        </a>
-                        <hr class="my-2 border-gray-200 dark:border-gray-700">
-                        <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20">
-                            <i class="fas fa-sign-out-alt mr-2"></i>Logout
-                        </a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="w-full flex items-center px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition">
+                                <i class="fas fa-sign-out-alt w-5"></i>
+                                <span class="ml-3">Logout</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile menu button -->
+        <!-- Mobile menu button (visible only on mobile) -->
         <button id="mobile-menu-button" class="md:hidden p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
             <span class="sr-only">Toggle menu</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="current-color" stroke-width="2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
     </div>
 
-    <!-- Mobile Menu -->
+    <!-- Mobile Menu (hidden by default) -->
     <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
         <div class="px-4 pt-4 pb-6 space-y-1">
             <a href="{{ route('home') }}" class="block py-3 px-4 text-base font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">Home</a>
@@ -181,6 +189,7 @@
         </div>
     </div>
 </header>
+<!-- Navbar end -->
 
 <!-- Main Container -->
 <div class="max-w-4xl mx-auto px-4 py-8">
@@ -233,7 +242,7 @@
                         <h3 class="font-bold text-blue-800">Nomor Pendaftaran</h3>
                     </div>
                     <p class="text-2xl font-bold text-blue-900">{{ $pendaftaran->nomor_pendaftaran }}</p>
-                    <p class="text-sm text-blue-600 mt-1">Gunakan nomor ini untuk cek status kelulusan</p>
+                    <p class="text-sm text-blue-600 mt-1">Gunakan nomor ini untuk cek status</p>
                 </div>
 
                 <!-- Status Pendaftaran -->

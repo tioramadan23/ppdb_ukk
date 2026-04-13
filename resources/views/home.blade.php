@@ -522,28 +522,28 @@
             <a href="/tentang-sekolah" 
                class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
                 
-                Tentang Sekolah
+                Alur Pendaftaran
             </a>
         </li>
         <li>
             <a href="/fasilitas" 
                class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
                 
-                Fasilitas Sekolah
+                Persyaratan Pendaftaran
             </a>
         </li>
         <li>
             <a href="/galeri" 
                class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
                
-                Galeri Kegiatan
+                Biaya Pendaftaran
             </a>
         </li>
         <li>
             <a href="/pendaftaran" 
                class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center">
                 
-                Informasi Pendaftaran
+                Jadwal Pendaftaran
             </a>
         </li>
         <li>
@@ -558,11 +558,11 @@
                 <div class="space-y-6">
                     <h3 class="footer-title">Kontak Kami</h3>
                     <ul class="space-y-4 text-blue-100 text-sm">
-                        <li><i class="fas fa-map-marker-alt mr-2"></i> Jl. Bina No. 23, Bandung</li>
-                        <li><i class="fas fa-phone mr-2"></i> (022) 123 4567</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Jl. Bina Putra Mandiri No.1 Parung Panjang - Bogor</li>
+                        <li><i class="fas fa-phone mr-2"></i> (021) 5428 1249</li>
                         <li><i class="fas fa-envelope mr-2"></i> info@smkbpm.sch.id</li>
                     </ul>
-                    <a href="https://wa.me/6281234567890"
+                    <a href="https://wa.me/6281285425824"
                        class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 px-6 py-3 rounded-xl font-semibold text-sm text-white transition-all duration-300 shadow-md hover:shadow-lg">
                         <i class="fab fa-whatsapp"></i>
                         <span>Chat WhatsApp</span>

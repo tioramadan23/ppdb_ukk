@@ -103,6 +103,15 @@
     .tab-btn.active { background: #6366F1; color: white; box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3); }
     .tab-content { display: none; }
     .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+    .detail-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(148,163,184,0.16); border-radius: 1rem; padding: 1rem; }
+    .detail-label { font-size: 0.72rem; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 0.35rem; }
+    .detail-value { font-size: 0.95rem; font-weight: 600; color: #F8FAFC; }
+    .detail-block { display: flex; flex-direction: column; gap: 1.25rem; }
+    .detail-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .detail-header-icon { width: 2.5rem; height: 2.5rem; border-radius: 0.85rem; display: grid; place-items: center; background: rgba(99, 102, 241, 0.16); color: #C7D2FE; }
+    .berkas-grid { display: grid; grid-template-columns: repeat(1,minmax(0,1fr)); gap: 1rem; }
+    @media (min-width: 768px) { .berkas-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+    @media (min-width: 1024px) { .berkas-grid { grid-template-columns: repeat(4,minmax(0,1fr)); } }
 
     .stat-number { font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, #6366F1, #8B5CF6, #06B6D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   </style>
@@ -139,7 +148,7 @@
       <a href="#" class="nav-item active" onclick="switchPage('dashboard')" id="nav-dashboard"><i class="fas fa-users w-5 text-center"></i><span>Data Pendaftar</span><span class="ml-auto bg-navy-500/20 text-navy-300 text-xs px-2 py-0.5 rounded-full" id="nav-count">0</span></a>
       <a href="#" class="nav-item" onclick="switchPage('stats')" id="nav-stats"><i class="fas fa-chart-line w-5 text-center"></i><span>Statistik</span></a>
       <div class="mt-4 pt-4 border-t border-navy-500/20">
-        <a href="#" class="nav-item text-rose-400 hover:text-rose-300"><i class="fas fa-sign-out-alt w-5 text-center"></i><span>Logout</span></a>
+        <a href="#" class="nav-item text-rose-400 hover:text-rose-300" onclick="logout()"><i class="fas fa-sign-out-alt w-5 text-center"></i><span>Logout</span></a>
       </div>
     </nav>
   </aside>
@@ -259,27 +268,35 @@
 
   <!-- Modals -->
   <div id="modalDetail" class="modal"><div class="modal-overlay" onclick="closeModal('modalDetail')"></div><div class="modal-box w-full max-w-4xl mx-4"><div class="bg-gradient-navy px-6 py-4 flex justify-between items-center"><div class="flex items-center gap-3"><div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center"><i class="fas fa-user-graduate text-white text-xl"></i></div><div><h3 class="text-lg font-bold text-white" id="mName">-</h3><p class="text-xs text-gray-300" id="mNo">-</p></div></div><button onclick="closeModal('modalDetail')" class="btn-glass w-8 h-8 rounded-lg flex items-center justify-center"><i class="fas fa-times"></i></button></div><div class="p-6 overflow-y-auto max-h-[70vh]">
-    <div class="flex gap-2 mb-4"><span id="mStatus" class="badge"></span></div>
-    <div class="tab-container mb-5"><button class="tab-btn active" onclick="switchTab(this, 'tab-diri')">Data Diri</button><button class="tab-btn" onclick="switchTab(this, 'tab-ortu')">Orang Tua</button><button class="tab-btn" onclick="switchTab(this, 'tab-berkas')">Berkas</button></div>
-    <div id="tab-diri" class="tab-content active grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div class="bg-white/5 rounded-lg p-3"><p class="text-xs text-gray-500">NISN</p><p class="font-medium" id="mNisn">-</p></div>
-      <div class="bg-white/5 rounded-lg p-3"><p class="text-xs text-gray-500">NIK</p><p class="font-medium" id="mNik">-</p></div>
-      <div class="bg-white/5 rounded-lg p-3"><p class="text-xs text-gray-500">TTL</p><p class="font-medium" id="mTtl">-</p></div>
-      <div class="bg-white/5 rounded-lg p-3"><p class="text-xs text-gray-500">Jenis Kelamin</p><p class="font-medium" id="mJk">-</p></div>
-      <div class="bg-white/5 rounded-lg p-3"><p class="text-xs text-gray-500">No. HP</p><p class="font-medium" id="mHp">-</p></div>
-      <div class="bg-white/5 rounded-lg p-3"><p class="text-xs text-gray-500">Asal Sekolah</p><p class="font-medium" id="mSekolah">-</p></div>
-      <div class="bg-white/5 rounded-lg p-3 md:col-span-2"><p class="text-xs text-gray-500">Alamat</p><p class="font-medium" id="mAlamat">-</p></div>
+    <div class="flex flex-col gap-3 mb-4 sm:flex-row sm:items-center sm:justify-between"><div class="flex gap-2"><span id="mStatus" class="badge"></span></div><div class="text-sm text-gray-400">Data detail siswa, orang tua, dan berkas tersusun dengan rapi.</div></div>
+    <div class="tab-container mb-5"><button class="tab-btn active" onclick="switchTab(this, 'tab-diri')">Data Siswa</button><button class="tab-btn" onclick="switchTab(this, 'tab-ortu')">Orang Tua</button><button class="tab-btn" onclick="switchTab(this, 'tab-berkas')">Berkas</button></div>
+    <div id="tab-diri" class="tab-content active">
+      <div class="detail-header"><div class="detail-header-icon"><i class="fas fa-id-card"></i></div><div><p class="text-base font-semibold text-white">Data Siswa</p><p class="text-sm text-gray-400">Informasi identitas dan sekolah pendaftar</p></div></div>
+      <div class="detail-block grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="detail-card"><p class="detail-label">NISN</p><p class="detail-value" id="mNisn">-</p></div>
+        <div class="detail-card"><p class="detail-label">NIK</p><p class="detail-value" id="mNik">-</p></div>
+        <div class="detail-card"><p class="detail-label">TTL</p><p class="detail-value" id="mTtl">-</p></div>
+        <div class="detail-card"><p class="detail-label">Jenis Kelamin</p><p class="detail-value" id="mJk">-</p></div>
+        <div class="detail-card"><p class="detail-label">No. HP</p><p class="detail-value" id="mHp">-</p></div>
+        <div class="detail-card"><p class="detail-label">Jurusan</p><p class="detail-value" id="mJurusan">-</p></div>
+        <div class="detail-card md:col-span-2"><p class="detail-label">Asal Sekolah</p><p class="detail-value" id="mSekolah">-</p></div>
+        <div class="detail-card md:col-span-2"><p class="detail-label">Alamat</p><p class="detail-value" id="mAlamat">-</p></div>
+      </div>
     </div>
-    <div id="tab-ortu" class="tab-content space-y-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="bg-white/5 rounded-lg p-3"><p class="text-xs text-gray-500">Nama Ayah</p><p class="font-medium" id="mAyah">-</p></div><div class="bg-white/5 rounded-lg p-3"><p class="text-xs text-gray-500">Pekerjaan Ayah</p><p class="font-medium" id="mKerjaAyah">-</p></div><div class="bg-white/5 rounded-lg p-3"><p class="text-xs text-gray-500">Nama Ibu</p><p class="font-medium" id="mIbu">-</p></div><div class="bg-white/5 rounded-lg p-3"><p class="text-xs text-gray-500">Pekerjaan Ibu</p><p class="font-medium" id="mKerjaIbu">-</p></div></div>
+    <div id="tab-ortu" class="tab-content">
+      <div class="detail-header"><div class="detail-header-icon"><i class="fas fa-users"></i></div><div><p class="text-base font-semibold text-white">Data Orang Tua</p><p class="text-sm text-gray-400">Informasi orang tua/wali siswa</p></div></div>
+      <div class="detail-block grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="detail-card"><p class="detail-label">Nama Ayah</p><p class="detail-value" id="mAyah">-</p></div>
+        <div class="detail-card"><p class="detail-label">Nama Ibu</p><p class="detail-value" id="mIbu">-</p></div>
+        <div class="detail-card"><p class="detail-label">Pekerjaan Ayah</p><p class="detail-value" id="mKerjaAyah">-</p></div>
+        <div class="detail-card"><p class="detail-label">Pekerjaan Ibu</p><p class="detail-value" id="mKerjaIbu">-</p></div>
+      </div>
     </div>
-    <div id="tab-berkas" class="tab-content"><div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-white/5 rounded-lg p-4 text-center cursor-pointer hover:bg-white/10 transition"><i class="fas fa-image text-2xl text-navy-400 mb-2"></i><p class="text-sm">Pas Foto</p></div>
-      <div class="bg-white/5 rounded-lg p-4 text-center cursor-pointer hover:bg-white/10 transition"><i class="fas fa-file-alt text-2xl text-navy-400 mb-2"></i><p class="text-sm">Ijazah</p></div>
-      <div class="bg-white/5 rounded-lg p-4 text-center cursor-pointer hover:bg-white/10 transition"><i class="fas fa-id-card text-2xl text-navy-400 mb-2"></i><p class="text-sm">KK</p></div>
-      <div class="bg-white/5 rounded-lg p-4 text-center cursor-pointer hover:bg-white/10 transition"><i class="fas fa-receipt text-2xl text-emerald-400 mb-2"></i><p class="text-sm">Bukti Bayar</p></div>
-    </div></div>
-    <div class="mt-6 flex justify-end gap-3"><button onclick="closeModal('modalDetail')" class="btn-glass px-5 py-2 rounded-lg">Tutup</button><button id="btnReject" onclick="openModal('modalReject')" class="btn-danger px-5 py-2 rounded-lg hidden"><i class="fas fa-times mr-1.5"></i>Tolak</button><button id="btnApprove" onclick="approve()" class="btn-success px-5 py-2 rounded-lg hidden"><i class="fas fa-check mr-1.5"></i>Terima</button></div>
+    <div id="tab-berkas" class="tab-content">
+      <div class="detail-header"><div class="detail-header-icon"><i class="fas fa-file-alt"></i></div><div><p class="text-base font-semibold text-white">Berkas</p><p class="text-sm text-gray-400">Pratinjau dokumen dan bukti pembayaran</p></div></div>
+      <div id="berkasContent" class="berkas-grid"></div>
+    </div>
+    <div class="mt-6 flex flex-col sm:flex-row justify-end gap-3"><button onclick="closeModal('modalDetail')" class="btn-glass px-5 py-2 rounded-lg">Tutup</button><button id="btnReject" onclick="openModal('modalReject')" class="btn-danger px-5 py-2 rounded-lg hidden"><i class="fas fa-times mr-1.5"></i>Tolak</button><button id="btnApprove" onclick="approve()" class="btn-success px-5 py-2 rounded-lg hidden"><i class="fas fa-check mr-1.5"></i>Terima</button></div>
   </div></div></div>
 
   <div id="modalReject" class="modal"><div class="modal-overlay" onclick="closeModal('modalReject')"></div><div class="modal-box w-full max-w-md mx-4 p-6"><div class="text-center mb-4"><div class="w-14 h-14 bg-rose-500/20 rounded-full flex items-center justify-center mx-auto mb-3"><i class="fas fa-times-circle text-rose-400 text-2xl"></i></div><h3 class="text-lg font-bold text-white">Tolak Pendaftaran</h3></div><textarea id="reason" class="input-field w-full rounded-lg p-3 text-sm mb-4" rows="3" placeholder="Alasan penolakan..."></textarea><div class="flex gap-3"><button onclick="closeModal('modalReject')" class="btn-glass flex-1 py-2 rounded-lg">Batal</button><button onclick="submitReject()" class="btn-danger flex-1 py-2 rounded-lg">Konfirmasi</button></div></div></div>
@@ -377,8 +394,9 @@ async function viewDetail(id) {
         document.getElementById('mTtl').textContent = `${detail.tempat_lahir}, ${detail.tanggal_lahir}`;
         document.getElementById('mJk').textContent = detail.jenis_kelamin;
         document.getElementById('mHp').textContent = detail.no_hp;
-        document.getElementById('mSekolah').textContent = detail.asal_sekolah;
-        document.getElementById('mAlamat').textContent = detail.alamat;
+        document.getElementById('mSekolah').textContent = detail.asal_sekolah || '-';
+        document.getElementById('mJurusan').textContent = detail.jurusan || '-';
+        document.getElementById('mAlamat').textContent = detail.alamat || '-';
 
         // Render Status Badge
         const badgeClass = detail.status === 'draft' ? 'badge-pending' : (detail.status === 'diverifikasi' ? 'badge-approved' : (detail.status === 'rejected' ? 'badge-rejected' : 'badge-pending'));
@@ -389,6 +407,10 @@ async function viewDetail(id) {
         document.getElementById('mStatus').innerHTML = `<i class="fas fa-${iconClass}"></i> ${textStatus}`;
 
         // Render Orang Tua
+        document.getElementById('mAyah').textContent = '-';
+        document.getElementById('mKerjaAyah').textContent = '-';
+        document.getElementById('mIbu').textContent = '-';
+        document.getElementById('mKerjaIbu').textContent = '-';
         if(detail.orang_tua) {
             document.getElementById('mAyah').textContent = detail.orang_tua.nama_ayah || '-';
             document.getElementById('mKerjaAyah').textContent = detail.orang_tua.pekerjaan_ayah || '-';
@@ -397,29 +419,38 @@ async function viewDetail(id) {
         }
 
         // Render Berkas (Loop dokumen)
-        const tabBerkas = document.getElementById('tab-berkas');
+        const tabBerkas = document.getElementById('berkasContent');
+        tabBerkas.innerHTML = '';
         if(detail.dokumen && detail.dokumen.length > 0) {
-            let htmlBerkas = '<div class="grid grid-cols-2 md:grid-cols-4 gap-4">';
             detail.dokumen.forEach(d => {
-                htmlBerkas += `
-                <a href="${d.url}" target="_blank" class="bg-white/5 rounded-lg p-4 text-center cursor-pointer hover:bg-white/10 transition block">
+                const card = document.createElement('a');
+                card.href = d.url || '#';
+                card.target = '_blank';
+                card.className = 'bg-white/5 rounded-lg p-4 text-center cursor-pointer hover:bg-white/10 transition block';
+                card.innerHTML = `
                     <i class="fas fa-file-alt text-2xl text-navy-400 mb-2"></i>
-                    <p class="text-sm capitalize">${d.jenis.replace('_', ' ')}</p>
-                </a>`;
+                    <p class="text-sm font-medium">${(d.jenis || '').replace('_', ' ')}</p>
+                    <p class="text-xs text-gray-400 mt-1">Klik untuk lihat</p>
+                `;
+                tabBerkas.appendChild(card);
             });
-            // Tambah Bukti Pembayaran jika ada
-            if(detail.pembayaran && detail.pembayaran.bukti_url) {
-                htmlBerkas += `
-                <a href="${detail.pembayaran.bukti_url}" target="_blank" class="bg-white/5 rounded-lg p-4 text-center cursor-pointer hover:bg-white/10 transition block">
-                    <i class="fas fa-receipt text-2xl text-emerald-400 mb-2"></i>
-                    <p class="text-sm">Bukti Pembayaran</p>
-                    <p class="text-xs text-gray-400 mt-1">${detail.pembayaran.bank}</p>
-                </a>`;
-            }
-            htmlBerkas += '</div>';
-            tabBerkas.innerHTML = htmlBerkas;
-        } else {
-            tabBerkas.innerHTML = '<p class="text-center text-gray-400 py-4">Belum ada berkas yang diunggah.</p>';
+        }
+
+        if(detail.pembayaran && detail.pembayaran.bukti_url) {
+            const paymentCard = document.createElement('a');
+            paymentCard.href = detail.pembayaran.bukti_url;
+            paymentCard.target = '_blank';
+            paymentCard.className = 'bg-white/5 rounded-lg p-4 text-center cursor-pointer hover:bg-white/10 transition block';
+            paymentCard.innerHTML = `
+                <i class="fas fa-receipt text-2xl text-emerald-400 mb-2"></i>
+                <p class="text-sm font-medium">Bukti Pembayaran</p>
+                <p class="text-xs text-gray-400 mt-1">${detail.pembayaran.bank || '-'}</p>
+            `;
+            tabBerkas.appendChild(paymentCard);
+        }
+
+        if(!tabBerkas.children.length) {
+            tabBerkas.innerHTML = '<div class="col-span-2 text-center text-gray-400 py-8">Belum ada berkas yang diunggah.</div>';
         }
 
         // Atur Tombol Action
@@ -511,9 +542,9 @@ function renderTable() {
             <td class="text-sm text-gray-400">${d.tanggal}</td>
             <td><span class="badge badge-${bgStatus}"><i class="fas fa-${iconStatus}"></i>${txtStatus}</span></td>
             <td class="text-center">
-                <div class="flex justify-center gap-1">
-                    <button onclick="viewDetail(${d.id})" class="btn-glass w-7 h-7 rounded flex items-center justify-center hover:text-navy-300"><i class="fas fa-eye text-xs"></i></button>
-                    ${(d.status === 'submit' || d.status === 'draft') ? `<button onclick="quickApprove(${d.id})" class="btn-success w-7 h-7 rounded flex items-center justify-center"><i class="fas fa-check text-xs"></i></button><button onclick="openReject(${d.id})" class="btn-danger w-7 h-7 rounded flex items-center justify-center"><i class="fas fa-times text-xs"></i></button>` : ''}
+                <div class="flex justify-center gap-2">
+                    <button onclick="viewDetail(${d.id})" title="Lihat Detail" class="btn-glass w-9 h-9 rounded-lg flex items-center justify-center hover:text-navy-300"><i class="fas fa-eye text-xs"></i></button>
+                    ${(d.status === 'submit' || d.status === 'draft') ? `<button onclick="quickApprove(${d.id})" title="Terima" class="btn-success w-9 h-9 rounded-lg flex items-center justify-center"><i class="fas fa-check text-xs"></i></button><button onclick="openReject(${d.id})" title="Tolak" class="btn-danger w-9 h-9 rounded-lg flex items-center justify-center"><i class="fas fa-times text-xs"></i></button>` : ''}
                 </div>
             </td>
         </tr>`
@@ -533,6 +564,134 @@ function updateStats(backendStats) {
     document.getElementById('prog-pending').style.width = `${total ? (pending/total)*100 : 0}%`;
     document.getElementById('prog-approved').style.width = `${total ? (approved/total)*100 : 0}%`;
     document.getElementById('prog-rejected').style.width = `${total ? (rejected/total)*100 : 0}%`;
+}
+
+async function fetchStats() {
+    try {
+        showLoader();
+        const period = document.getElementById('statsPeriod')?.value || 'all';
+        const response = await fetch(`${BASE_URL}/admin/stats?period=${period}`, {
+            headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' }
+        });
+        if (!response.ok) throw new Error('Gagal memuat statistik');
+        const stats = await response.json();
+
+        renderStatsCards(stats);
+        renderTopSchools(stats.top_schools || [], stats.total || 0);
+        renderTrendChart(stats.trend || []);
+        renderJurusanChart(stats.jurusan || []);
+        renderStatusChart(stats.status_counts || {});
+    } catch (error) {
+        showToast('Gagal memuat statistik', 'error');
+    } finally {
+        hideLoader();
+    }
+}
+
+function updateStatsCharts() {
+    fetchStats();
+}
+
+function renderStatsCards(stats) {
+    document.getElementById('statTotal').textContent = stats.total ?? 0;
+    document.getElementById('statRatio').textContent = `${stats.approved_ratio ?? 0}%`;
+    document.getElementById('statTime').textContent = `${stats.average_processing_hours ?? 0}h`;
+    document.getElementById('statFiles').textContent = `${stats.file_completion_rate ?? 0}%`;
+}
+
+function renderTopSchools(schools, total) {
+    const container = document.getElementById('topSchools');
+    container.innerHTML = '';
+    if (!schools.length) {
+        container.innerHTML = '<p class="text-gray-400">Tidak ada data sekolah.</p>';
+        return;
+    }
+
+    schools.forEach(s => {
+        const percent = total ? Math.round((s.count / total) * 100) : 0;
+        const item = document.createElement('div');
+        item.className = 'flex items-center justify-between gap-4 border-b border-navy-500/10 pb-3';
+        item.innerHTML = `<div><p class="font-medium text-white">${s.asal_sekolah}</p><p class="text-xs text-gray-400">${s.count} pendaftar</p></div><span class="text-sm text-navy-300">${percent}%</span>`;
+        container.appendChild(item);
+    });
+}
+
+function createChartInstance(key, ctx, config) {
+    if (charts[key]) charts[key].destroy();
+    charts[key] = new Chart(ctx, config);
+}
+
+function renderTrendChart(trend) {
+    const ctx = document.getElementById('chartTrend').getContext('2d');
+    createChartInstance('trend', ctx, {
+        type: 'line',
+        data: {
+            labels: trend.map(item => item.period),
+            datasets: [{
+                label: 'Pendaftar',
+                data: trend.map(item => item.total),
+                borderColor: '#60A5FA',
+                backgroundColor: 'rgba(96,165,250,0.2)',
+                fill: true,
+                tension: 0.35,
+                pointRadius: 4,
+                pointBackgroundColor: '#3B82F6'
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { grid: { display: false }, ticks: { color: '#9CA3AF' } },
+                y: { beginAtZero: true, ticks: { color: '#9CA3AF' } }
+            }
+        }
+    });
+}
+
+function renderJurusanChart(jurusan) {
+    const ctx = document.getElementById('chartJurusan').getContext('2d');
+    createChartInstance('jurusan', ctx, {
+        type: 'doughnut',
+        data: {
+            labels: jurusan.map(item => item.jurusan),
+            datasets: [{
+                data: jurusan.map(item => item.total),
+                backgroundColor: ['#2563EB', '#0EA5E9', '#56B6D6', '#22C55E', '#F59E0B', '#EF4444'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { position: 'bottom', labels: { color: '#9CA3AF' } } }
+        }
+    });
+}
+
+function renderStatusChart(statusCounts) {
+    const ctx = document.getElementById('chartStatus').getContext('2d');
+    const labels = ['Menunggu', 'Diterima', 'Ditolak'];
+    const data = [statusCounts.pending || 0, statusCounts.approved || 0, statusCounts.rejected || 0];
+    createChartInstance('status', ctx, {
+        type: 'pie',
+        data: {
+            labels,
+            datasets: [{
+                data,
+                backgroundColor: ['#F59E0B', '#10B981', '#EF4444'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { position: 'bottom', labels: { color: '#9CA3AF' } } }
+        }
+    });
+}
+
+function exportStats() {
+    const period = document.getElementById('statsPeriod')?.value || 'all';
+    window.location.href = `${BASE_URL}/admin/pendaftarans/export?period=${period}`;
 }
 
 function updatePagUI() {
@@ -565,7 +724,8 @@ function exportData() { window.location.href = `${BASE_URL}/admin/pendaftarans/e
 
 // Helper Modal & Tab
 function switchTab(btn, id) { document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active')); btn.classList.add('active'); document.getElementById(id).classList.add('active'); }
-function switchPage(pg) { document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active')); document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active')); document.getElementById(`page-${pg}`).classList.add('active'); document.getElementById(`nav-${pg}`).classList.add('active'); }
+function switchPage(pg) { document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active')); document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active')); document.getElementById(`page-${pg}`).classList.add('active'); document.getElementById(`nav-${pg}`).classList.add('active'); if (pg === 'stats') updateStatsCharts(); }
+function logout() { if(confirm('Yakin ingin logout?')) { document.getElementById('logoutForm').submit(); } }
 function toggleSidebar() { document.getElementById('sidebar').classList.toggle('-translate-x-full'); document.getElementById('sidebarOverlay').classList.toggle('hidden'); }
 function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow='hidden'; }
 function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow=''; }
@@ -574,5 +734,8 @@ function hideLoader() { document.getElementById('loader').classList.add('hidden'
 function showToast(msg, type='success') { const t = document.getElementById('toast'), ic = document.getElementById('toastIcon'), ti = document.getElementById('toastTitle'), ms = document.getElementById('toastMsg'); ic.className = `w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${type==='success'?'bg-emerald-500/20':'bg-rose-500/20'}`; ic.innerHTML = `<i class="fas fa-${type==='success'?'check':'exclamation'} ${type==='success'?'text-emerald-400':'text-rose-400'}"></i>`; ti.textContent = type==='success'?'Sukses':'Error'; ms.textContent = msg; t.classList.remove('translate-x-full'); setTimeout(()=>t.classList.add('translate-x-full'), 3000); }
   </script>
 
+  <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display:none;">
+    @csrf
+  </form>
 </body>
 </html>  

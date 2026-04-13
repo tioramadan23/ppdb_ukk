@@ -28,8 +28,8 @@ class PendaftaranController extends Controller
             'tanggal_lahir' => 'required|date|before:today',
             'jenis_kelamin' => 'required|in:L,P',
             'agama' => 'required|in:Islam,Kristen,Katolik,Hindu,Buddha,Konghucu',
-            'no_hp' => 'required|digits_between:10,15',              // ✅ Updated from no_hp_siswa
-            'alamat_lengkap' => 'required|string|max:500',              // ✅ Updated from alamat_siswa
+            'no_hp' => 'required|digits_between:10,15',           
+            'alamat_lengkap' => 'required|string|max:500',
             'jurusan' => 'required|in:RPL,TKJ,DKV,BD,AK',
             'asal_sekolah' => 'required|string|max:255',
             
@@ -223,12 +223,7 @@ class PendaftaranController extends Controller
                 }
             }
 
-            // ✅ 4. Generate nomor pendaftaran unik
-            $lastPendaftaran = Pendaftaran::orderBy('id', 'desc')->first();
-            $nextNumber = $lastPendaftaran ? intval(substr($lastPendaftaran->nomor_pendaftaran, -6)) + 1 : 1;
-            $nomorPendaftaran = 'BPM-' . date('Y') . '-' . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
-
-            // ✅ 5. Simpan DATA SISWA ke tabel pendaftarans (hanya field yang ada di tabel)
+            // ✅ 4. Simpan DATA SISWA ke tabel pendaftarans (hanya field yang ada di tabel)
             $pendaftaran = Pendaftaran::create([
                 'user_id' => auth()->id(),
                 'nama_lengkap' => $validated['nama_lengkap'],
@@ -239,12 +234,11 @@ class PendaftaranController extends Controller
                 'tanggal_lahir' => $validated['tanggal_lahir'],
                 'jenis_kelamin' => $validated['jenis_kelamin'],
                 'agama' => $validated['agama'],
-                'no_hp' => $validated['no_hp'],              // ✅ Updated
-                'alamat_lengkap' => $validated['alamat_lengkap'], // ✅ Updated
+                'no_hp' => $validated['no_hp'],
+                'alamat_lengkap' => $validated['alamat_lengkap'],
                 'jurusan' => $validated['jurusan'],
                 'asal_sekolah' => $validated['asal_sekolah'],
-                'nomor_pendaftaran' => $nomorPendaftaran,
-                'status_pendaftaran' => 'submit',            // ✅ Match enum di DB
+                'status_pendaftaran' => 'submit',
                 'submitted_at' => now(),
             ]);
 
