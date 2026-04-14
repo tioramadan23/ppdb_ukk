@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PendaftaranController;
-use App\Http\Controllers\Admin\PendaftaranAdminController; 
+use App\Http\Controllers\Admin\PendaftaranAdminController;
+use App\Models\Pendaftaran;
 
 // ================= PUBLIC ROUTES =================
 Route::get('/', function () { return view('home'); })->name('home');
@@ -29,9 +30,16 @@ Route::middleware('auth')->group(function () {
     
     // Dashboard default (auto redirect by role)
     Route::get('/dashboard', function () {
-        return auth()->user()->role === 'admin' 
-            ? redirect()->route('admin.dashboard') // ✅ Diubah sedikit agar memanggil nama route yang benar di group admin
-            : view('dashboard.siswa');
+        if (auth()->user()->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        }
+        
+        // Jika siswa sudah mendaftar, redirect ke status
+        if (Pendaftaran::where('user_id', auth()->id())->exists()) {
+            return redirect()->route('pendaftaran.status');
+        }
+        
+        return view('dashboard.siswa');
     })->name('dashboard');
 
     // ✅ PENDAFTARAN ROUTES (Siswa)
@@ -63,6 +71,14 @@ Route::middleware('auth')->group(function () {
         // 📡 API: Detail lengkap satu pendaftar
         Route::get('/pendaftarans/{id}', [PendaftaranAdminController::class, 'show'])
             ->name('pendaftarans.show');
+        
+        // 📡 API: Verifikasi pendaftar
+        Route::post('/pendaftarans/{id}/verifikasi', [PendaftaranAdminController::class, 'verifikasi'])
+            ->name('pendaftarans.verifikasi');
+
+        // 📡 API: Tolak pendaftar
+        Route::post('/pendaftarans/{id}/tolak', [PendaftaranAdminController::class, 'tolak'])
+            ->name('pendaftarans.tolak');
         
         // 📡 API: Update status (approve/reject)
         Route::patch('/pendaftarans/{id}/status', [PendaftaranAdminController::class, 'updateStatus'])

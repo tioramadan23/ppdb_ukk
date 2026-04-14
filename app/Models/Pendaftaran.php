@@ -9,7 +9,7 @@ class Pendaftaran extends Model
 {
     use HasFactory;
 
-    // ✅ $fillable sesuai kolom tabel pendaftarans
+    // ✅ $fillable sesuai kolom tabel pendaftarans (updated setelah migrasi)
     protected $fillable = [
         'user_id',
         'no_pendaftaran',
@@ -26,9 +26,8 @@ class Pendaftaran extends Model
         'jurusan',
         'asal_sekolah',
         'status_pendaftaran',
-        'status_hasil',
-        'keterangan_hasil',
         'tanggal_pengumuman',
+        'submitted_at',
     ];
 
     protected $casts = [
@@ -65,6 +64,6 @@ class Pendaftaran extends Model
     public function pembayaran() { return $this->hasOne(Pembayaran::class); }
 
     // Helper
-    public function isSubmitted() { return $this->status_pendaftaran !== 'draft'; }
-    public function hasPengumuman() { return $this->status_hasil !== null; }
+    public function isSubmitted() { return $this->status_pendaftaran !== 'menunggu'; }
+    public function hasPengumuman() { return $this->status_pendaftaran !== 'menunggu' && $this->tanggal_pengumuman !== null; }
 }

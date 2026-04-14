@@ -238,7 +238,7 @@ class PendaftaranController extends Controller
                 'alamat_lengkap' => $validated['alamat_lengkap'],
                 'jurusan' => $validated['jurusan'],
                 'asal_sekolah' => $validated['asal_sekolah'],
-                'status_pendaftaran' => 'submit',
+                'status_pendaftaran' => 'menunggu', // ✅ Default status untuk pendaftaran baru
                 'submitted_at' => now(),
             ]);
 
@@ -293,7 +293,7 @@ class PendaftaranController extends Controller
 
             // ✅ 10. Redirect sukses
             return redirect()->route('pendaftaran.status')
-                ->with('success', '🎉 Pendaftaran berhasil! Nomor pendaftaran Anda: <strong>' . $nomorPendaftaran . '</strong><br>Silakan simpan nomor ini untuk cek status kelulusan.');
+                ->with('success', '🎉 Pendaftaran berhasil! Nomor pendaftaran Anda: <strong>' . $pendaftaran->no_pendaftaran . '</strong><br>Silakan simpan nomor ini untuk cek status kelulusan.');
 
         } catch (\Exception $e) {
             DB::rollback();

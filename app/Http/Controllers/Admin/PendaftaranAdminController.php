@@ -35,6 +35,11 @@ class PendaftaranAdminController extends Controller
         if ($request->filled('status') && $request->status !== 'all') {
             $query->where('status_pendaftaran', $request->status);
         }
+
+        // Filter Jurusan
+        if ($request->filled('jurusan') && $request->jurusan !== 'all') {
+            $query->where('jurusan', $request->jurusan);
+        }
         
         $perPage = $request->per_page ?? 10;
         $pendaftarans = $query->orderBy('created_at', 'desc')->paginate($perPage);
@@ -68,9 +73,9 @@ class PendaftaranAdminController extends Controller
             ],
             'stats' => [
                 'total' => $pendaftarans->total(),
-                'draft' => $statsRaw['draft'] ?? 0,
-                'pending' => $statsRaw['submit'] ?? 0, 
+                'pending' => $statsRaw['menunggu'] ?? 0,
                 'approved' => $statsRaw['diverifikasi'] ?? 0,
+                'rejected' => $statsRaw['ditolak'] ?? 0,
             ]
         ]);
     }
@@ -131,10 +136,9 @@ class PendaftaranAdminController extends Controller
             'trend' => $trendData->map(fn($row) => ['period' => $row->period, 'total' => $row->total]),
             'jurusan' => $jurusanData->map(fn($row) => ['jurusan' => $row->jurusan ?? 'Tidak Diketahui', 'total' => $row->total]),
             'status_counts' => [
-                'draft' => $statusCounts['draft'] ?? 0,
-                'pending' => $statusCounts['submit'] ?? 0,
+                'pending' => $statusCounts['menunggu'] ?? 0,
                 'approved' => $statusCounts['diverifikasi'] ?? 0,
-                'rejected' => $statusCounts['rejected'] ?? 0,
+                'rejected' => $statusCounts['ditolak'] ?? 0,
             ],
             'top_schools' => $topSchools->map(fn($row) => ['asal_sekolah' => $row->asal_sekolah ?? 'Tidak Diketahui', 'count' => $row->total]),
         ]);
@@ -158,14 +162,21 @@ class PendaftaranAdminController extends Controller
             'jenis_kelamin' => $p->jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan',
             'agama' => $p->agama,
             'no_hp' => $p->no_hp,
-            'alamat' => $p->alamat_lengkap,
+            'alamat_lengkap' => $p->alamat_lengkap,
             'jurusan' => $p->jurusan,
             'asal_sekolah' => $p->asal_sekolah,
             'status' => $p->status_pendaftaran,
             'orang_tua' => $p->orangTua ? [
                 'nama_ayah' => $p->orangTua->nama_ayah,
-                'nama_ibu' => $p->orangTua->nama_ibu,
+                'nik_ayah' => $p->orangTua->nik_ayah,
+                'pekerjaan_ayah' => $p->orangTua->pekerjaan_ayah,
                 'no_hp_ayah' => $p->orangTua->no_hp_ayah,
+                'alamat_ayah' => $p->orangTua->alamat_ayah,
+                'nama_ibu' => $p->orangTua->nama_ibu,
+                'nik_ibu' => $p->orangTua->nik_ibu,
+                'pekerjaan_ibu' => $p->orangTua->pekerjaan_ibu,
+                'no_hp_ibu' => $p->orangTua->no_hp_ibu,
+                'alamat_ibu' => $p->orangTua->alamat_ibu,
             ] : null,
             'dokumen' => $p->dokumens->map(function($d) {
                 return [
@@ -186,7 +197,7 @@ class PendaftaranAdminController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $request->validate([
-            'status' => 'required|in:draft,submit,diverifikasi',
+            'status' => 'required|in:menunggu,diverifikasi,ditolak',
         ]);
         
         $pendaftaran = Pendaftaran::findOrFail($id);
@@ -194,13 +205,45 @@ class PendaftaranAdminController extends Controller
         try {
             $pendaftaran->update([
                 'status_pendaftaran' => $request->status,
-                'tanggal_pengumuman' => $request->status === 'diverifikasi' ? now() : null,
+                'tanggal_pengumuman' => $request->status !== 'menunggu' ? now() : null,
             ]);
             
             return response()->json(['message' => 'Status berhasil diperbarui']);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Gagal memperbarui status'], 500);
         }
+    }
+
+    public function verifikasi($id)
+    {
+        $pendaftaran = Pendaftaran::findOrFail($id);
+        $pendaftaran->update([
+            'status_pendaftaran' => 'diverifikasi',
+            'tanggal_pengumuman' => now(),
+        ]);
+
+        if (request()->ajax()) {
+            return response()->json(['message' => 'Status berhasil diubah menjadi diverifikasi.']);
+        }
+
+        return redirect()->route('admin.dashboard')
+            ->with('success', 'Status berhasil diubah menjadi diverifikasi.');
+    }
+
+    public function tolak($id)
+    {
+        $pendaftaran = Pendaftaran::findOrFail($id);
+        $pendaftaran->update([
+            'status_pendaftaran' => 'ditolak',
+            'tanggal_pengumuman' => now(),
+        ]);
+
+        if (request()->ajax()) {
+            return response()->json(['message' => 'Status berhasil diubah menjadi ditolak.']);
+        }
+
+        return redirect()->route('admin.dashboard')
+            ->with('success', 'Status berhasil diubah menjadi ditolak.');
     }
 
     // ✅ 5. API: Export CSV

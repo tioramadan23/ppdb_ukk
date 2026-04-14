@@ -634,7 +634,7 @@
                                 </div>
                             </div>
                             <span class="inline-block px-5 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full text-sm font-bold shadow-lg">
-                                <i class="fas fa-calendar-alt mr-2"></i>1 Nov - 31 Des 2025
+                                <i class="fas fa-calendar-alt mr-2"></i> Nov -  Des 
                             </span>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">

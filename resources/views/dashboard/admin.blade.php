@@ -193,7 +193,7 @@
         <div class="card p-4">
           <div class="flex flex-col lg:flex-row justify-between gap-4">
             <div class="flex flex-wrap gap-2">
-              <select id="filterStatus" onchange="applyFilters()" class="input-field select-field px-3 py-2 rounded-lg text-sm"><option value="all">Semua Status</option><option value="submit">Menunggu</option><option value="diverifikasi">Diterima</option><option value="rejected">Ditolak</option></select>
+              <select id="filterStatus" onchange="applyFilters()" class="input-field select-field px-3 py-2 rounded-lg text-sm"><option value="all">Semua Status</option><option value="menunggu">Menunggu</option><option value="diverifikasi">Diterima</option><option value="ditolak">Ditolak</option></select>
               <select id="filterJurusan" onchange="applyFilters()" class="input-field select-field px-3 py-2 rounded-lg text-sm"><option value="all">Semua Jurusan</option><option value="RPL">RPL</option><option value="TKJ">TKJ</option><option value="DKV">DKV</option><option value="BD">Bisnis Digital</option><option value="AK">Akuntansi</option></select>
               <button onclick="resetFilters()" class="btn-glass px-3 py-2 rounded-lg text-sm"><i class="fas fa-filter mr-1.5"></i>Reset</button>
             </div>
@@ -273,10 +273,13 @@
     <div id="tab-diri" class="tab-content active">
       <div class="detail-header"><div class="detail-header-icon"><i class="fas fa-id-card"></i></div><div><p class="text-base font-semibold text-white">Data Siswa</p><p class="text-sm text-gray-400">Informasi identitas dan sekolah pendaftar</p></div></div>
       <div class="detail-block grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="detail-card md:col-span-2"><p class="detail-label">Nama Lengkap</p><p class="detail-value" id="mNamaLengkap">-</p></div>
         <div class="detail-card"><p class="detail-label">NISN</p><p class="detail-value" id="mNisn">-</p></div>
         <div class="detail-card"><p class="detail-label">NIK</p><p class="detail-value" id="mNik">-</p></div>
+        <div class="detail-card"><p class="detail-label">No. KK</p><p class="detail-value" id="mNoKk">-</p></div>
         <div class="detail-card"><p class="detail-label">TTL</p><p class="detail-value" id="mTtl">-</p></div>
         <div class="detail-card"><p class="detail-label">Jenis Kelamin</p><p class="detail-value" id="mJk">-</p></div>
+        <div class="detail-card"><p class="detail-label">Agama</p><p class="detail-value" id="mAgama">-</p></div>
         <div class="detail-card"><p class="detail-label">No. HP</p><p class="detail-value" id="mHp">-</p></div>
         <div class="detail-card"><p class="detail-label">Jurusan</p><p class="detail-value" id="mJurusan">-</p></div>
         <div class="detail-card md:col-span-2"><p class="detail-label">Asal Sekolah</p><p class="detail-value" id="mSekolah">-</p></div>
@@ -288,8 +291,14 @@
       <div class="detail-block grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="detail-card"><p class="detail-label">Nama Ayah</p><p class="detail-value" id="mAyah">-</p></div>
         <div class="detail-card"><p class="detail-label">Nama Ibu</p><p class="detail-value" id="mIbu">-</p></div>
+        <div class="detail-card"><p class="detail-label">NIK Ayah</p><p class="detail-value" id="mNikAyah">-</p></div>
+        <div class="detail-card"><p class="detail-label">NIK Ibu</p><p class="detail-value" id="mNikIbu">-</p></div>
         <div class="detail-card"><p class="detail-label">Pekerjaan Ayah</p><p class="detail-value" id="mKerjaAyah">-</p></div>
         <div class="detail-card"><p class="detail-label">Pekerjaan Ibu</p><p class="detail-value" id="mKerjaIbu">-</p></div>
+        <div class="detail-card"><p class="detail-label">No. HP Ayah</p><p class="detail-value" id="mHpAyah">-</p></div>
+        <div class="detail-card"><p class="detail-label">No. HP Ibu</p><p class="detail-value" id="mHpIbu">-</p></div>
+        <div class="detail-card md:col-span-2"><p class="detail-label">Alamat Ayah</p><p class="detail-value" id="mAlamatAyah">-</p></div>
+        <div class="detail-card md:col-span-2"><p class="detail-label">Alamat Ibu</p><p class="detail-value" id="mAlamatIbu">-</p></div>
       </div>
     </div>
     <div id="tab-berkas" class="tab-content">
@@ -389,33 +398,48 @@ async function viewDetail(id) {
         // Render Data Diri
         document.getElementById('mName').textContent = detail.nama_lengkap;
         document.getElementById('mNo').textContent = detail.no_pendaftaran;
+        document.getElementById('mNamaLengkap').textContent = detail.nama_lengkap || '-';
         document.getElementById('mNisn').textContent = detail.nisn;
         document.getElementById('mNik').textContent = detail.nik;
-        document.getElementById('mTtl').textContent = `${detail.tempat_lahir}, ${detail.tanggal_lahir}`;
-        document.getElementById('mJk').textContent = detail.jenis_kelamin;
-        document.getElementById('mHp').textContent = detail.no_hp;
+        document.getElementById('mNoKk').textContent = detail.no_kk || '-';
+        document.getElementById('mTtl').textContent = `${detail.tempat_lahir || '-'}, ${detail.tanggal_lahir || '-'}`;
+        document.getElementById('mJk').textContent = detail.jenis_kelamin || '-';
+        document.getElementById('mAgama').textContent = detail.agama || '-';
+        document.getElementById('mHp').textContent = detail.no_hp || '-';
         document.getElementById('mSekolah').textContent = detail.asal_sekolah || '-';
         document.getElementById('mJurusan').textContent = detail.jurusan || '-';
-        document.getElementById('mAlamat').textContent = detail.alamat || '-';
+        document.getElementById('mAlamat').textContent = detail.alamat_lengkap || '-';
 
         // Render Status Badge
-        const badgeClass = detail.status === 'draft' ? 'badge-pending' : (detail.status === 'diverifikasi' ? 'badge-approved' : (detail.status === 'rejected' ? 'badge-rejected' : 'badge-pending'));
-        const iconClass = detail.status === 'diverifikasi' ? 'check' : (detail.status === 'rejected' ? 'times' : 'clock');
-        const textStatus = detail.status === 'draft' || detail.status === 'submit' ? 'Menunggu' : (detail.status === 'diverifikasi' ? 'Diterima' : 'Ditolak');
+        const badgeClass = detail.status === 'menunggu' ? 'badge-pending' : (detail.status === 'diverifikasi' ? 'badge-approved' : (detail.status === 'ditolak' ? 'badge-rejected' : 'badge-pending'));
+        const iconClass = detail.status === 'diverifikasi' ? 'check' : (detail.status === 'ditolak' ? 'times' : 'clock');
+        const textStatus = detail.status === 'menunggu' ? 'Menunggu' : (detail.status === 'diverifikasi' ? 'Diterima' : 'Ditolak');
         
         document.getElementById('mStatus').className = `badge ${badgeClass}`;
         document.getElementById('mStatus').innerHTML = `<i class="fas fa-${iconClass}"></i> ${textStatus}`;
 
         // Render Orang Tua
         document.getElementById('mAyah').textContent = '-';
+        document.getElementById('mNikAyah').textContent = '-';
         document.getElementById('mKerjaAyah').textContent = '-';
+        document.getElementById('mHpAyah').textContent = '-';
+        document.getElementById('mAlamatAyah').textContent = '-';
         document.getElementById('mIbu').textContent = '-';
+        document.getElementById('mNikIbu').textContent = '-';
         document.getElementById('mKerjaIbu').textContent = '-';
+        document.getElementById('mHpIbu').textContent = '-';
+        document.getElementById('mAlamatIbu').textContent = '-';
         if(detail.orang_tua) {
             document.getElementById('mAyah').textContent = detail.orang_tua.nama_ayah || '-';
+            document.getElementById('mNikAyah').textContent = detail.orang_tua.nik_ayah || '-';
             document.getElementById('mKerjaAyah').textContent = detail.orang_tua.pekerjaan_ayah || '-';
+            document.getElementById('mHpAyah').textContent = detail.orang_tua.no_hp_ayah || '-';
+            document.getElementById('mAlamatAyah').textContent = detail.orang_tua.alamat_ayah || '-';
             document.getElementById('mIbu').textContent = detail.orang_tua.nama_ibu || '-';
+            document.getElementById('mNikIbu').textContent = detail.orang_tua.nik_ibu || '-';
             document.getElementById('mKerjaIbu').textContent = detail.orang_tua.pekerjaan_ibu || '-';
+            document.getElementById('mHpIbu').textContent = detail.orang_tua.no_hp_ibu || '-';
+            document.getElementById('mAlamatIbu').textContent = detail.orang_tua.alamat_ibu || '-';
         }
 
         // Render Berkas (Loop dokumen)
@@ -455,7 +479,7 @@ async function viewDetail(id) {
 
         // Atur Tombol Action
         const ba = document.getElementById('btnApprove'), br = document.getElementById('btnReject');
-        const isPending = detail.status === 'submit' || detail.status === 'draft';
+        const isPending = detail.status === 'menunggu';
         ba.classList.toggle('hidden', !isPending);
         br.classList.toggle('hidden', !isPending);
 
@@ -471,15 +495,16 @@ async function viewDetail(id) {
 async function executeUpdateStatus(id, status, keterangan = '') {
     try {
         showLoader();
-        const response = await fetch(`${BASE_URL}/admin/pendaftarans/${id}/status`, { // Pastikan route sesuai
-            method: 'PATCH', // atau POST jika route di web.php menggunakan post
+        const endpoint = status === 'diverifikasi' ? 'verifikasi' : 'tolak';
+        const response = await fetch(`${BASE_URL}/admin/pendaftarans/${id}/${endpoint}`, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'X-CSRF-TOKEN': CSRF_TOKEN,
                 'X-Requested-With': 'XMLHttpRequest'
             },
-            body: JSON.stringify({ status: status, keterangan: keterangan })
+            body: JSON.stringify({ reason: keterangan })
         });
         
         if (!response.ok) throw new Error('Gagal update status');
@@ -508,7 +533,7 @@ function openReject(id) {
 function submitReject() { 
     const r = document.getElementById('reason').value.trim(); 
     if(!r) return showToast('Isi alasan penolakan', 'error'); 
-    executeUpdateStatus(currentPendaftar.id, 'rejected', r); 
+    executeUpdateStatus(currentPendaftar.id, 'ditolak', r); 
 }
 
 // ================= RENDER UI FUNGSI =================
@@ -522,10 +547,10 @@ function renderTable() {
     
     es.classList.add('hidden');
     tb.innerHTML = dataPendaftar.map(d => {
-        const bgStatus = d.status === 'draft' || d.status === 'submit' ? 'pending' : (d.status === 'diverifikasi' ? 'approved' : 'rejected');
-        const iconStatus = d.status === 'diverifikasi' ? 'check' : (d.status === 'rejected' ? 'times' : 'clock');
-        const txtStatus = d.status === 'draft' || d.status === 'submit' ? 'Menunggu' : (d.status === 'diverifikasi' ? 'Diterima' : 'Ditolak');
-        const inisial = d.nama ? d.nama.split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase() : 'NN';
+        const bgStatus = d.status === 'menunggu' ? 'pending' : (d.status === 'diverifikasi' ? 'approved' : 'rejected');
+        const iconStatus = d.status === 'diverifikasi' ? 'check' : (d.status === 'ditolak' ? 'times' : 'clock');
+        const txtStatus = d.status === 'menunggu' ? 'Menunggu' : (d.status === 'diverifikasi' ? 'Diterima' : 'Ditolak');
+        const inisial = d.nama ? d.nama.split(' ').map(x => x[0]).join('').slice(0,2).toUpperCase() : 'NN';
 
         return `
         <tr>
@@ -544,7 +569,7 @@ function renderTable() {
             <td class="text-center">
                 <div class="flex justify-center gap-2">
                     <button onclick="viewDetail(${d.id})" title="Lihat Detail" class="btn-glass w-9 h-9 rounded-lg flex items-center justify-center hover:text-navy-300"><i class="fas fa-eye text-xs"></i></button>
-                    ${(d.status === 'submit' || d.status === 'draft') ? `<button onclick="quickApprove(${d.id})" title="Terima" class="btn-success w-9 h-9 rounded-lg flex items-center justify-center"><i class="fas fa-check text-xs"></i></button><button onclick="openReject(${d.id})" title="Tolak" class="btn-danger w-9 h-9 rounded-lg flex items-center justify-center"><i class="fas fa-times text-xs"></i></button>` : ''}
+                    ${(d.status === 'menunggu') ? `<button onclick="quickApprove(${d.id})" title="Verifikasi" class="btn-success w-9 h-9 rounded-lg flex items-center justify-center"><i class="fas fa-check text-xs"></i></button><button onclick="openReject(${d.id})" title="Tolak" class="btn-danger w-9 h-9 rounded-lg flex items-center justify-center"><i class="fas fa-times text-xs"></i></button>` : ''}
                 </div>
             </td>
         </tr>`

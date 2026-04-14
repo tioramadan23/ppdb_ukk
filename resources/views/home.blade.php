@@ -366,10 +366,7 @@
                         <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Rekayasa Perangkat Lunak</h3>
                         <p class="text-gray-700 dark:text-gray-300">Mempelajari pengembangan aplikasi web, mobile, dan desktop dengan teknologi terkini.</p>
                     </div>
-                    <a href="" class="w-full flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-4 rounded-xl transition duration-300 mt-4">
-                        <span>Selengkapnya</span>
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    
                 </div>
             </div>
 
@@ -383,10 +380,7 @@
                         <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Teknik Komputer & Jaringan</h3>
                         <p class="text-gray-700 dark:text-gray-300">Menguasai instalasi, konfigurasi, dan administrasi jaringan komputer serta keamanan siber.</p>
                     </div>
-                    <a href="" class="w-full flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-4 rounded-xl transition duration-300 mt-4">
-                        <span>Selengkapnya</span>
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    
                 </div>
             </div>
 
@@ -400,10 +394,7 @@
                         <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Desain Komunikasi Visual</h3>
                         <p class="text-gray-700 dark:text-gray-300">Mengembangkan kreativitas dalam desain grafis, multimedia, dan komunikasi visual.</p>
                     </div>
-                    <a href="" class="w-full flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-4 rounded-xl transition duration-300 mt-4">
-                        <span>Selengkapnya</span>
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                   
                 </div>
             </div>
 
@@ -417,10 +408,7 @@
                         <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Bisnis Digital</h3>
                         <p class="text-gray-700 dark:text-gray-300">Mempelajari strategi bisnis berbasis digital, e-commerce, pemasaran online, dan manajemen startup.</p>
                     </div>
-                    <a href="" class="w-full flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-4 rounded-xl transition duration-300 mt-4">
-                        <span>Selengkapnya</span>
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                   
                 </div>
             </div>
 
@@ -434,10 +422,7 @@
                         <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Akuntansi</h3>
                         <p class="text-gray-700 dark:text-gray-300">Menguasai prinsip akuntansi, perpajakan, auditing, dan manajemen keuangan untuk dunia usaha.</p>
                     </div>
-                    <a href="" class="w-full flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-4 rounded-xl transition duration-300 mt-4">
-                        <span>Selengkapnya</span>
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    
                 </div>
             </div>
 

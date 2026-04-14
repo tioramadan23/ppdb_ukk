@@ -308,10 +308,10 @@
             <i class="fas fa-info-circle mr-1"></i>
             Verifikasi akan diproses dalam 1-3 hari kerja
         </p>
-        <?php elseif($status == 'lulus'): ?>
+        <?php elseif($status == 'diverifikasi'): ?>
         <p class="text-sm mt-2 opacity-80">
             <i class="fas fa-check mr-1"></i>
-            Selamat! Anda dapat melanjutkan ke tahap berikutnya
+            Selamat! Anda diterima di SMK BPM
         </p>
         <?php endif; ?> --}}
     </div>
@@ -1052,7 +1052,7 @@
                     <div class="form-group">
                         <label class="block font-semibold text-gray-800 mb-2">Bank Tujuan Transfer <span class="text-red-500">*</span></label>
                         <select name="bank_transfer" class="form-control w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-primary-600 focus:ring-2 focus:ring-primary-600/20 transition-all bg-white text-gray-900 dark:text-gray-100" required>
-                            <option value="">-- Pilih Bank --</option>
+                            <option value="">-- Pilih Metode Pembayaran --</option>
                             <option value="BRI" {{ old('bank_transfer') == 'BRI' ? 'selected' : '' }}>BRI</option>
                             <option value="Mandiri" {{ old('bank_transfer') == 'Mandiri' ? 'selected' : '' }}>Mandiri</option>
                         </select>
